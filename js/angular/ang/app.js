@@ -28,5 +28,4 @@ config(function($stateProvider, $urlRouterProvider) {
       url: "/unload",
       template: ""
   });
-  
 });
