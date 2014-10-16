@@ -26,7 +26,6 @@
 
 
 
-
   <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
   <script src="js/html5shiv.js"></script>
@@ -65,7 +64,7 @@
                 <h5 class="left-nav-title">Account Information</h5>
                 <ul class="nav nav-pills nav-stacked custom-nav">
                   <li><a href="#"><i class="fa fa-user"></i> <span>Company Profile</span></a></li>
-                  <li><a href="#myModal"><i class="fa fa-cog"></i> <span>Change Password</span></a></li>
+                  <li><a href="#myModal" data-toggle="modal"> <i class="fa fa-cog"></i> <span>Change Password</span></a></li>
                   <li><a href="#"><i class="fa fa-sign-out"></i> <span>Sign Out</span></a></li>
                 </ul>
             </div>
@@ -152,7 +151,7 @@
                         </a>
                         <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
                             <li><a href="#"><i class="fa fa-user"></i> Company Profile</a></li>
-                            <li><a href="#/myModal"><i class="fa fa-cog"></i>  Change Password</a></li>
+                            <a href="#myModal" data-toggle="modal"> <i class="fa fa-cog"></i> <span>Change Password</span></a></li>
                             <li><a href="<?php echo base_url();?>logins/logout"><i class="fa fa-sign-out"></i> Log Out</a></li>
                         </ul>
                     </li>
@@ -177,6 +176,27 @@
 
     </div>
     <!-- main content end-->
+    <!-- Modal -->
+    <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Forgot Password ?</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Enter your e-mail address below to reset your password.</p>
+                    <input type="text" name="email" placeholder="Email" autocomplete="off" class="form-control placeholder-no-fix">
+
+                </div>
+                <div class="modal-footer">
+                    <button data-dismiss="modal" class="btn btn-default" type="button">Cancel</button>
+                    <button class="btn btn-primary" type="button">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- modal -->
 </section>
 
 <!-- Placed js at the end of the document so the pages load faster -->
@@ -211,9 +231,9 @@
 <script src="<?php echo base_url();?>js/scripts.js"></script>
 
 <script src="<?php echo base_url();?>js/angular/lib/angular/angular.js"></script>
-<script src="<?php echo base_url();?>js/angular/ang/angular-ui-router.js"></script>
+//<script src="<?php echo base_url();?>js/angular/ang/angular-ui-router.js"></script>
 <script src="<?php echo base_url();?>js/angular/ang/ui-utils.min.js"></script>
-<script src="<?php echo base_url();?>js/angular/ang/app.js"></script>
+//<script src="<?php echo base_url();?>js/angular/ang/app.js"></script>
 <script src="<?php echo base_url();?>js/angular/ang//directives.js"></script>
 <script src="<?php echo base_url();?>js/angular/ang/services.js"></script>
 <script src="<?php echo base_url();?>js/angular/ang/controllers.js"></script>
@@ -222,10 +242,6 @@
 
 
 <script src="<?php echo base_url();?>js/main-chart.js"></script>
-
-
-
-
 
 </body>
 </html>

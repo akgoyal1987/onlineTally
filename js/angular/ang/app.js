@@ -23,11 +23,7 @@ config(function($stateProvider, $urlRouterProvider) {
   .state('home_alt', {
       url: "/home_alt",
       templateUrl: "../views/home_alt"
-  })
-  .state('myModal', {
-      url: "/myModal",
-      templateUrl: "../views/myModal"
-  })
+  })  
   .state('ledger', {
       url: "/ledger",
       templateUrl: "../views/ledger"

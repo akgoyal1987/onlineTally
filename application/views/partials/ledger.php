@@ -7,7 +7,7 @@
                             Basic validations
                         </header>
                         <div class="panel-body">
-                            <form role="form" class="form-horizontal adminex-form">
+                            <form role="form" class="form-horizontal adminex-form" id="ledgerForm" ng-submit="createLedger();">
                                 <div class="form-group has-success">
                                     <label class="col-lg-2 control-label">First Name</label>
                                     <div class="col-lg-10">
