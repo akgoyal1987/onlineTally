@@ -24,6 +24,14 @@ config(function($stateProvider, $urlRouterProvider) {
       url: "/home_alt",
       templateUrl: "../views/home_alt"
   })
+  .state('myModal', {
+      url: "/myModal",
+      templateUrl: "../views/myModal"
+  })
+  .state('ledger', {
+      url: "/ledger",
+      templateUrl: "../views/ledger"
+  })
   .state('unload', {
       url: "/unload",
       template: ""
