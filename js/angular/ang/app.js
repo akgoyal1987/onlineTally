@@ -20,13 +20,21 @@ config(function($stateProvider, $urlRouterProvider) {
       url: "/home",
       templateUrl: "../views/home"
   })
-  .state('home_alt', {
-      url: "/home_alt",
-      templateUrl: "../views/home_alt"
+  .state('company_profile', {
+      url: "/company_profile",
+      templateUrl: "../views/company_profile"
   })  
+   .state('group', {
+      url: "/group",
+      templateUrl: "../views/group"
+  })
   .state('ledger', {
       url: "/ledger",
       templateUrl: "../views/ledger"
+  })
+   .state('create_ledger', {
+      url: "/create_ledger",
+      templateUrl: "../views/create_ledger"
   })
   .state('unload', {
       url: "/unload",

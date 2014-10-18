@@ -30,18 +30,13 @@
             <img src="<?php echo base_url();?>images/login-logo.png" alt=""/>
         </div>
         <div class="login-wrap">
-            <input type="email" class="form-control" placeholder="Email" autofocus name="email" required>
+            <input type="text" class="form-control" placeholder="User ID" autofocus name="email" required>
             <input type="password" class="form-control" placeholder="Password" name="password" required>
 
             <button class="btn btn-lg btn-login btn-block" type="submit">
                 <i class="fa fa-check"></i>
             </button>
 
-            
-            <label class="checkbox">
-                <input type="checkbox" value="remember-me"> Remember me
-                
-            </label>
 
         </div>
 </form>

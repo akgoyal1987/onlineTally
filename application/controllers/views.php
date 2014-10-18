@@ -10,23 +10,33 @@ class Views extends CI_Controller {
 		}
 	}
 
-	public function home_alt(){
+	public function company_profile(){
 		if($this->checkSession()){
-			$this->load->view('partials/home_alt');
+
+			$this->load->view('partials/company_profile');
 		}else{
 			echo "You Are Not Logged In, Please Login!";
 		}
 	}
-	public function myModal(){
+	public function group(){
 		if($this->checkSession()){
-			$this->load->view('partials/change_pass');
+			$data['pagename'] = "group";
+			$this->load->view('partials/group',$data);
 		}else{
 			echo "You Are Not Logged In, Please Login!";
 		}
 	}
 	public function ledger(){
 		if($this->checkSession()){
-			$this->load->view('partials/ledger');
+			$data['pagename'] = "ledger";
+			$this->load->view('partials/ledger',$data);
+		}else{
+			echo "You Are Not Logged In, Please Login!";
+		}
+	}
+	public function create_ledger(){
+		if($this->checkSession()){
+			$this->load->view('partials/create_ledger');
 		}else{
 			echo "You Are Not Logged In, Please Login!";
 		}

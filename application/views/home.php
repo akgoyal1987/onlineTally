@@ -56,14 +56,14 @@
                 <div class="media logged-user">
                    
                     <div class="media-body">
-                        <h4><a href="#">John Doe</a></h4>
+                        <h4><a href="">John Doe</a></h4>
                         <span>"Hello There..."</span>
                     </div>
                 </div>
 
                 <h5 class="left-nav-title">Account Information</h5>
                 <ul class="nav nav-pills nav-stacked custom-nav">
-                  <li><a href="#"><i class="fa fa-user"></i> <span>Company Profile</span></a></li>
+                  <li><a href="#/company_profile"><i class="fa fa-user"></i> <span>Company Profile</span></a></li>
                   <li><a href="#myModal" data-toggle="modal"> <i class="fa fa-cog"></i> <span>Change Password</span></a></li>
                   <li><a href="#"><i class="fa fa-sign-out"></i> <span>Sign Out</span></a></li>
                 </ul>
@@ -77,8 +77,8 @@
 
                 <li class="menu-list"><a href=""><i class="fa fa-laptop"></i> <span>Accounts Info</span></a>
                     <ul class="sub-menu-list">
-                        <li><a href="#/home_alt"> Groups</a></li>
-                        <li><a href="#/ledger"> Ledgers</a></li>
+                        <li <?php if($pagename=="group"){echo "class='active'";} ?>><a href="#/group"> Groups</a></li>
+                        <li <?php if($pagename=="ledger"){echo "class='active'";} ?>><a href="#/ledger"> Ledgers</a></li>
                     </ul>
                 </li>
                 
@@ -144,14 +144,13 @@
 
                     
                     <li>
-                        <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                            <img src="images/photos/user-avatar.png" alt="" />
-                            <?php echo $this->session->userdata('username');?>
+                        <a href="" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                            Gaurav Garg
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
-                            <li><a href="#"><i class="fa fa-user"></i> Company Profile</a></li>
-                            <a href="#myModal" data-toggle="modal"> <i class="fa fa-cog"></i> <span>Change Password</span></a></li>
+                            <li><a href="#/company_profile"><i class="fa fa-user"></i> Company Profile</a></li>
+                           <li><a href="#myModal" data-toggle="modal"><i class="fa fa-cog"></i> Change Password</a></li>
                             <li><a href="<?php echo base_url();?>logins/logout"><i class="fa fa-sign-out"></i> Log Out</a></li>
                         </ul>
                     </li>
@@ -177,25 +176,30 @@
     </div>
     <!-- main content end-->
     <!-- Modal -->
-    <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">Forgot Password ?</h4>
-                </div>
-                <div class="modal-body">
-                    <p>Enter your e-mail address below to reset your password.</p>
-                    <input type="text" name="email" placeholder="Email" autocomplete="off" class="form-control placeholder-no-fix">
+       <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Change Password ?</h4>
+                    </div>
+                    <div class="modal-body">
+                    
+                        <input type="password" name="email" placeholder="Enter your current password" autocomplete="off" class="form-control placeholder-no-fix">
+                        <br>
+                        <input type="password" name="email" placeholder="Enter your new password" autocomplete="off" class="form-control placeholder-no-fix">
+                        <br>
+                        <input type="password" name="email" placeholder="Confirm your new password" autocomplete="off" class="form-control placeholder-no-fix">
 
-                </div>
-                <div class="modal-footer">
-                    <button data-dismiss="modal" class="btn btn-default" type="button">Cancel</button>
-                    <button class="btn btn-primary" type="button">Submit</button>
+                    </div>
+                    <div class="modal-footer">
+                        <button data-dismiss="modal" class="btn btn-default" type="button">Cancel</button>
+                        <button class="btn btn-primary" type="button">Submit</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+        <!-- modal -->
     <!-- modal -->
 </section>
 
@@ -209,7 +213,6 @@
 <!--easy pie chart-->
 <script src="<?php echo base_url();?>js/easypiechart/jquery.easypiechart.js"></script>
 <script src="<?php echo base_url();?>js/easypiechart/easypiechart-init.js"></script>
-
 <!--Sparkline Chart-->
 <script src="<?php echo base_url();?>js/sparkline/jquery.sparkline.js"></script>
 <script src="<?php echo base_url();?>js/sparkline/sparkline-init.js"></script>
@@ -226,7 +229,9 @@
 <script src="<?php echo base_url();?>js/flot-chart/jquery.flot.selection.js"></script>
 <script src="<?php echo base_url();?>js/flot-chart/jquery.flot.stack.js"></script>
 <script src="<?php echo base_url();?>js/flot-chart/jquery.flot.time.js"></script>
-
+<script type="text/javascript" language="javascript" src="<?php echo base_url();?>js/advanced-datatable/js/jquery.dataTables.js"></script>
+<script type="text/javascript" src="<?php echo base_url();?>js/data-tables/DT_bootstrap.js"></script>
+<script src="<?php echo base_url();?>js/dynamic_table_init.js"></script>
 <!--common scripts for all pages-->
 <script src="<?php echo base_url();?>js/scripts.js"></script>
 
@@ -238,7 +243,6 @@
 <script src="<?php echo base_url();?>js/angular/ang/services.js"></script>
 <script src="<?php echo base_url();?>js/angular/ang/controllers.js"></script>
 <script src="<?php echo base_url();?>js/angular/ang/filters.js"></script>  
-
 
 
 <script src="<?php echo base_url();?>js/main-chart.js"></script>

@@ -1,14 +1,14 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Admin extends CI_Model {
+class Login extends CI_Model {
 
 	
 	public function can_login()
 	{
 
-		$this->db->where('username', $this->input->post('email'));
+		$this->db->where('user_id', $this->input->post('email'));
 		$this->db->where('password', md5($this->input->post('password')));
-		$result= $this->db->get('admin')->result();
+		$result= $this->db->get('users')->result();
     // The results of the query are stored in $login.
     // If a value exists, then the user account exists and is validated
     if ( is_array($result) && count($result) == 1 ) {
@@ -50,8 +50,8 @@ class Admin extends CI_Model {
       // stores data in CodeIgniter's session storage.  Some of the values are built in
       // to CodeIgniter, others are added.  See CodeIgniter's documentation for details.
       $this->session->set_userdata( array(
-              'id'=>$userinfo->id,
-              'username'=> $userinfo->username,              
+              'id'=>$userinfo->s_no,
+              'username'=> $userinfo->user_id,              
               'isLoggedIn'=>true
           )
       );

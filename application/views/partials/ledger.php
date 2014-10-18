@@ -1,160 +1,460 @@
-    <!--body wrapper start-->
-        <div class="wrapper">
-            <div class="row">
-                <div class="col-lg-12">
-                    <section class="panel">
-                        <header class="panel-heading">
-                            Basic validations
-                        </header>
-                        <div class="panel-body">
-                            <form role="form" class="form-horizontal adminex-form" id="ledgerForm" ng-submit="createLedger();">
-                                <div class="form-group has-success">
-                                    <label class="col-lg-2 control-label">First Name</label>
-                                    <div class="col-lg-10">
-                                        <input type="text" placeholder="" id="f-name" class="form-control">
-                                        <p class="help-block">Successfully done</p>
-                                    </div>
-                                </div>
-                                <div class="form-group has-error">
-                                    <label class="col-lg-2 control-label">Last Name</label>
-                                    <div class="col-lg-10">
-                                        <input type="text" placeholder="" id="l-name" class="form-control">
-                                        <p class="help-block">Aha you gave a wrong info</p>
-                                    </div>
-                                </div>
-                                <div class="form-group has-warning">
-                                    <label class="col-lg-2 control-label">Email</label>
-                                    <div class="col-lg-10">
-                                        <input type="email" placeholder="" id="email2" class="form-control">
-                                        <p class="help-block">Something went wrong</p>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <div class="col-lg-offset-2 col-lg-10">
-                                        <button class="btn btn-primary" type="submit">Submit</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </section>
+<div class="wrapper">
+        <div class="row">
+        <div class="col-sm-12">
+        <section class="panel">
+        <header class="panel-heading">
+            Dynamic Table
+            <span class="tools pull-right">
+                <a href="javascript:;" class="fa fa-chevron-down"></a>
+                <a href="javascript:;" class="fa fa-times"></a>
+             </span>
+        </header>
+        <div class="panel-body">
+        <div class="adv-table">
+        <div class="clearfix">
+                    <div class="btn-group">
+                        <a href="#/create_ledger" id="editable-sample_new" class="btn btn-primary">
+                            Add New <i class="fa fa-plus"></i>
+                        </a>
+                    </div>
+                    <div class="btn-group pull-right">
+                        <!-- <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">Tools <i class="fa fa-angle-down"></i>
+                        </button>
+                        <ul class="dropdown-menu pull-right">
+                            <li><a href="#">Print</a></li>
+                            <li><a href="#">Save as PDF</a></li>
+                            <li><a href="#">Export to Excel</a></li>
+                        </ul> -->
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <section class="panel">
-                        <header class="panel-heading">
-                            Form validations
-                        </header>
-                        <div class="panel-body">
-                            <div class=" form">
-                                <form class="cmxform form-horizontal adminex-form" id="commentForm" method="get" action="">
-                                    <div class="form-group ">
-                                        <label for="cname" class="control-label col-lg-2">Name (required)</label>
-                                        <div class="col-lg-10">
-                                            <input class=" form-control" id="cname" name="name" minlength="2" type="text" required />
-                                        </div>
-                                    </div>
-                                    <div class="form-group ">
-                                        <label for="cemail" class="control-label col-lg-2">E-Mail (required)</label>
-                                        <div class="col-lg-10">
-                                            <input class="form-control " id="cemail" type="email" name="email" required />
-                                        </div>
-                                    </div>
-                                    <div class="form-group ">
-                                        <label for="curl" class="control-label col-lg-2">URL (optional)</label>
-                                        <div class="col-lg-10">
-                                            <input class="form-control " id="curl" type="url" name="url" />
-                                        </div>
-                                    </div>
-                                    <div class="form-group ">
-                                        <label for="ccomment" class="control-label col-lg-2">Your Comment (required)</label>
-                                        <div class="col-lg-10">
-                                            <textarea class="form-control " id="ccomment" name="comment" required></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-lg-offset-2 col-lg-10">
-                                            <button class="btn btn-primary" type="submit">Save</button>
-                                            <button class="btn btn-default" type="button">Cancel</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-
-                        </div>
-                    </section>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <section class="panel">
-                        <header class="panel-heading">
-                            Advanced Form validations
-                        </header>
-                        <div class="panel-body">
-                            <div class="form">
-                                <form class="cmxform form-horizontal adminex-form" id="signupForm" method="get" action="">
-                                    <div class="form-group ">
-                                        <label for="firstname" class="control-label col-lg-2">Firstname</label>
-                                        <div class="col-lg-10">
-                                            <input class=" form-control" id="firstname" name="firstname" type="text" />
-                                        </div>
-                                    </div>
-                                    <div class="form-group ">
-                                        <label for="lastname" class="control-label col-lg-2">Lastname</label>
-                                        <div class="col-lg-10">
-                                            <input class=" form-control" id="lastname" name="lastname" type="text" />
-                                        </div>
-                                    </div>
-                                    <div class="form-group ">
-                                        <label for="username" class="control-label col-lg-2">Username</label>
-                                        <div class="col-lg-10">
-                                            <input class="form-control " id="username" name="username" type="text" />
-                                        </div>
-                                    </div>
-                                    <div class="form-group ">
-                                        <label for="password" class="control-label col-lg-2">Password</label>
-                                        <div class="col-lg-10">
-                                            <input class="form-control " id="password" name="password" type="password" />
-                                        </div>
-                                    </div>
-                                    <div class="form-group ">
-                                        <label for="confirm_password" class="control-label col-lg-2">Confirm Password</label>
-                                        <div class="col-lg-10">
-                                            <input class="form-control " id="confirm_password" name="confirm_password" type="password" />
-                                        </div>
-                                    </div>
-                                    <div class="form-group ">
-                                        <label for="email" class="control-label col-lg-2">Email</label>
-                                        <div class="col-lg-10">
-                                            <input class="form-control " id="email" name="email" type="email" />
-                                        </div>
-                                    </div>
-                                    <div class="form-group ">
-                                        <label for="agree" class="control-label col-lg-2 col-sm-3">Agree to Our Policy</label>
-                                        <div class="col-lg-10 col-sm-9">
-                                            <input  type="checkbox" style="width: 20px" class="checkbox form-control" id="agree" name="agree" />
-                                        </div>
-                                    </div>
-                                    <div class="form-group ">
-                                        <label for="newsletter" class="control-label col-lg-2 col-sm-3">Receive the Newsletter</label>
-                                        <div class="col-lg-10 col-sm-9">
-                                            <input  type="checkbox" style="width: 20px" class="checkbox form-control" id="newsletter" name="newsletter" />
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <div class="col-lg-offset-2 col-lg-10">
-                                            <button class="btn btn-primary" type="submit">Save</button>
-                                            <button class="btn btn-default" type="button">Cancel</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </section>
-                </div>
-            </div>
+        <table  class="display table table-bordered table-striped" id="dynamic-table">
+        <thead>
+        <tr>
+            <th>Rendering engine</th>
+            <th>Browser</th>
+            <th>Platform(s)</th>
+            <th class="hidden-phone">Engine version</th>
+            <th class="hidden-phone">CSS grade</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="gradeX">
+            <td>Trident</td>
+            <td>Internet
+                Explorer 4.0</td>
+            <td>Win 95+</td>
+            <td class="center hidden-phone">4</td>
+            <td class="center hidden-phone">X</td>
+        </tr>
+        <tr class="gradeC">
+            <td>Trident</td>
+            <td>Internet
+                Explorer 5.0</td>
+            <td>Win 95+</td>
+            <td class="center hidden-phone">5</td>
+            <td class="center hidden-phone">C</td>
+        </tr>
+        <tr class="gradeA">
+            <td>Trident</td>
+            <td>Internet
+                Explorer 5.5</td>
+            <td>Win 95+</td>
+            <td class="center hidden-phone">5.5</td>
+            <td class="center hidden-phone">A</td>
+        </tr>
+        <tr class="gradeA">
+            <td>Trident</td>
+            <td>Internet
+                Explorer 6</td>
+            <td>Win 98+</td>
+            <td class="center hidden-phone">6</td>
+            <td class="center hidden-phone">A</td>
+        </tr>
+        <tr class="gradeA">
+            <td>Trident</td>
+            <td>Internet Explorer 7</td>
+            <td>Win XP SP2+</td>
+            <td class="center hidden-phone">7</td>
+            <td class="center hidden-phone">A</td>
+        </tr>
+        <tr class="gradeA">
+            <td>Trident</td>
+            <td>AOL browser (AOL desktop)</td>
+            <td>Win XP</td>
+            <td class="center hidden-phone">6</td>
+            <td class="center hidden-phone">A</td>
+        </tr>
+        <tr class="gradeA">
+            <td>Gecko</td>
+            <td>Firefox 1.0</td>
+            <td>Win 98+ / OSX.2+</td>
+            <td class="center hidden-phone">1.7</td>
+            <td class="center hidden-phone">A</td>
+        </tr>
+        <tr class="gradeA">
+            <td>Gecko</td>
+            <td>Firefox 1.5</td>
+            <td>Win 98+ / OSX.2+</td>
+            <td class="center hidden-phone">1.8</td>
+            <td class="center hidden-phone">A</td>
+        </tr>
+        <tr class="gradeA">
+            <td>Gecko</td>
+            <td>Firefox 2.0</td>
+            <td>Win 98+ / OSX.2+</td>
+            <td class="center hidden-phone">1.8</td>
+            <td class="center hidden-phone">A</td>
+        </tr>
+        <tr class="gradeA">
+            <td>Gecko</td>
+            <td>Firefox 3.0</td>
+            <td>Win 2k+ / OSX.3+</td>
+            <td class="center hidden-phone">1.9</td>
+            <td class="center hidden-phone">A</td>
+        </tr>
+        <tr class="gradeA">
+            <td>Gecko</td>
+            <td>Camino 1.0</td>
+            <td>OSX.2+</td>
+            <td class="center hidden-phone">1.8</td>
+            <td class="center hidden-phone">A</td>
+        </tr>
+        <tr class="gradeA">
+            <td>Gecko</td>
+            <td>Camino 1.5</td>
+            <td>OSX.3+</td>
+            <td class="center hidden-phone">1.8</td>
+            <td class="center hidden-phone">A</td>
+        </tr>
+        <tr class="gradeA">
+            <td>Gecko</td>
+            <td>Netscape 7.2</td>
+            <td>Win 95+ / Mac OS 8.6-9.2</td>
+            <td class="center hidden-phone">1.7</td>
+            <td class="center hidden-phone">A</td>
+        </tr>
+        <tr class="gradeA">
+            <td>Gecko</td>
+            <td>Netscape Browser 8</td>
+            <td>Win 98SE+</td>
+            <td class="center hidden-phone">1.7</td>
+            <td class="center hidden-phone">A</td>
+        </tr>
+        <tr class="gradeA">
+            <td>Gecko</td>
+            <td>Netscape Navigator 9</td>
+            <td>Win 98+ / OSX.2+</td>
+            <td class="center hidden-phone">1.8</td>
+            <td class="center hidden-phone">A</td>
+        </tr>
+        <tr class="gradeA">
+            <td>Gecko</td>
+            <td>Mozilla 1.0</td>
+            <td>Win 95+ / OSX.1+</td>
+            <td class="center hidden-phone">1</td>
+            <td class="center hidden-phone">A</td>
+        </tr>
+        <tr class="gradeA">
+            <td>Gecko</td>
+            <td>Mozilla 1.1</td>
+            <td>Win 95+ / OSX.1+</td>
+            <td class="center hidden-phone">1.1</td>
+            <td class="center hidden-phone">A</td>
+        </tr>
+        <tr class="gradeA">
+            <td>Gecko</td>
+            <td>Mozilla 1.2</td>
+            <td>Win 95+ / OSX.1+</td>
+            <td class="center hidden-phone">1.2</td>
+            <td class="center hidden-phone">A</td>
+        </tr>
+        <tr class="gradeA">
+            <td>Gecko</td>
+            <td>Mozilla 1.3</td>
+            <td>Win 95+ / OSX.1+</td>
+            <td class="center hidden-phone">1.3</td>
+            <td class="center hidden-phone">A</td>
+        </tr>
+        <tr class="gradeA">
+            <td>Gecko</td>
+            <td>Mozilla 1.4</td>
+            <td>Win 95+ / OSX.1+</td>
+            <td class="center hidden-phone">1.4</td>
+            <td class="center hidden-phone">A</td>
+        </tr>
+        <tr class="gradeA">
+            <td>Gecko</td>
+            <td>Mozilla 1.5</td>
+            <td>Win 95+ / OSX.1+</td>
+            <td class="center hidden-phone">1.5</td>
+            <td class="center hidden-phone">A</td>
+        </tr>
+        <tr class="gradeA">
+            <td>Gecko</td>
+            <td>Mozilla 1.6</td>
+            <td>Win 95+ / OSX.1+</td>
+            <td class="center hidden-phone">1.6</td>
+            <td class="center hidden-phone">A</td>
+        </tr>
+        <tr class="gradeA">
+            <td>Gecko</td>
+            <td>Mozilla 1.7</td>
+            <td>Win 98+ / OSX.1+</td>
+            <td class="center hidden-phone">1.7</td>
+            <td class="center hidden-phone">A</td>
+        </tr>
+        <tr class="gradeA">
+            <td>Gecko</td>
+            <td>Mozilla 1.8</td>
+            <td>Win 98+ / OSX.1+</td>
+            <td class="center hidden-phone">1.8</td>
+            <td class="center hidden-phone">A</td>
+        </tr>
+        <tr class="gradeA">
+            <td>Gecko</td>
+            <td>Seamonkey 1.1</td>
+            <td>Win 98+ / OSX.2+</td>
+            <td class="center hidden-phone">1.8</td>
+            <td class="center hidden-phone">A</td>
+        </tr>
+        <tr class="gradeA">
+            <td>Gecko</td>
+            <td>Epiphany 2.20</td>
+            <td>Gnome</td>
+            <td class="center hidden-phone">1.8</td>
+            <td class="center hidden-phone">A</td>
+        </tr>
+        <tr class="gradeA">
+            <td>Webkit</td>
+            <td>Safari 1.2</td>
+            <td>OSX.3</td>
+            <td class="center hidden-phone">125.5</td>
+            <td class="center hidden-phone">A</td>
+        </tr>
+        <tr class="gradeA">
+            <td>Webkit</td>
+            <td>Safari 1.3</td>
+            <td>OSX.3</td>
+            <td class="center hidden-phone">312.8</td>
+            <td class="center hidden-phone">A</td>
+        </tr>
+        <tr class="gradeA">
+            <td>Webkit</td>
+            <td>Safari 2.0</td>
+            <td>OSX.4+</td>
+            <td class="center hidden-phone">419.3</td>
+            <td class="center hidden-phone">A</td>
+        </tr>
+        <tr class="gradeA">
+            <td>Webkit</td>
+            <td>Safari 3.0</td>
+            <td>OSX.4+</td>
+            <td class="center hidden-phone">522.1</td>
+            <td class="center hidden-phone">A</td>
+        </tr>
+        <tr class="gradeA">
+            <td>Webkit</td>
+            <td>OmniWeb 5.5</td>
+            <td>OSX.4+</td>
+            <td class="center hidden-phone">420</td>
+            <td class="center hidden-phone">A</td>
+        </tr>
+        <tr class="gradeA">
+            <td>Webkit</td>
+            <td>iPod Touch / iPhone</td>
+            <td>iPod</td>
+            <td class="center hidden-phone">420.1</td>
+            <td class="center hidden-phone">A</td>
+        </tr>
+        <tr class="gradeA">
+            <td>Webkit</td>
+            <td>S60</td>
+            <td>S60</td>
+            <td class="center hidden-phone">413</td>
+            <td class="center hidden-phone">A</td>
+        </tr>
+        <tr class="gradeA">
+            <td>Presto</td>
+            <td>Opera 7.0</td>
+            <td>Win 95+ / OSX.1+</td>
+            <td class="center hidden-phone">-</td>
+            <td class="center hidden-phone">A</td>
+        </tr>
+        <tr class="gradeA">
+            <td>Presto</td>
+            <td>Opera 7.5</td>
+            <td>Win 95+ / OSX.2+</td>
+            <td class="center hidden-phone">-</td>
+            <td class="center hidden-phone">A</td>
+        </tr>
+        <tr class="gradeA">
+            <td>Presto</td>
+            <td>Opera 8.0</td>
+            <td>Win 95+ / OSX.2+</td>
+            <td class="center hidden-phone">-</td>
+            <td class="center hidden-phone">A</td>
+        </tr>
+        <tr class="gradeA">
+            <td>Presto</td>
+            <td>Opera 8.5</td>
+            <td>Win 95+ / OSX.2+</td>
+            <td class="center hidden-phone">-</td>
+            <td class="center hidden-phone">A</td>
+        </tr>
+        <tr class="gradeA">
+            <td>Presto</td>
+            <td>Opera 9.0</td>
+            <td>Win 95+ / OSX.3+</td>
+            <td class="center hidden-phone">-</td>
+            <td class="center hidden-phone">A</td>
+        </tr>
+        <tr class="gradeA">
+            <td>Presto</td>
+            <td>Opera 9.2</td>
+            <td>Win 88+ / OSX.3+</td>
+            <td class="center hidden-phone">-</td>
+            <td class="center hidden-phone">A</td>
+        </tr>
+        <tr class="gradeA">
+            <td>Presto</td>
+            <td>Opera 9.5</td>
+            <td>Win 88+ / OSX.3+</td>
+            <td class="center hidden-phone">-</td>
+            <td class="center hidden-phone">A</td>
+        </tr>
+        <tr class="gradeA">
+            <td>Presto</td>
+            <td>Opera for Wii</td>
+            <td>Wii</td>
+            <td class="center hidden-phone">-</td>
+            <td class="center hidden-phone">A</td>
+        </tr>
+        <tr class="gradeA">
+            <td>Presto</td>
+            <td>Nokia N800</td>
+            <td>N800</td>
+            <td class="center hidden-phone">-</td>
+            <td class="center hidden-phone">A</td>
+        </tr>
+        <tr class="gradeA">
+            <td>Presto</td>
+            <td>Nintendo DS browser</td>
+            <td>Nintendo DS</td>
+            <td class="center hidden-phone">8.5</td>
+            <td class="center hidden-phone">C/A<sup>1</sup></td>
+        </tr>
+        <tr class="gradeC">
+            <td>KHTML</td>
+            <td>Konqureror 3.1</td>
+            <td>KDE 3.1</td>
+            <td class="center hidden-phone">3.1</td>
+            <td class="center hidden-phone">C</td>
+        </tr>
+        <tr class="gradeA">
+            <td>KHTML</td>
+            <td>Konqureror 3.3</td>
+            <td>KDE 3.3</td>
+            <td class="center hidden-phone">3.3</td>
+            <td class="center hidden-phone">A</td>
+        </tr>
+        <tr class="gradeA">
+            <td>KHTML</td>
+            <td>Konqureror 3.5</td>
+            <td>KDE 3.5</td>
+            <td class="center hidden-phone">3.5</td>
+            <td class="center hidden-phone">A</td>
+        </tr>
+        <tr class="gradeX">
+            <td>Tasman</td>
+            <td>Internet Explorer 4.5</td>
+            <td>Mac OS 8-9</td>
+            <td class="center hidden-phone">-</td>
+            <td class="center hidden-phone">X</td>
+        </tr>
+        <tr class="gradeC">
+            <td>Tasman</td>
+            <td>Internet Explorer 5.1</td>
+            <td>Mac OS 7.6-9</td>
+            <td class="center hidden-phone">1</td>
+            <td class="center hidden-phone">C</td>
+        </tr>
+        <tr class="gradeC">
+            <td>Tasman</td>
+            <td>Internet Explorer 5.2</td>
+            <td>Mac OS 8-X</td>
+            <td class="center hidden-phone">1</td>
+            <td class="center hidden-phone">C</td>
+        </tr>
+        <tr class="gradeA">
+            <td>Misc</td>
+            <td>NetFront 3.1</td>
+            <td>Embedded devices</td>
+            <td class="center hidden-phone">-</td>
+            <td class="center hidden-phone">C</td>
+        </tr>
+        <tr class="gradeA">
+            <td>Misc</td>
+            <td>NetFront 3.4</td>
+            <td>Embedded devices</td>
+            <td class="center hidden-phone">-</td>
+            <td class="center hidden-phone">A</td>
+        </tr>
+        <tr class="gradeX">
+            <td>Misc</td>
+            <td>Dillo 0.8</td>
+            <td>Embedded devices</td>
+            <td class="center hidden-phone">-</td>
+            <td class="center hidden-phone">X</td>
+        </tr>
+        <tr class="gradeX">
+            <td>Misc</td>
+            <td>Links</td>
+            <td>Text only</td>
+            <td class="center hidden-phone">-</td>
+            <td class="center hidden-phone">X</td>
+        </tr>
+        <tr class="gradeX">
+            <td>Misc</td>
+            <td>Lynx</td>
+            <td>Text only</td>
+            <td class="center hidden-phone">-</td>
+            <td class="center hidden-phone">X</td>
+        </tr>
+        <tr class="gradeC">
+            <td>Misc</td>
+            <td>IE Mobile</td>
+            <td>Windows Mobile 6</td>
+            <td class="center hidden-phone">-</td>
+            <td class="center hidden-phone">C</td>
+        </tr>
+        <tr class="gradeC">
+            <td>Misc</td>
+            <td>PSP browser</td>
+            <td>PSP</td>
+            <td class="center hidden-phone">-</td>
+            <td class="center hidden-phone">C</td>
+        </tr>
+        <tr class="gradeU">
+            <td>Other browsers</td>
+            <td>All others</td>
+            <td>-</td>
+            <td class="center hidden-phone">-</td>
+            <td class="center hidden-phone">U</td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <th>Rendering engine</th>
+            <th>Browser</th>
+            <th>Platform(s)</th>
+            <th class="hidden-phone">Engine version</th>
+            <th class="hidden-phone">CSS grade</th>
+        </tr>
+        </tfoot>
+        </table>
         </div>
-        <!--body wrapper end-->
+        </div>
+        </section>
+        </div>
+        </div>
+        </div>

@@ -51,7 +51,7 @@ CREATE TABLE `company_info` (
   `address` longtext,
   `phone_no` varchar(45) DEFAULT NULL,
   `email_id` varchar(45) DEFAULT NULL,
-  `user_id` varchar(45) DEFAULT NULL,
+  `company_id` varchar(45) DEFAULT NULL,
   `city` varchar(45) DEFAULT NULL,
   `district` varchar(45) DEFAULT NULL,
   `state` varchar(45) DEFAULT NULL,
@@ -68,7 +68,7 @@ CREATE TABLE `company_info` (
 --
 
 /*!40000 ALTER TABLE `company_info` DISABLE KEYS */;
-INSERT INTO `company_info` (`c_no`,`company_name`,`address`,`phone_no`,`email_id`,`user_id`,`city`,`district`,`state`,`pin_code`,`tin_no`,`csl_no`,`financial_year`,`book_begning`) VALUES 
+INSERT INTO `company_info` (`c_no`,`company_name`,`address`,`phone_no`,`email_id`,`company_id`,`city`,`district`,`state`,`pin_code`,`tin_no`,`csl_no`,`financial_year`,`book_begning`) VALUES 
  (1,'Gaurav Seeds','148,sukh sagar avenue','9074739352','gauravgargcs1991@gmail.com','1',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `company_info` ENABLE KEYS */;
 
@@ -100,6 +100,7 @@ DROP TABLE IF EXISTS `group`;
 CREATE TABLE `group` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(45) DEFAULT NULL,
+  `group` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -125,10 +126,13 @@ CREATE TABLE `ledger` (
   `mobile_no` varchar(45) DEFAULT NULL,
   `pin_code` varchar(45) DEFAULT NULL,
   `tin_no` varchar(45) DEFAULT NULL,
-  `user_id` varchar(45) DEFAULT NULL,
+  `company_id` varchar(45) DEFAULT NULL,
   `address` longtext,
   `opening_bal` double DEFAULT NULL,
   `type` varchar(45) DEFAULT NULL,
+  `group_id` int(10) unsigned DEFAULT NULL,
+  `email` varchar(45) DEFAULT NULL,
+  `user_id` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`s_no`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -160,27 +164,6 @@ CREATE TABLE `state` (
 
 
 --
--- Definition of table `sub_group`
---
-
-DROP TABLE IF EXISTS `sub_group`;
-CREATE TABLE `sub_group` (
-  `s_no` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `id` varchar(45) DEFAULT NULL,
-  `name` varchar(45) DEFAULT NULL,
-  `user_id` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`s_no`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `sub_group`
---
-
-/*!40000 ALTER TABLE `sub_group` DISABLE KEYS */;
-/*!40000 ALTER TABLE `sub_group` ENABLE KEYS */;
-
-
---
 -- Definition of table `users`
 --
 
@@ -189,6 +172,7 @@ CREATE TABLE `users` (
   `s_no` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` varchar(45) DEFAULT NULL,
   `password` varchar(45) DEFAULT NULL,
+  `role` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`s_no`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
@@ -197,10 +181,10 @@ CREATE TABLE `users` (
 --
 
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` (`s_no`,`user_id`,`password`) VALUES 
- (1,'gaurav','12345'),
- (2,'padam','54321'),
- (3,'ankit','54321');
+INSERT INTO `users` (`s_no`,`user_id`,`password`,`role`) VALUES 
+ (1,'gaurav','827ccb0eea8a706c4c34a16891f84e7b',NULL),
+ (2,'padam','54321',NULL),
+ (3,'ankit','54321',NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 
