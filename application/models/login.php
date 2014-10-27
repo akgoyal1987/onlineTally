@@ -5,7 +5,6 @@ class Login extends CI_Model {
 	
 	public function can_login()
 	{
-
 		$this->db->where('user_id', $this->input->post('email'));
 		$this->db->where('password', md5($this->input->post('password')));
 		$result= $this->db->get('users')->result();
@@ -49,9 +48,17 @@ class Login extends CI_Model {
       // session->set_userdata is a CodeIgniter function that
       // stores data in CodeIgniter's session storage.  Some of the values are built in
       // to CodeIgniter, others are added.  See CodeIgniter's documentation for details.
+      if($userinfo->role=="user")
+        $home = "user_home";
+      else if($userinfo->role=="admin")
+        $home = "admin_home";
+      else
+        $home = "company_home";      
       $this->session->set_userdata( array(
               'id'=>$userinfo->s_no,
               'username'=> $userinfo->user_id,              
+              'role'=> $userinfo->role,
+              'home'=> $home,
               'isLoggedIn'=>true
           )
       );

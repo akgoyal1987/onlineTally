@@ -17,8 +17,7 @@ class Logins extends CI_Controller{
 	{
 		if($this->checkSession())
 		{
-			$data['pagename'] = "Dashboard";
-			$this->load->view('home',$data);
+			$this->load->view($this->session->userdata('home'));
 		}else
 		{
 			redirect('logins/login');
@@ -37,7 +36,7 @@ class Logins extends CI_Controller{
 	}
 	
 	public function signin(){
-		if($this->validate_credentials()){			
+		if($this->validate_credentials()){	
          	redirect('logins/home');
 		}else{
          	redirect('logins/');

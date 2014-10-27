@@ -72,13 +72,13 @@
             <!--sidebar nav start-->
             <ul class="nav nav-pills nav-stacked custom-nav">    
                 </li>
-                <li <?php if($pagename=="Dashboard"){echo "class='active'";} ?>><a href="#/home"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>                
+                <li><a href="#/home"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>                
             </li>
 
                 <li class="menu-list"><a href=""><i class="fa fa-laptop"></i> <span>Accounts Info</span></a>
                     <ul class="sub-menu-list">
-                        <li <?php if($pagename=="group"){echo "class='active'";} ?>><a href="#/group"> Groups</a></li>
-                        <li <?php if($pagename=="ledger"){echo "class='active'";} ?>><a href="#/ledger"> Ledgers</a></li>
+                        <li ><a href="#/group"> Groups</a></li>
+                        <li ><a href="#/ledger"> Ledgers</a></li>
                     </ul>
                 </li>
                 
@@ -239,7 +239,7 @@
 //<script src="<?php echo base_url();?>js/angular/ang/angular-ui-router.js"></script>
 <script src="<?php echo base_url();?>js/angular/ang/ui-utils.min.js"></script>
 //<script src="<?php echo base_url();?>js/angular/ang/app.js"></script>
-<script src="<?php echo base_url();?>js/angular/ang//directives.js"></script>
+<script src="<?php echo base_url();?>js/angular/ang/directives.js"></script>
 <script src="<?php echo base_url();?>js/angular/ang/services.js"></script>
 <script src="<?php echo base_url();?>js/angular/ang/controllers.js"></script>
 <script src="<?php echo base_url();?>js/angular/ang/filters.js"></script>  

@@ -15,7 +15,7 @@
                                     <div class="form-group ">
                                         <label for="cname" class="control-label col-lg-2">Name (required)</label>
                                         <div class="col-lg-4">
-                                            <input class=" form-control" id="cname" name="name" minlength="2" type="text" required />
+                                            <input datepicker class="form-control" id="cname" name="name" minlength="2" type="text" required />
                                         </div>
                                          <label for="cname" class="control-label col-lg-2">Mobile No (required)</label>
                                         <div class="col-lg-4">
@@ -35,7 +35,7 @@
                                              <option>Gwalior</option>   
                                              <option>Bhind</option>   
                                              <option>Morena</option>      
-                                            </select>                                       
+                                            </select>
                                     </div>
                                     <div class="form-group ">
                                      </div>
@@ -99,3 +99,4 @@
             
         </div>
         <!--body wrapper end-->
+$(".abc").datepicker();
