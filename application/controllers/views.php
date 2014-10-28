@@ -41,6 +41,13 @@ class Views extends CI_Controller {
 			echo "You Are Not Logged In, Please Login!";
 		}
 	}
+	public function view_ledger(){
+		if($this->checkSession()){
+			$this->load->view('partials/view_ledger');
+		}else{
+			echo "You Are Not Logged In, Please Login!";
+		}
+	}
 
 
 	function checkSession(){

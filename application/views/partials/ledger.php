@@ -3,7 +3,7 @@
         <div class="col-sm-12">
         <section class="panel">
         <header class="panel-heading">
-            Dynamic Table
+            Ledgers
             <span class="tools pull-right">
                 <a href="javascript:;" class="fa fa-chevron-down"></a>
                 <a href="javascript:;" class="fa fa-times"></a>
@@ -30,20 +30,24 @@
         <table  class="display table table-bordered table-striped" id="dynamic-table">
         <thead>
         <tr>
-            <th>Rendering engine</th>
-            <th>Browser</th>
-            <th>Platform(s)</th>
-            <th class="hidden-phone">Engine version</th>
-            <th class="hidden-phone">CSS grade</th>
+            <th>Name</th>
+            <th>Mobile No.</th>
+            <th>City</th>
+            <th>Opening Balance</th>
+            <th>Type</th>
+            <th class="hidden-phone">View Profile</th>
+            <th class="hidden-phone">Delete</th>
         </tr>
         </thead>
         <tbody>
         <tr class="gradeX" ng-repeat="ledger in ledgers">
-            <td>{{ledger.s_no}}</td>
             <td>{{ledger.name}}</td>
-            <td>{{ledger.}}</td>
-            <td class="center hidden-phone">4</td>
-            <td class="center hidden-phone">X</td>
+            <td>{{ledger.mobile_no}}</td>
+            <td>{{ledger.city}}</td>
+            <td>{{ledger.opening_bal}}</td>
+            <td>{{ledger.type}}</td>
+            <td class="center hidden-phone"><a href="#/view_ledger">View Profile <span class="fa fa-book"></span></a></td>
+            <td class="center hidden-phone"><a>Delete <span class="fa fa-trash-o"></span></a></td>
         </tr>
         </tfoot>
         </table>

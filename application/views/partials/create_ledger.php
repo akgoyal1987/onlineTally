@@ -42,12 +42,14 @@
                                         <label for="cname" class="control-label col-lg-2">District (required)</label>
                                         <div class="col-lg-4">
                                             <select class=" form-control" id="cname" name="name" minlength="2" type="text" required >
+                                             <option value="">--SELECT--</option>
                                              <option>Sabalgarh</option>   
                                             </select>      
                                         </div>
                                         <label for="cname" class="control-label col-lg-2">State (required)</label>
                                         <div class="col-lg-4">
                                            <select class=" form-control" id="cname" name="name" minlength="2" type="text" required >
+                                              <option value="">--SELECT--</option>
                                              <option>Sabalgarh</option>   
                                             </select>      
                                         </div>

@@ -149,7 +149,7 @@
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
-                            <li><a href="#/company_profile"><i class="fa fa-user"></i> Company Profile</a></li>
+                            <li><a href="#/company_profile"><i class="fa fa-user"></i> User Profile</a></li>
                            <li><a href="#myModal" data-toggle="modal"><i class="fa fa-cog"></i> Change Password</a></li>
                             <li><a href="<?php echo base_url();?>logins/logout"><i class="fa fa-sign-out"></i> Log Out</a></li>
                         </ul>

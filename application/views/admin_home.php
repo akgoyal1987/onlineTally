@@ -63,7 +63,6 @@
 
                 <h5 class="left-nav-title">Account Information</h5>
                 <ul class="nav nav-pills nav-stacked custom-nav">
-                  <li><a href="#/company_profile"><i class="fa fa-user"></i> <span>Company Profile</span></a></li>
                   <li><a href="#myModal" data-toggle="modal"> <i class="fa fa-cog"></i> <span>Change Password</span></a></li>
                   <li><a href="#"><i class="fa fa-sign-out"></i> <span>Sign Out</span></a></li>
                 </ul>
@@ -75,7 +74,7 @@
                 <li><a href="#/home"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>                
             </li>
 
-                <li class="menu-list"><a href=""><i class="fa fa-laptop"></i> <span>Accounts Info</span></a>
+                <li class="menu-list"><a href=""><i class="fa fa-laptop"></i> <span>Send SMS</span></a>
                     <ul class="sub-menu-list">
                         <li ><a href="#/group"> Groups</a></li>
                         <li ><a href="#/ledger"> Ledgers</a></li>
@@ -83,38 +82,6 @@
                 </li>
                 
                
-
-                
-
-                <li class="menu-list"><a href=""><i class="fa fa-book"></i> <span> Inventory Info</span></a>
-                    <ul class="sub-menu-list">
-                        <li><a href="#"> Stock Groups</a></li>
-                        <li><a href="#"> Stock Items</a></li>
-                        <li><a href="#"> Units of Measure</a></li>
-                    </ul>
-                </li>
-
-                <li class="menu-list"><a href=""><i class="fa fa-edit"></i> <span> Accounting Vouchers</span></a>
-                    <ul class="sub-menu-list">
-                        <li><a href="#"> Contra</a></li>
-                        <li><a href="#"> Payment</a></li>
-                        <li><a href="#"> Receipt</a></li>
-                        
-                    </ul>
-                </li>
-                <li class="menu-list"><a href=""><i class="fa fa-tag"></i> <span> Inventory Vouchers</span></a>
-                    <ul class="sub-menu-list">
-                        <li><a href="#"> Stock Journal</a></li>
-                    </ul>
-                </li>
-                <li class="menu-list"><a href="#"><i class="fa fa-list-alt"></i> <span> Display</span></a>
-                    <ul class="sub-menu-list">
-                        <li><a href="#"> Trial Balance</a></li>
-                        <li><a href="#"> Day Book</a></li>
-                        <li><a href="#"> Account Books</a></li>
-                        <li><a href="#"> Inventory Books</a></li>
-                    </ul>
-                </li> 
                 <li><a href="#"><i class="fa fa-sign-in"></i> <span>Login Page</span></a></li>
 
             </ul>
@@ -149,7 +116,6 @@
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
-                            <li><a href="#/company_profile"><i class="fa fa-user"></i> Company Profile</a></li>
                            <li><a href="#myModal" data-toggle="modal"><i class="fa fa-cog"></i> Change Password</a></li>
                             <li><a href="<?php echo base_url();?>logins/logout"><i class="fa fa-sign-out"></i> Log Out</a></li>
                         </ul>

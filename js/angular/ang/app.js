@@ -36,6 +36,10 @@ config(function($stateProvider, $urlRouterProvider) {
       url: "/create_ledger",
       templateUrl: "../views/create_ledger"
   })
+   .state('view_ledger', {
+      url: "/view_ledger",
+      templateUrl: "../views/view_ledger"
+  })
   .state('unload', {
       url: "/unload",
       template: ""
