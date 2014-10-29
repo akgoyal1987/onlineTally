@@ -5376,3 +5376,7 @@ ul.iconic-list li a:hover, ul.iconic-list li.active a {
     margin-bottom: 0;
     padding-bottom: 0;
 }
+
+#editable-sample_new {
+    margin-bottom: 25px;
+}

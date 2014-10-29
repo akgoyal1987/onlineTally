@@ -24,7 +24,40 @@ class Ledger extends CI_Controller {
 			redirect('logins/login');
 		}
 	}
+
+	public function update(){
+		if($this->checkSession()){
+			$params = $this->getParameters();	
+			$this->load->model('Ledger_Model');
+			$data['result'] =  $this->Ledger_Model->update($params);
+			//json_encode($ledgers);
+			$ledgers = array(); // it will wrap all of your value
+		    foreach($data['ledgers'] as $row){
+				unset($temp); // Release the contained value of the variable from the last loop
+				$temp = array();
+
+				// It guess your client side will need the id to extract, and distinguish the ScoreCH data
+				$temp['s_no'] = $row['s_no'];
+				$temp['name'] = $row['name'];
+
+				array_push($ledgers,$row);
+		    }
+		    echo json_encode($ledgers);
+		}else{
+			redirect('logins/login');
+		}
+	}
 	
+	public function delete(){
+		if($this->checkSession()){
+			$params = $this->getParameters();	
+			$this->load->model('Ledger_Model');
+			$data['result'] =  $this->Ledger_Model->delete($params['id']);
+		    echo json_encode($data['result']);
+		}else{
+			redirect('logins/login');
+		}
+	}
 
 	function checkSession(){
 		if($this->session->userdata('isLoggedIn')){

@@ -11,25 +11,25 @@
                         </header>
                         <div class="panel-body">
                             <div class=" form">
-                                <form class="cmxform form-horizontal adminex-form" id="commentForm" method="get" action="">
+                                <form class="cmxform form-horizontal adminex-form" id="ledgerform" ng-submit="updateLedger();" method="get" action="">
                                     <div class="form-group ">
                                         <label for="cname" class="control-label col-lg-2">Name (required)</label>
                                         <div class="col-lg-4">
-                                            <input class=" form-control" id="cname" name="name" minlength="2" type="text" required />
+                                            <input class="form-control" id="name" type="text" value="{{setSelectedLedger.name}}" required/>
                                         </div>
                                          <label for="cname" class="control-label col-lg-2">Mobile No (required)</label>
                                         <div class="col-lg-4">
-                                            <input class=" form-control" id="cname" name="name" minlength="2" type="text" required />
+                                            <input class=" form-control" id="mobile_no"  value="{{setSelectedLedger.mobile_no}}" type="text" required />
                                         </div>
                                     </div>
                                      <div class="form-group ">
                                         <label for="cname" class="control-label col-lg-2">Address (required)</label>
                                         <div class="col-lg-4">
-                                            <input class=" form-control" id="cname" name="name" minlength="2" type="text" required />
+                                            <input class=" form-control" id="address"  type="text" value="{{setSelectedLedger.address}}" required />
                                         </div>
                                         <label for="cname" class="control-label col-lg-2">City (required)</label>
                                         <div class="col-lg-4">
-                                            <select class=" form-control" id="cname" name="name" minlength="2" type="text" required >
+                                            <select class="form-control" id="city" type="text" required value="{{setSelectedLedger.city}}">
                                              <option value="">--SELECT--</option>
                                              <option>Sabalgarh</option>
                                              <option>Gwalior</option>   
