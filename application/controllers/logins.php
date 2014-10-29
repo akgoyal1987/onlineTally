@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Logins extends CI_Controller{
+class Logins extends MY_Base_Controller{
 	public function index()
 	{
 		if($this->checkSession())
@@ -53,14 +53,6 @@ class Logins extends CI_Controller{
 		redirect('logins/index');
 	}
 	
-	function checkSession(){
-		if($this->session->userdata('isLoggedIn')){
-			return true;
-		}
-		else{
-			return false;
-		}
-	}
 }
 
 

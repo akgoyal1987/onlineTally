@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Views extends CI_Controller {
+class Views extends MY_Base_Controller{
 
 	public function home(){
 		if($this->checkSession()){
@@ -50,14 +50,6 @@ class Views extends CI_Controller {
 	}
 
 
-	function checkSession(){
-		if($this->session->userdata('isLoggedIn')){
-			return true;
-		}
-		else{
-			return false;
-		}
-	}
 }
 
 
