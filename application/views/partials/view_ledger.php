@@ -15,42 +15,37 @@
                                     <div class="form-group ">
                                         <label for="cname" class="control-label col-lg-2">Name (required)</label>
                                         <div class="col-lg-4">
-                                            <input class="form-control" id="name" type="text" value="{{setSelectedLedger.name}}" required/>
+                                            <input class="form-control" type="text" required ng-model="selectedLedger.name"/>
                                         </div>
                                          <label for="cname" class="control-label col-lg-2">Mobile No (required)</label>
                                         <div class="col-lg-4">
-                                            <input class=" form-control" id="mobile_no"  value="{{setSelectedLedger.mobile_no}}" type="text" required />
+                                            <input class=" form-control" type="text" required ng-model="selectedLedger.mobile_no"/>
                                         </div>
                                     </div>
                                      <div class="form-group ">
                                         <label for="cname" class="control-label col-lg-2">Address (required)</label>
                                         <div class="col-lg-4">
-                                            <input class=" form-control" id="address"  type="text" value="{{setSelectedLedger.address}}" required />
+                                            <input class=" form-control" type="text" required ng-model="selectedLedger.address"/>
                                         </div>
                                         <label for="cname" class="control-label col-lg-2">City (required)</label>
                                         <div class="col-lg-4">
-                                            <select class="form-control" id="city" type="text" required value="{{setSelectedLedger.city}}">
-                                             <option value="">--SELECT--</option>
-                                             <option>Sabalgarh</option>
-                                             <option>Gwalior</option>   
-                                             <option>Bhind</option>   
-                                             <option>Morena</option>      
+                                            <select class="form-control" type="text" required ng-model="selectedLedger.city">
+                                                 <option value="">--SELECT--</option>
+                                                 <option value="indore">indore</option>
                                             </select>                                       
                                     </div>
                                     <div class="form-group ">
                                      </div>
                                         <label for="cname" class="control-label col-lg-2">District (required)</label>
                                         <div class="col-lg-4">
-                                            <select class=" form-control" id="cname" name="name" minlength="2" type="text" required >
-                                             <option value="">--SELECT--</option>
-                                             <option>Sabalgarh</option>   
+                                            <select ng-options="district.name for district in districts | orderBy:'name'" class=" form-control" type="text" required ng-model="selectedLedger.district">
+                                             <option value="" selected>--SELECT--</option>
                                             </select>      
                                         </div>
                                         <label for="cname" class="control-label col-lg-2">State (required)</label>
                                         <div class="col-lg-4">
-                                           <select class=" form-control" id="cname" name="name" minlength="2" type="text" required >
-                                              <option value="">--SELECT--</option>
-                                             <option>Sabalgarh</option>   
+                                           <select ng-options="state.name for state in states| orderBy:'name'" class=" form-control" type="text" required ng-model="selectedLedger.state">
+                                              <option value="" selected="">--SELECT--</option> 
                                             </select>      
                                         </div>
                                         

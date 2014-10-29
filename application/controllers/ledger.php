@@ -2,24 +2,11 @@
 
 class Ledger extends CI_Controller {
 
-	
 	public function get(){
 		if($this->checkSession()){			
 			$this->load->model('Ledger_Model');
 			$data['ledgers'] =  $this->Ledger_Model->getAll();
-			//json_encode($ledgers);
-			$ledgers = array(); // it will wrap all of your value
-		    foreach($data['ledgers'] as $row){
-				unset($temp); // Release the contained value of the variable from the last loop
-				$temp = array();
-
-				// It guess your client side will need the id to extract, and distinguish the ScoreCH data
-				$temp['s_no'] = $row['s_no'];
-				$temp['name'] = $row['name'];
-
-				array_push($ledgers,$row);
-		    }
-		    echo json_encode($ledgers);
+		    echo json_encode($data['ledgers']);
 		}else{
 			redirect('logins/login');
 		}
@@ -30,19 +17,18 @@ class Ledger extends CI_Controller {
 			$params = $this->getParameters();	
 			$this->load->model('Ledger_Model');
 			$data['result'] =  $this->Ledger_Model->update($params);
-			//json_encode($ledgers);
-			$ledgers = array(); // it will wrap all of your value
-		    foreach($data['ledgers'] as $row){
-				unset($temp); // Release the contained value of the variable from the last loop
-				$temp = array();
+		    echo json_encode($data['result']);
+		}else{
+			redirect('logins/login');
+		}
+	}
 
-				// It guess your client side will need the id to extract, and distinguish the ScoreCH data
-				$temp['s_no'] = $row['s_no'];
-				$temp['name'] = $row['name'];
-
-				array_push($ledgers,$row);
-		    }
-		    echo json_encode($ledgers);
+	public function create(){
+		if($this->checkSession()){
+			$params = $this->getParameters();	
+			$this->load->model('Ledger_Model');
+			$data['result'] =  $this->Ledger_Model->create($params);
+		    echo json_encode($data['result']);
 		}else{
 			redirect('logins/login');
 		}

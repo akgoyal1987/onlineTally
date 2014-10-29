@@ -47,7 +47,7 @@
             <td>{{ledger.opening_bal}}</td>
             <td>{{ledger.type}}</td>
             <td class="center hidden-phone"><a href="#/view_ledger" ng-click="setSelectedLedger(ledger);">View Profile <span class="fa fa-book"></span></a></td>
-            <td class="center hidden-phone" ng-click="deleteLedger(ledger);"><a>Delete <span class="fa fa-trash-o"></span></a></td>
+            <td class="center hidden-phone" ng-click="deleteLedger(ledger, $index);"><a>Delete <span class="fa fa-trash-o"></span></a></td>
         </tr>
         </tfoot>
         </table>

@@ -3,17 +3,48 @@
 /* Controllers */
 
 angular.module('myApp.controllers', [])
-.controller('mainController', function($scope, $window, $location,$http, $anchorScroll) {
+.controller('mainController', function($rootScope, $scope, $window, $location,$http, $anchorScroll) {
   $scope.ledgers = [];
-  $scope.setSelectedLedger;
-  $scope.newLedger;
+  $scope.selectedLedger = {};
+  $scope.newLedger = {};
+  $scope.states = [];
+  $scope.districts = [];
+  $scope.cities = [];
+
+  $http.get("../data/states")
+  .success(function(states){
+    $scope.states = states;
+  })
+  .error(function(error){
+    console.log(error);
+  });
+
+  $http.get("../data/districts")
+  .success(function(districts){
+    $scope.districts = districts;
+  })
+  .error(function(error){
+    console.log(error);
+  });
+
+  $http.get("../data/cities")
+  .success(function(cities){
+    $scope.cities = cities;
+  })
+  .error(function(error){
+    console.log(error);
+  });
+
+  $scope.resetSelectedLedger = function(){
+    $scope.selectedLedger = {};
+  }
 
   $scope.createLedger = function(){
-    var ledger = {};
-    ledger.firstname = $("#f-name").val();
-    $http.post("../ledger/create", ledger)
+    $http.post("../ledger/create", $scope.selectedLedger)
     .success(function(response){
-      alert(response.firstname);
+      if(response){
+        $window.alert("Ledger Created SuccessFully");
+      }
     })
     .error(function(error){
       alert(error);
@@ -31,11 +62,11 @@ angular.module('myApp.controllers', [])
   };
 
   $scope.setSelectedLedger = function(ledger){
-    $scope.setSelectedLedger = ledger;    
+    $scope.selectedLedger = angular.copy(ledger);    
   };
 
   $scope.updateLedger = function(){
-    $http.post("../ledger/update", {data : $("#ledgerform").serialize(), id : $scope.setSelectedLedger.s_no})
+    $http.post("../ledger/update", $scope.selectedLedger)
     .success(function(data){
       console.log(data);
     }).
@@ -44,11 +75,10 @@ angular.module('myApp.controllers', [])
     });
   }
 
-  $scope.deleteLedger = function(ledger){
-    console.log(ledger);
+  $scope.deleteLedger = function(ledger, index){
     $http.post("../ledger/delete", {id : ledger.s_no})
     .success(function(data){
-      ledger = null;
+      $scope.ledgers.splice(index, 1);
     }).
     error(function(err){
 
