@@ -5,6 +5,7 @@
 angular.module('myApp.controllers', [])
 .controller('mainController', function($rootScope, $scope, $window, $location,$http, $anchorScroll) {
   $scope.ledgers = [];
+  $scope.groups = [];
   $scope.selectedLedger = {};
   $scope.newLedger = {};
   $scope.states = [];
@@ -60,6 +61,15 @@ angular.module('myApp.controllers', [])
       alert(error);
     })
   };
+  $scope.getGroups = function(){
+    $http.get("../group/get")
+    .success(function(response){
+      $scope.groups = response;
+    })
+    .error(function(error){
+      alert(error);
+    })
+  };
 
   $scope.setSelectedLedger = function(ledger){
     $scope.selectedLedger = angular.copy(ledger);    
@@ -67,18 +77,29 @@ angular.module('myApp.controllers', [])
 
   $scope.updateLedger = function(){
     $http.post("../ledger/update", $scope.selectedLedger)
-    .success(function(data){
-      console.log(data);
-    }).
-    error(function(err){
-
-    });
-  }
+    .success(function(response){
+      if(response){
+        $window.alert("Ledger Updated SuccessFully");
+      }
+    })
+    .error(function(error){
+      alert(error);
+    })
+  };
 
   $scope.deleteLedger = function(ledger, index){
     $http.post("../ledger/delete", {id : ledger.s_no})
     .success(function(data){
       $scope.ledgers.splice(index, 1);
+    }).
+    error(function(err){
+
+    });
+  }
+  $scope.deleteGroup = function(group, index){
+    $http.post("../group/delete", {id : group.id})
+    .success(function(data){
+      $scope.groups.splice(index, 1);
     }).
     error(function(err){
 
