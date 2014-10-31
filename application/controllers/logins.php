@@ -1,5 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
+ob_start();
 class Logins extends MY_Base_Controller{
 	public function index()
 	{
@@ -18,6 +18,8 @@ class Logins extends MY_Base_Controller{
 		if($this->checkSession())
 		{
 			$this->load->view($this->session->userdata('home'));
+			echo $this->session->userdata('username');
+			echo $this->session->userdata('company_id');;
 		}else
 		{
 			redirect('logins/login');

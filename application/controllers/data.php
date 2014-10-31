@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Data extends CI_Controller {
+class Data extends MY_Base_Controller{
 
 	public function cities(){
 		if($this->checkSession()){
@@ -32,14 +32,6 @@ class Data extends CI_Controller {
 		}
 	}
 
-	function checkSession(){
-		if($this->session->userdata('isLoggedIn')){
-			return true;
-		}
-		else{
-			return false;
-		}
-	}
 }
 
 
