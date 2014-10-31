@@ -84,6 +84,15 @@ angular.module('myApp.controllers', [])
       alert(error);
     })
   };
+  $scope.getGroups = function(){
+    $http.get("../group/get")
+    .success(function(response){
+      $scope.groups = response;
+    })
+    .error(function(error){
+      alert(error);
+    })
+  };
 
   $scope.getGroups = function(){
     $http.get("../group/get")
@@ -106,6 +115,7 @@ angular.module('myApp.controllers', [])
     $http.post("../ledger/update", $scope.selectedLedger)
     .success(function(response){
       if(response){
+<<<<<<< HEAD
         $window.alert("Ledger Updated Successfully");
       }
     })
@@ -118,6 +128,9 @@ angular.module('myApp.controllers', [])
     .success(function(response){
       if(response){
         $window.alert("Group Updated Successfully");
+=======
+        $window.alert("Ledger Updated SuccessFully");
+>>>>>>> 07d675843de644eef8e648059c9bc99c4d78a9e7
       }
     })
     .error(function(error){
@@ -126,8 +139,11 @@ angular.module('myApp.controllers', [])
   };
 
   $scope.deleteLedger = function(ledger, index){
+<<<<<<< HEAD
     var retVal = confirm("Do you want to delete ?");
        if (retVal == true) {
+=======
+>>>>>>> 07d675843de644eef8e648059c9bc99c4d78a9e7
     $http.post("../ledger/delete", {id : ledger.s_no})
     .success(function(data){
       $scope.ledgers.splice(index, 1);
@@ -136,10 +152,14 @@ angular.module('myApp.controllers', [])
 
     });
   }
+<<<<<<< HEAD
 }
   $scope.deleteGroup = function(group, index){
       var retVal = confirm("Do you want to delete ?");
        if (retVal == true) {
+=======
+  $scope.deleteGroup = function(group, index){
+>>>>>>> 07d675843de644eef8e648059c9bc99c4d78a9e7
     $http.post("../group/delete", {id : group.id})
     .success(function(data){
       $scope.groups.splice(index, 1);

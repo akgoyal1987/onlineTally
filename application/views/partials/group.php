@@ -40,7 +40,11 @@
         <tr class="gradeX" ng-repeat="group in groups">
             <td>{{group.name}}</td>
             <td>{{group.group}}</td>
+<<<<<<< HEAD
             <td class="center hidden-phone"><a href="#update_group" data-toggle="modal" ng-click="setSelectedGroup(group);">Edit <span class="fa fa-book"></span></a></td>
+=======
+            <td class="center hidden-phone"><a href="#update_group" data-toggle="modal" ng-click="">Edit <span class="fa fa-book"></span></a></td>
+>>>>>>> 07d675843de644eef8e648059c9bc99c4d78a9e7
             <td class="center hidden-phone" ng-click="deleteGroup(group, $index);"><a>Delete <span class="fa fa-trash-o"></span></a></td>
         </tr>
         </tfoot>
@@ -112,7 +116,12 @@
                         <h4 class="modal-title">Update Group</h4>
                     </div>
                     <div class="modal-body">
+<<<<<<< HEAD
                     <form class="cmxform form-horizontal adminex-form" ng-submit="updateGroup();" method="get" action="">
+=======
+                     <div class=" form">
+                     <form class="cmxform form-horizontal adminex-form" id="ledgerform" ng-submit="" method="get" action="">
+>>>>>>> 07d675843de644eef8e648059c9bc99c4d78a9e7
                         <div class="form-group ">
                                         <label for="cname" class="control-label col-lg-2">Name (required)</label>
                                         <div class="col-lg-4">
@@ -148,6 +157,58 @@
                         
                     </div>
                     </form>
+<<<<<<< HEAD
+=======
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        <!-- modal -->
+         <!-- Update Modal -->
+       <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="update_group" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Update Group</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group ">
+                                        <label for="cname" class="control-label col-lg-2">Name (required)</label>
+                                        <div class="col-lg-4">
+                                            <input class=" form-control" id="cname" name="name" minlength="2" type="text" required />
+                                        </div>
+                                        <label for="cname" class="control-label col-lg-2">Group (required)</label>
+                                        <div class="col-lg-4">
+                                            <select class=" form-control" id="cname" name="name" minlength="2" type="text" required >
+                                             <option value="">--SELECT--</option>
+                                             <option value="Bank Accounts">Bank Accounts</option>
+                                             <option value="Capital Accounts">Capital Accounts</option>   
+                                             <option value="Cash-in-hand">Cash-in-hand</option>   
+                                             <option value="Current Assets">Current Assets</option>
+                                             <option value="Current Liabilities">Current Liabilities</option>
+                                             <option value="Deposits(Asset)">Deposits(Asset)</option>
+                                             <option value="Fixed Assets">Fixed Assets</option>
+                                             <option value="Direct Expenses">Direct Expenses</option>
+                                             <option value="Direct Incomes">Direct Incomes</option>
+                                             <option value="Indirect Expenses">Indirect Expenses</option>
+                                             <option value="Indirect Incomes">Indirect Incomes</option>  
+                                             <option value="Purchase Accounts">Purchase Accounts</option>
+                                             <option value="Sales Accounts">Sales Accounts</option>
+                                             <option value="Stock-in-hand">Stock-in-hand</option>
+                                             <option value="Sundry Creditors">Sundry Creditors</option>
+                                             <option value="Sundry Debtors">Sundry Debtors</option>
+                                            </select>                                       
+                                    </div>
+                                    <br><br>
+                    </div>
+                    <div class="modal-footer">
+                         <button class="btn btn-primary" type="button">Update</button>
+                        <button data-dismiss="modal" class="btn btn-default" type="button">Cancel</button>
+                        
+                    </div>
+>>>>>>> 07d675843de644eef8e648059c9bc99c4d78a9e7
                 </div>
             </div>
         </div>
