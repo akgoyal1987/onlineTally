@@ -56,7 +56,7 @@
                 <div class="media logged-user">
                    
                     <div class="media-body">
-                        <h4><a href="">John Doe</a></h4>
+                        <h4> <?php echo $this->session->userdata('username');?></h4>
                         <span>"Hello There..."</span>
                     </div>
                 </div>
@@ -65,7 +65,7 @@
                 <ul class="nav nav-pills nav-stacked custom-nav">
                   <li><a href="#/company_profile"><i class="fa fa-user"></i> <span>Company Profile</span></a></li>
                   <li><a href="#myModal" data-toggle="modal"> <i class="fa fa-cog"></i> <span>Change Password</span></a></li>
-                  <li><a href="#"><i class="fa fa-sign-out"></i> <span>Sign Out</span></a></li>
+                  <li><a href="<?php echo base_url();?>logins/logout"><i class="fa fa-sign-out"></i> <span>Sign Out</span></a></li>
                 </ul>
             </div>
 
@@ -145,7 +145,7 @@
                     
                     <li>
                         <a href="" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                            Gaurav Garg
+                            <?php echo $this->session->userdata('username');?>
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-usermenu pull-right">

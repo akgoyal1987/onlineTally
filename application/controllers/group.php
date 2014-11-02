@@ -15,8 +15,10 @@ class Group extends MY_Base_Controller{
 	public function update(){
 		if($this->checkSession()){
 			$params = $this->getParameters();	
-			$this->load->model('Ledger_Model');
-			$data['result'] =  $this->Ledger_Model->update($params);
+			$this->load->model('Group_Model');
+			print_r($params);
+			$data['result'] =  $this->Group_Model->update($params);
+
 		    echo json_encode($data['result']);
 		}else{
 			redirect('logins/login');
@@ -26,8 +28,8 @@ class Group extends MY_Base_Controller{
 	public function create(){
 		if($this->checkSession()){
 			$params = $this->getParameters();	
-			$this->load->model('Ledger_Model');
-			$data['result'] =  $this->Ledger_Model->create($params);
+			$this->load->model('Group_Model');
+			$data['result'] =  $this->Group_Model->create($params);
 		    echo json_encode($data['result']);
 		}else{
 			redirect('logins/login');
