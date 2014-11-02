@@ -38,7 +38,19 @@ angular.module('myApp.controllers', [])
 
   $scope.resetSelectedLedger = function(){
     $scope.selectedLedger = {};
-  }
+  };
+
+  $scope.getDistricts = function(state){
+    if(!state){
+      return [];
+    }
+    var districts = $scope.districts.filter(
+      function(district){
+        return (district.state_id==state.id);
+      }
+    );
+    return districts;
+  };
 
   $scope.createLedger = function(){
     $http.post("../ledger/create", $scope.selectedLedger)

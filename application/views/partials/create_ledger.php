@@ -42,7 +42,7 @@
                                     <div class="form-group ">
                                         <label for="cname" class="control-label col-lg-2">District (required)</label>
                                         <div class="col-lg-4">
-                                            <select ng-options="district.name for district in districts | orderBy:'name'" class=" form-control" type="text" required ng-model="selectedLedger.district">
+                                            <select ng-options="district.name for district in getDistricts(selectedLedger.state) | orderBy:'name'" class=" form-control" type="text" required ng-model="selectedLedger.district">
                                              <option value="" selected>--SELECT--</option>
                                             </select>      
                                         </div>
