@@ -16,9 +16,7 @@ class Group extends MY_Base_Controller{
 		if($this->checkSession()){
 			$params = $this->getParameters();	
 			$this->load->model('Group_Model');
-			print_r($params);
 			$data['result'] =  $this->Group_Model->update($params);
-
 		    echo json_encode($data['result']);
 		}else{
 			redirect('logins/login');

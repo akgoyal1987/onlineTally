@@ -15,11 +15,11 @@
                                     <div class="form-group ">
                                         <label for="cname" class="control-label col-lg-2">Name (required)</label>
                                         <div class="col-lg-4">
-                                            <input  class="form-control" ng-model="company.company_name" minlength="2" type="text" required />
+                                            <input  class="form-control" ng-model="company.company_name" type="text" required />
                                         </div>
                                          <label for="cname" class="control-label col-lg-2">Mobile No (required)</label>
                                         <div class="col-lg-4">
-                                            <input class=" form-control" id="cname" name="name" minlength="2" type="text" required />
+                                            <input class=" form-control" id="cname" name="name" type="text" required />
                                         </div>
                                     </div>
                                      <div class="form-group ">

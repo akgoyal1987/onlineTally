@@ -24,7 +24,6 @@ class Group_Model extends CI_Model {
   }
 
   public function create($group){
-
     $data = array('name'=>$group['name'],"group"=>$group['group']);    
     $this->db->insert('group',$data);
     return ($this->db->affected_rows()>0)? TRUE:FALSE;

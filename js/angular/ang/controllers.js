@@ -9,7 +9,7 @@ angular.module('myApp.controllers', [])
   $scope.selectedLedger = {};
   $scope.selectedGroup = {};
   $scope.newLedger = {};
-  $scope.company={};
+  $scope.company=[];
   $scope.states = [];
   $scope.districts = [];
   $scope.cities = [];
@@ -22,8 +22,11 @@ angular.module('myApp.controllers', [])
     console.log(error);
   });
   $http.get("../userinfo/getCompany")
-  .success(function(company){
-    $scope.company = company;
+  .success(function(response){
+    if(response.success)
+      $scope.company = response.company;
+    else
+      $window.alert(response.message);    
   })
   .error(function(error){
     console.log(error);
@@ -44,6 +47,10 @@ angular.module('myApp.controllers', [])
   .error(function(error){
     //console.log(error);
   });
+
+  function closeModal(){
+    $(".close").click();
+  }
 
   $scope.resetSelectedLedger = function(){
     $scope.selectedLedger = {};
@@ -80,7 +87,11 @@ angular.module('myApp.controllers', [])
     $http.post("../group/create", $scope.selectedGroup)
     .success(function(response){
       if(response){
-        $window.alert("Group Created Successfully");
+        //$window.alert("Group Created Successfully");
+        $scope.selectedGroup.name = "";
+        $scope.selectedGroup.group = "";
+        closeModal();
+        $scope.getGroups();
       }
     })
     .error(function(error){
@@ -120,8 +131,9 @@ angular.module('myApp.controllers', [])
   $scope.setSelectedLedger = function(ledger){
     $scope.selectedLedger = angular.copy(ledger);    
   };
-   $scope.setSelectedGroup = function(group){
-    $scope.selectedGroup = angular.copy(group);    
+   $scope.setSelectedGroup = function(group, index){
+    $scope.selectedGroup = angular.copy(group); 
+    $scope.selectedGroup.index = index;   
   };
 
   $scope.updateLedger = function(){
@@ -136,11 +148,15 @@ angular.module('myApp.controllers', [])
     })
   };
 
-  $scope.updateLedger = function(){
+  $scope.updateGroup = function(){
     $http.post("../group/update", $scope.selectedGroup)
     .success(function(response){
       if(response){
-        $window.alert("Group Updated Successfully");
+        //$window.alert("Group Updated Successfully");
+        $scope.groups[$scope.selectedGroup.index].name = $scope.selectedGroup.name;
+        $scope.groups[$scope.selectedGroup.index].group = $scope.selectedGroup.group;
+        closeModal();
+        $scope.selectedGroup = "";
       }
     })
     .error(function(error){
@@ -173,4 +189,5 @@ angular.module('myApp.controllers', [])
       });
     }
   }
+  
 });

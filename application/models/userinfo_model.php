@@ -5,11 +5,10 @@ class Userinfo_Model extends CI_Model {
   
   public function getCompanyAll(){
     $this->db->where('user_id',  $this->session->userdata('user_id'));
-    echo $this->session->userdata('user_id');
     $result= $this->db->get('company_info')->result_array();
    
     if ( is_array($result)) {
-        return $result;
+        return $result[0];
     }
     else{
       return array();

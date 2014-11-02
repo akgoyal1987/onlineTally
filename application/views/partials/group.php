@@ -40,14 +40,13 @@
                                 <tr class="gradeX" ng-repeat="group in groups">
                                     <td>{{group.name}}</td>
                                     <td>{{group.group}}</td>
-                                    <td class="center hidden-phone"><a href="#update_group" data-toggle="modal" ng-click="">Edit <span class="fa fa-book"></span></a></td>
-                                    <td class="center hidden-phone" ng-click="deleteGroup(group, $index);"><a>Delete <span class="fa fa-trash-o"></span></a></td>
+                                    <td class="center hidden-phone"><a href="#update_group" data-toggle="modal" ng-click="setSelectedGroup(group, $index);">Edit <span class="fa fa-book"></span></a></td>
+                                    <td class="center hidden-phone"><a href="javascript:void(0);" ng-click="deleteGroup(group, $index);">Delete <span class="fa fa-trash-o"></span></a></td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
-
             </section>
         </div>
     </div>
@@ -62,15 +61,15 @@
             </div>
             <div class="modal-body">
                 <div class="form">
-                    <form class="cmxform form-horizontal adminex-form" id="ledgerform"  method="get" action="">
+                    <form class="cmxform form-horizontal adminex-form" id="ledgerform"  method="get" ng-submit="createGroup();">
                         <div class="form-group ">
                             <label for="cname" class="control-label col-lg-2">Name (required)</label>
                             <div class="col-lg-4">
-                                <input class=" form-control" id="cname" name="name" minlength="2" type="text" required />
+                                <input class=" form-control" id="cname" name="name" minlength="2" type="text" required ng-model="selectedGroup.name"/>
                             </div>
                             <label for="cname" class="control-label col-lg-2">Group (required)</label>
                             <div class="col-lg-4">
-                                <select class=" form-control" id="cname" name="name" minlength="2" type="text" required >
+                                <select class=" form-control" id="cname" name="name" minlength="2" type="text" required ng-model="selectedGroup.group">
                                     <option value="">--SELECT--</option>
                                     <option value="Bank Accounts">Bank Accounts</option>
                                     <option value="Capital Accounts">Capital Accounts</option>   
@@ -95,27 +94,9 @@
                             <button class="btn btn-primary" type="submit">Submit</button>
                             <button data-dismiss="modal" class="btn btn-default" type="button">Cancel</button>
                         </div>
-
-        <table  class="display table table-bordered table-striped" id="dynamic-table">
-        <thead>
-        <tr>
-            <th>Name</th>
-            <th>Under Group</th>
-            <th class="hidden-phone">Edit</th>
-            <th class="hidden-phone">Delete</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr class="gradeX" ng-repeat="group in groups">
-            <td>{{group.name}}</td>
-            <td>{{group.group}}</td>
-            <td class="center hidden-phone"><a href="#update_group" data-toggle="modal" ng-click="setSelectedGroup(group);">Edit <span class="fa fa-book"></span></a></td>
-            <td class="center hidden-phone" ng-click="deleteGroup(group, $index);"><a>Delete <span class="fa fa-trash-o"></span></a></td>
-        </tr>
-        </tfoot>
-        </table>
-        </div>
-        </div>
+                    </form>
+                </div>
+            </div>
         </section>
         </div>
         </div>

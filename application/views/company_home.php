@@ -221,19 +221,21 @@
 <script src="<?php echo base_url();?>js/iCheck/jquery.icheck.js"></script>
 <script src="<?php echo base_url();?>js/icheck-init.js"></script>
 
-<!-- jQuery Flot Chart-->
-<script src="<?php echo base_url();?>js/flot-chart/jquery.flot.js"></script>
+<script src="<?php echo base_url();?>js/scripts.js"></script>
+
+<!-- jQuery Flot Chart -->
+<script src="<?php echo base_url();?>js/flot-chart/jquery.flot.js"></script> 
 <script src="<?php echo base_url();?>js/flot-chart/jquery.flot.tooltip.js"></script>
 <script src="<?php echo base_url();?>js/flot-chart/jquery.flot.resize.js"></script>
 <script src="<?php echo base_url();?>js/flot-chart/jquery.flot.pie.resize.js"></script>
 <script src="<?php echo base_url();?>js/flot-chart/jquery.flot.selection.js"></script>
 <script src="<?php echo base_url();?>js/flot-chart/jquery.flot.stack.js"></script>
-<script src="<?php echo base_url();?>js/flot-chart/jquery.flot.time.js"></script>
+<script src="<?php echo base_url();?>js/flot-chart/jquery.flot.time.js"></script> 
 <script type="text/javascript" language="javascript" src="<?php echo base_url();?>js/advanced-datatable/js/jquery.dataTables.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>js/data-tables/DT_bootstrap.js"></script>
 <script src="<?php echo base_url();?>js/dynamic_table_init.js"></script>
 <!--common scripts for all pages-->
-<script src="<?php echo base_url();?>js/scripts.js"></script>
+
 
 <script src="<?php echo base_url();?>js/angular/lib/angular/angular.js"></script>
 //<script src="<?php echo base_url();?>js/angular/ang/angular-ui-router.js"></script>
