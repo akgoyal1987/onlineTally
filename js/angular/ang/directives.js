@@ -35,16 +35,7 @@ angular.module('myApp.directives', []).
   .directive('nicescroll', function() {
     return function(scope, element, attrs) {
       element.niceScroll(
-        {
-          styler:"fb",
-          cursorcolor:"#65cea7", 
-          cursorwidth: '6', 
-          cursorborderradius: '0px', 
-          background: '#424f63', 
-          spacebarenabled:false, 
-          cursorborder: '0',  
-          zindex: '1000'
-        }  
+        {styler:"fb",cursorcolor:"#65cea7", cursorwidth: '6', cursorborderradius: '0px', background: '#424f63', spacebarenabled:false, cursorborder: '0',  zindex: '1000'}
       );
     }
   })
