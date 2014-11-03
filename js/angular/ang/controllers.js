@@ -9,7 +9,7 @@ angular.module('myApp.controllers', [])
   $scope.selectedLedger = {};
   $scope.selectedGroup = {};
   $scope.newLedger = {};
-  $scope.company=[];
+  $scope.company={};
   $scope.states = [];
   $scope.districts = [];
   $scope.cities = [];
@@ -145,6 +145,17 @@ angular.module('myApp.controllers', [])
     })
     .error(function(error){
       alert(error);
+    })
+  };
+  $scope.updateCompany = function(){
+    $http.post("../userinfo/updateCompany", $scope.company)
+    .success(function(response){
+      if(response){
+        $window.alert("Company Profile Updated Successfully");
+      }
+    })
+    .error(function(error){
+      $window.alert(error);
     })
   };
 

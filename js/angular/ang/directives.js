@@ -28,7 +28,7 @@ angular.module('myApp.directives', []).
   .directive('datepicker', function() {
     return function(scope, element, attrs) {
       element.datepicker({
-        format: 'dd-mm-yyyy'
+        format: 'yyyy-mm-dd'
       }); 
     }
   })

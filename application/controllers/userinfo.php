@@ -7,7 +7,7 @@ class Userinfo extends MY_Base_Controller{
 			$this->load->model('Userinfo_Model');
 			$data['response']['company'] =  $this->Userinfo_Model->getCompanyAll();
 			$data['response']['success'] = true;
-			$data['response']['message'] = "company infor got Scucessfully";
+			$data['response']['message'] = "Database Error!!!!!!!!!!!";
 		    echo json_encode($data['response']);
 		}else{
 			redirect('logins/login');
@@ -17,9 +17,8 @@ class Userinfo extends MY_Base_Controller{
 		if($this->checkSession()){
 			$params = $this->getParameters();	
 			$this->load->model('Userinfo_Model');
-			print_r($params);
-			$data['result'] =  $this->Userinfo_Model->updateCompany($params);
-		    echo json_encode($data['result']);
+			$data['response']['result'] =  $this->Userinfo_Model->updateCompany($params);
+		    echo json_encode($data['response']);
 		}else{
 			redirect('logins/login');
 		}
