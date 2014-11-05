@@ -13,7 +13,7 @@ angular.module('myApp.controllers', [])
   $scope.states = [];
   $scope.districts = [];
   $scope.cities = [];
-
+  $scope.new_city = "";
   $http.get("../data/states")
   .success(function(states){
     $scope.states = states;
@@ -66,6 +66,18 @@ angular.module('myApp.controllers', [])
       }
     );
     return districts;
+  };
+
+  $scope.getCities = function(district){
+    if(!district){
+      return [];
+    }
+    var cities = $scope.cities.filter(
+      function(city){
+        return (city.district_id == district.id);
+      }
+    );
+    return cities;
   };
 
   $scope.resetSelectedGroup = function(){
@@ -129,14 +141,51 @@ angular.module('myApp.controllers', [])
   };
 
   $scope.setSelectedLedger = function(ledger){
-    $scope.selectedLedger = angular.copy(ledger);    
+    $scope.selectedLedger = angular.copy(ledger); 
+    var temp = $scope.states.filter(
+      function(state){
+        return ($scope.selectedLedger.state==state.name);
+      }
+    );  
+    if(temp.length>0)
+      $scope.selectedLedger.state = temp[0];
+    
+    temp = $scope.districts.filter(
+      function(district){
+        return ($scope.selectedLedger.state.id == district.state_id && $scope.selectedLedger.district==district.name);
+      }
+    );  
+    if(temp.length>0)
+      $scope.selectedLedger.district = temp[0];
+
+    temp = $scope.cities.filter(
+      function(city){
+        return ($scope.selectedLedger.district.id == city.district_id && $scope.selectedLedger.state.id == city.state_id && $scope.selectedLedger.city==city.name);
+      }
+    );  
+    if(temp.length>0)
+      $scope.selectedLedger.city = temp[0];
+
   };
-   $scope.setSelectedGroup = function(group, index){
+
+  $scope.setSelectedGroup = function(group, index){
     $scope.selectedGroup = angular.copy(group); 
     $scope.selectedGroup.index = index;   
   };
+  
+  $scope.updateLedger = function(){  
+    console.log($scope.new_city);  
+    if($scope.new_city && $scope.new_city!=""){
 
-  $scope.updateLedger = function(){
+      
+
+      $scope.selectedLedger.city.id = 0;
+      $scope.selectedLedger.city.name = $scope.new_city;
+      $scope.selectedLedger.city.district_id = $scope.selectedLedger.district.id;
+      $scope.selectedLedger.city.state_id = $scope.selectedLedger.state.id;
+    }
+    
+
     $http.post("../ledger/update", $scope.selectedLedger)
     .success(function(response){
       if(response){

@@ -1,3 +1,4 @@
 date format change in company profile page because sql query is not update value of date
 and close company profile page autoumatic when updated
 value of state and district is not show when click view of ledger
+$location.path("/");
