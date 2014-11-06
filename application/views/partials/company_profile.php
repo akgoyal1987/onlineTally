@@ -1,5 +1,5 @@
     <!--body wrapper start-->
-        <div class="wrapper">
+        <div class="wrapper" ng-init="getCompanyInfo();">
             <div class="row">
                
             </div>
@@ -87,7 +87,7 @@
                                     <div class="form-group">
                                         <div class="col-lg-offset-2 col-lg-10">
                                             <button class="btn btn-primary" type="submit">Update</button>
-                                            <button class="btn btn-default" type="button">Cancel</button>
+                                            <button class="btn btn-default" ng-click="go('/home')" type="button" >Cancel</button>
                                         </div>
                                     </div>
                                 </form>

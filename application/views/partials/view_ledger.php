@@ -1,5 +1,5 @@
     <!--body wrapper start-->
-        <div class="wrapper">
+        <div class="wrapper" ng-init="getCompanyInfo();">
             <div class="row">
                
             </div>

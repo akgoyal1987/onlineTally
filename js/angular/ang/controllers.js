@@ -21,17 +21,19 @@ angular.module('myApp.controllers', [])
   .error(function(error){
     console.log(error);
   });
-  $http.get("../userinfo/getCompany")
-  .success(function(response){
-    if(response.success)
-      $scope.company = response.company;
-    else
-      $window.alert(response.message);    
-  })
-  .error(function(error){
-    console.log(error);
-  });
 
+  $scope.getCompanyInfo= function(){
+    $http.get("../userinfo/getCompany")
+    .success(function(response){
+      if(response.success)
+        $scope.company = response.company;
+      else
+        $window.alert(response.message);    
+    })
+    .error(function(error){
+      console.log(error);
+    });
+  }
   $http.get("../data/districts")
   .success(function(districts){
     $scope.districts = districts;
@@ -48,10 +50,11 @@ angular.module('myApp.controllers', [])
     //console.log(error);
   });
 
-  function closeModal(){
+  
+
+   function closeModal(){
     $(".close").click();
   }
-
   $scope.resetSelectedLedger = function(){
     $scope.selectedLedger = {};
   };
@@ -152,6 +155,7 @@ angular.module('myApp.controllers', [])
     .success(function(response){
       if(response){
         $window.alert("Company Profile Updated Successfully");
+        $location.path('/home');
       }
     })
     .error(function(error){
