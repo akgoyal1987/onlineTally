@@ -1,4 +1,4 @@
-<div class="wrapper" data-ng-init="getGroups()">
+<div class="wrapper">
     <div class="row">
         <div class="col-sm-12">
             <section class="panel">

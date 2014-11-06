@@ -13,40 +13,65 @@ angular.module('myApp.controllers', [])
   $scope.states = [];
   $scope.districts = [];
   $scope.cities = [];
-  $scope.new_city = "";
-  $http.get("../data/states")
-  .success(function(states){
-    $scope.states = states;
-  })
-  .error(function(error){
-    console.log(error);
-  });
-  $http.get("../userinfo/getCompany")
-  .success(function(response){
-    if(response.success)
-      $scope.company = response.company;
-    else
-      $window.alert(response.message);    
-  })
-  .error(function(error){
-    console.log(error);
-  });
+  $scope.newcity = { name : ""};
+  
+  function getCompanyInfo(){
+    $http.get("../userinfo/getCompany")
+    .success(function(response){
+      if(response.success)
+        $scope.company = response.company;
+      else
+        $window.alert(response.message);    
+    })
+    .error(function(error){
+      console.log(error);
+    });
+  }
+  getCompanyInfo();
 
-  $http.get("../data/districts")
-  .success(function(districts){
-    $scope.districts = districts;
-  })
-  .error(function(error){
-    console.log(error);
-  });
+  function getAllStates(){
+    $http.get("../data/states")
+    .success(function(states){
+      $scope.states = states;
+    })
+    .error(function(error){
+      console.log(error);
+    });
+  }
+  getAllStates();
 
-  $http.get("../data/cities")
-  .success(function(cities){
-    $scope.cities = cities;
-  })
-  .error(function(error){
-    //console.log(error);
-  });
+  function getAllDistricts(){
+    $http.get("../data/districts")
+    .success(function(districts){
+      $scope.districts = districts;
+    })
+    .error(function(error){
+      console.log(error);
+    });
+  }
+  getAllDistricts();
+
+  function getAllCities(){
+    $http.get("../data/cities")
+    .success(function(cities){
+      $scope.cities = cities;
+    })
+    .error(function(error){
+      //console.log(error);
+    });
+  }
+  getAllCities();
+
+  $scope.getAllGroups = function(){
+    $http.get("../group/get")
+    .success(function(response){
+      $scope.groups = response;
+    })
+    .error(function(error){
+      alert(error);
+    })
+  };
+  $scope.getAllGroups();
 
   function closeModal(){
     $(".close").click();
@@ -56,7 +81,7 @@ angular.module('myApp.controllers', [])
     $scope.selectedLedger = {};
   };
 
-  $scope.getDistricts = function(state){
+  $scope.getDistrictsByState = function(state){
     if(!state){
       return [];
     }
@@ -68,7 +93,7 @@ angular.module('myApp.controllers', [])
     return districts;
   };
 
-  $scope.getCities = function(district){
+  $scope.getCitiesByDistrict = function(district){
     if(!district){
       return [];
     }
@@ -95,6 +120,7 @@ angular.module('myApp.controllers', [])
       alert(error);
     })
   };
+
   $scope.createGroup = function(){
     $http.post("../group/create", $scope.selectedGroup)
     .success(function(response){
@@ -103,7 +129,7 @@ angular.module('myApp.controllers', [])
         $scope.selectedGroup.name = "";
         $scope.selectedGroup.group = "";
         closeModal();
-        $scope.getGroups();
+        $scope.getAllGroups();
       }
     })
     .error(function(error){
@@ -119,26 +145,7 @@ angular.module('myApp.controllers', [])
     .error(function(error){
       alert(error);
     })
-  };
-  $scope.getGroups = function(){
-    $http.get("../group/get")
-    .success(function(response){
-      $scope.groups = response;
-    })
-    .error(function(error){
-      alert(error);
-    })
-  };
-
-  $scope.getGroups = function(){
-    $http.get("../group/get")
-    .success(function(response){
-      $scope.groups = response;
-    })
-    .error(function(error){
-      alert(error);
-    })
-  };
+  };  
 
   $scope.setSelectedLedger = function(ledger){
     $scope.selectedLedger = angular.copy(ledger); 
@@ -166,6 +173,14 @@ angular.module('myApp.controllers', [])
     if(temp.length>0)
       $scope.selectedLedger.city = temp[0];
 
+    temp = $scope.groups.filter(
+      function(group){
+        return ($scope.selectedLedger.group_id == group.id);
+      }
+    );  
+    if(temp.length>0)
+      $scope.selectedLedger.group_id = temp[0];
+
   };
 
   $scope.setSelectedGroup = function(group, index){
@@ -174,22 +189,18 @@ angular.module('myApp.controllers', [])
   };
   
   $scope.updateLedger = function(){  
-    console.log($scope.new_city);  
-    if($scope.new_city && $scope.new_city!=""){
-
-      
-
+    if($scope.newcity.name && $scope.newcity.name!=""){
+      console.log($scope.newcity.name);
       $scope.selectedLedger.city.id = 0;
-      $scope.selectedLedger.city.name = $scope.new_city;
+      $scope.selectedLedger.city.name = $scope.newcity.name;
       $scope.selectedLedger.city.district_id = $scope.selectedLedger.district.id;
       $scope.selectedLedger.city.state_id = $scope.selectedLedger.state.id;
+      getAllCities();
     }
-    
-
     $http.post("../ledger/update", $scope.selectedLedger)
     .success(function(response){
       if(response){
-        $window.alert("Ledger Updated Successfully");
+        $location.path("/ledger")
       }
     })
     .error(function(error){
