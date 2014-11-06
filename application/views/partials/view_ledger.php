@@ -22,7 +22,8 @@
                                             <input class=" form-control" type="text" pattern="[0-9]{10}" title="For Ex.- 9074739352" required ng-model="selectedLedger.mobile_no"/>
                                         </div>
                                     </div>
-                                     <div class="form-group ">
+
+                                    <div class="form-group ">
                                         <label for="cname" class="control-label col-lg-2">Group (required)</label>
                                         <div class="col-lg-4">
                                              <select class=" form-control" ng-model="selectedLedger.group_id" minlength="2" type="text" required>
@@ -34,7 +35,6 @@
                                          <label for="cname" class="control-label col-lg-2">State (required)</label>
                                         <div class="col-lg-4">
                                            <select ng-options="state.name for state in states| orderBy:'name'" class=" form-control" type="text" required ng-model="selectedLedger.state">
-                                              <option value="" selected="">--SELECT--</option> 
                                             </select>      
                                         </div>
                                     </div>
@@ -46,11 +46,15 @@
                                             </select>      
                                         </div>
                                         <label for="cname" class="control-label col-lg-2">City (required)</label>
-                                        <div class="col-lg-4">
-                                            <select class="form-control" type="text" required ng-model="selectedLedger.city">
-                                                 <option value="">--SELECT--</option>
-                                                 <option value="indore">indore</option>
-                                            </select>                                       
+                                        <div class="col-lg-3">
+                                            <select ng-show="!addcity" ng-options="city.name for city in getCities(selectedLedger.district) | orderBy:'name'" class=" form-control" type="text" ng-model="selectedLedger.city">
+                                            <option value="" selected>--SELECT--</option>
+                                            </select>
+                                            <input class="form-control" type="text" ng-show="addcity" ng-model="new_city"/>                                            
+                                        </div>
+                                        <div class="col-lg-1">
+                                            <button type="button" ng-click="addcity = true" class="btn btn-main" ng-show="!addcity" title="click to add new city">+</button>                                            
+                                            <button type="button" ng-click="addcity = false; new_city=''" class="btn btn-main" ng-show="addcity" title="click to select city">-</button>                                    
                                         </div>
                                         
                                     </div>
