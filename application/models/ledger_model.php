@@ -27,6 +27,11 @@ class Ledger_Model extends CI_Model {
         return ($this->db->affected_rows()>0)? TRUE:FALSE;
       }else
         return false;
+    }else{
+      $data = array('name'=>$ledger['name'], "mobile_no"=>$ledger['mobile_no'], "address"=>$ledger['address'], "city"=>$ledger['city']['name'], "state"=>$ledger['state']['name'], "district"=>$ledger['district']['name'], "mobile_no"=>$ledger['mobile_no'],"pin_code"=>$ledger['pin_code'],"email"=>$ledger['email'],"user_id"=>$ledger['user_id'],"tin_no"=>$ledger['tin_no'],"opening_bal"=>$ledger['opening_bal'],"type"=>$ledger['type'], "group_id"=>$ledger['group_id']['id']);    
+      $this->db->where('s_no',$ledger['s_no']);     
+      $this->db->update('ledger',$data);
+      return ($this->db->affected_rows()>0)? TRUE:FALSE;
     }
   }
 
