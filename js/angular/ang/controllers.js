@@ -77,6 +77,18 @@ angular.module('myApp.controllers', [])
     $(".close").click();
   }
 
+  function hasCity(cityname, districtid){
+    var cities = $scope.cities.filter(
+      function(city){
+        return (city.name.toUpperCase() == cityname.toUpperCase() && city.district_id == districtid);
+      }
+    );
+    if(cities && cities.length>0)
+      return true;
+    else
+      return false;
+  }
+
   $scope.resetSelectedLedger = function(){
     $scope.selectedLedger = {};
   };
@@ -151,7 +163,7 @@ angular.module('myApp.controllers', [])
     $scope.selectedLedger = angular.copy(ledger); 
     var temp = $scope.states.filter(
       function(state){
-        return ($scope.selectedLedger.state==state.name);
+        return ($scope.selectedLedger.state.toUpperCase()==state.name.toUpperCase());
       }
     );  
     if(temp.length>0)
@@ -159,7 +171,7 @@ angular.module('myApp.controllers', [])
     
     temp = $scope.districts.filter(
       function(district){
-        return ($scope.selectedLedger.state.id == district.state_id && $scope.selectedLedger.district==district.name);
+        return ($scope.selectedLedger.state.id == district.state_id && $scope.selectedLedger.district.toUpperCase()==district.name.toUpperCase());
       }
     );  
     if(temp.length>0)
@@ -167,7 +179,7 @@ angular.module('myApp.controllers', [])
 
     temp = $scope.cities.filter(
       function(city){
-        return ($scope.selectedLedger.district.id == city.district_id && $scope.selectedLedger.state.id == city.state_id && $scope.selectedLedger.city==city.name);
+        return ($scope.selectedLedger.district.id == city.district_id && $scope.selectedLedger.state.id == city.state_id && $scope.selectedLedger.city.toUpperCase()==city.name.toUpperCase());
       }
     );  
     if(temp.length>0)
@@ -190,7 +202,10 @@ angular.module('myApp.controllers', [])
   
   $scope.updateLedger = function(){  
     if($scope.newcity.name && $scope.newcity.name!=""){
-      console.log($scope.newcity.name);
+      if(hasCity($scope.newcity.name, $scope.selectedLedger.district.id)){
+        $window.alert("This City Already Exist, Please Select From Available cities");
+        return;   
+      }
       $scope.selectedLedger.city.id = 0;
       $scope.selectedLedger.city.name = $scope.newcity.name;
       $scope.selectedLedger.city.district_id = $scope.selectedLedger.district.id;
