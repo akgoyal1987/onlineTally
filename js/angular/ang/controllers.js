@@ -15,7 +15,7 @@ angular.module('myApp.controllers', [])
   $scope.cities = [];
   $scope.newcity = { name : ""};
   
-  function getCompanyInfo(){
+  $scope.getCompanyInfo = function(){
     $http.get("../userinfo/getCompany")
     .success(function(response){
       if(response.success)
@@ -27,7 +27,7 @@ angular.module('myApp.controllers', [])
       console.log(error);
     });
   }
-  getCompanyInfo();
+  $scope.getCompanyInfo();
 
   function getAllStates(){
     $http.get("../data/states")
@@ -138,8 +138,7 @@ angular.module('myApp.controllers', [])
     .success(function(response){
       if(response){
         //$window.alert("Group Created Successfully");
-        $scope.selectedGroup.name = "";
-        $scope.selectedGroup.group = "";
+        $scope.selectedGroup = {};
         closeModal();
         $scope.getAllGroups();
       }
@@ -215,7 +214,7 @@ angular.module('myApp.controllers', [])
     .success(function(response){
       if(response){
         $scope.newcity.name = "";
-        $location.path("/ledger")
+        $location.path("/ledger");
       }
     })
     .error(function(error){
@@ -242,7 +241,7 @@ angular.module('myApp.controllers', [])
         $scope.groups[$scope.selectedGroup.index].name = $scope.selectedGroup.name;
         $scope.groups[$scope.selectedGroup.index].group = $scope.selectedGroup.group;
         closeModal();
-        $scope.selectedGroup = "";
+        $scope.selectedGroup = {};
       }
     })
     .error(function(error){

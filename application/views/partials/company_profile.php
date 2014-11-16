@@ -87,7 +87,7 @@
                                     <div class="form-group">
                                         <div class="col-lg-offset-2 col-lg-10">
                                             <button class="btn btn-primary" type="submit">Update</button>
-                                            <button class="btn btn-default" ng-click="go('/home')" type="button" >Cancel</button>
+                                            <a class="btn btn-default" href="#/home">Cancel</a>
                                         </div>
                                     </div>
                                 </form>
