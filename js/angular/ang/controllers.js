@@ -192,7 +192,6 @@ angular.module('myApp.controllers', [])
     );  
     if(temp.length>0)
       $scope.selectedLedger.group_id = temp[0];
-
   };
 
   $scope.setSelectedGroup = function(group, index){
@@ -215,6 +214,7 @@ angular.module('myApp.controllers', [])
     $http.post("../ledger/update", $scope.selectedLedger)
     .success(function(response){
       if(response){
+        $scope.newcity.name = "";
         $location.path("/ledger")
       }
     })
