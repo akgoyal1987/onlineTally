@@ -49,6 +49,27 @@ class Views extends MY_Base_Controller{
 		}
 	}
 
+	public function stock_group(){
+		if($this->checkSession()){
+			$this->load->view('partials/stock_group');
+		}else{
+			echo "You Are Not Logged In, Please Login!";
+		}
+	}
+	public function stock_item(){
+		if($this->checkSession()){
+			$this->load->view('partials/stock_item');
+		}else{
+			echo "You Are Not Logged In, Please Login!";
+		}
+	}
+	public function unit_of_measure(){
+		if($this->checkSession()){
+			$this->load->view('partials/unit_of_measure');
+		}else{
+			echo "You Are Not Logged In, Please Login!";
+		}
+	}
 
 }
 

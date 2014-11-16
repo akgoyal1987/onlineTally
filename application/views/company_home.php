@@ -56,7 +56,7 @@
                 <div class="media logged-user">
                    
                     <div class="media-body">
-                        <h4> <?php echo $this->session->userdata('username');?></h4>
+                        <h4 ng-bind="company.company_name"></h4>
                         <span>"Hello There..."</span>
                     </div>
                 </div>
@@ -88,9 +88,9 @@
 
                 <li class="menu-list"><a href=""><i class="fa fa-book"></i> <span> Inventory Info</span></a>
                     <ul class="sub-menu-list">
-                        <li><a href="#"> Stock Groups</a></li>
-                        <li><a href="#"> Stock Items</a></li>
-                        <li><a href="#"> Units of Measure</a></li>
+                        <li><a href="#/stock_group"> Stock Groups</a></li>
+                        <li><a href="#/stock_item"> Stock Items</a></li>
+                        <li><a href="#/unit_of_measure"> Units of Measure</a></li>
                     </ul>
                 </li>
 
@@ -144,8 +144,8 @@
 
                     
                     <li>
-                        <a href="" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                            <?php echo $this->session->userdata('username');?>
+                        <a href="" class="btn btn-default dropdown-toggle" data-toggle="dropdown" ng-bind="company.company_name">
+                           
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-usermenu pull-right">

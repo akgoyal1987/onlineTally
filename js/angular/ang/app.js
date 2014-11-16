@@ -36,6 +36,18 @@ config(function($stateProvider, $urlRouterProvider) {
       url: "/create_ledger",
       templateUrl: "../views/create_ledger"
   })
+   .state('stock_group', {
+      url: "/stock_group",
+      templateUrl: "../views/stock_group"
+  })
+    .state('stock_item', {
+      url: "/stock_item",
+      templateUrl: "../views/stock_item"
+  })
+    .state('unit_of_measure', {
+      url: "/unit_of_measure",
+      templateUrl: "../views/unit_of_measure"
+  })
    .state('view_ledger', {
       url: "/view_ledger",
       templateUrl: "../views/view_ledger"

@@ -45,26 +45,17 @@ class Login extends CI_Model {
         $home = "user_home";
       else if($userinfo->role=="admin")
         $home = "admin_home";
-      else{
+      else
         $home = "company_home";      
-        $this->db->where('user_id',$userinfo->user_id);
-        $result= $this->db->get('company_info')->result();
-        if ( is_array($result) && count($result) == 1 ) {
        $this->session->set_userdata( array(
-              'id'=>$userinfo->s_no,
-              'username'=> $result[0]->company_name,  
-              'user_id'=>$result[0]->user_id,            
+              'id'=>$userinfo->s_no,  
+              'user_id'=>$userinfo->user_id,            
               'role'=> $userinfo->role,
               'home'=> $home,
               'isLoggedIn'=>true
           )
       );
-        return true;
-    }
-    else{
-      return false;
-    }
-          }
+          
       }
       
   }

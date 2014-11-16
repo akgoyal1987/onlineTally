@@ -6,10 +6,14 @@ angular.module('myApp.controllers', [])
 .controller('mainController', function($rootScope, $scope, $window, $location,$http, $anchorScroll) {
   $scope.ledgers = [];
   $scope.groups = [];
+  $scope.stock_groups = [];
+  $scope.units = [];
   $scope.selectedLedger = {};
   $scope.selectedGroup = {};
+  $scope.selectedStockGroup = {};
+   $scope.selectedUnit = {};
   $scope.newLedger = {};
-  $scope.company={};
+  $scope.company=[];
   $scope.states = [];
   $scope.districts = [];
   $scope.cities = [];
@@ -72,7 +76,25 @@ angular.module('myApp.controllers', [])
     })
   };
   $scope.getAllGroups();
-
+  $scope.getAllStockGroups = function(){
+    $http.get("../stock_group/get")
+    .success(function(response){
+      $scope.stock_groups = response;
+    })
+    .error(function(error){
+      alert(error);
+    })
+  };
+  $scope.getAllStockGroups();
+  $scope.getAllUnits = function(){
+    $http.get("../unit/get")
+    .success(function(response){
+      $scope.units = response;
+    })
+    .error(function(error){
+      alert(error);
+    })
+  };
   function closeModal(){
     $(".close").click();
   }
@@ -148,6 +170,35 @@ angular.module('myApp.controllers', [])
       alert(error);
     })
   };
+  $scope.createStockGroup = function(){
+    $http.post("../stock_group/create", $scope.selectedStockGroup)
+    .success(function(response){
+      if(response){
+        //$window.alert("Group Created Successfully");
+        $scope.selectedStockGroup.name = "";
+        $scope.selectedStockGroup.group_id = "";
+        closeModal();
+        $scope.getAllStockGroups();
+      }
+    })
+    .error(function(error){
+      alert(error);
+    })
+  };
+  $scope.createUnit = function(){
+    $http.post("../unit/create", $scope.selectedUnit)
+    .success(function(response){
+      if(response){
+        //$window.alert("Group Created Successfully");
+        $scope.selectedUnit.name = "";
+        closeModal();
+        $scope.getAllUnits();
+      }
+    })
+    .error(function(error){
+      alert(error);
+    })
+  };
 
   $scope.getLedgers = function(){
     $http.get("../ledger/get")
@@ -198,6 +249,15 @@ angular.module('myApp.controllers', [])
   $scope.setSelectedGroup = function(group, index){
     $scope.selectedGroup = angular.copy(group); 
     $scope.selectedGroup.index = index;   
+  };
+
+   $scope.setSelectedStockGroup = function(group, index){
+    $scope.selectedStockGroup = angular.copy(group); 
+    $scope.selectedStockGroup.index = index;   
+  };
+   $scope.setSelectedUnit = function(group, index){
+    $scope.selectedUnit = angular.copy(group); 
+    $scope.selectedUnit.index = index;   
   };
   
   $scope.updateLedger = function(){  
@@ -250,6 +310,37 @@ angular.module('myApp.controllers', [])
     })
   };
 
+   $scope.updateStockGroup = function(){
+    $http.post("../stock_group/update", $scope.selectedStockGroup)
+    .success(function(response){
+      if(response){
+        //$window.alert("Group Updated Successfully");
+        $scope.stock_groups[$scope.selectedStockGroup.index].name = $scope.selectedStockGroup.name;
+        $scope.stock_groups[$scope.selectedStockGroup.index].group_id = $scope.selectedStockGroup.group_id.name;
+        closeModal();
+        $scope.selectedStockGroup = "";
+      }
+    })
+    .error(function(error){
+      alert(error);
+    })
+  };
+  $scope.updateUnit = function(){
+    $http.post("../unit/update", $scope.selectedUnit)
+    .success(function(response){
+      if(response){
+        //$window.alert("Group Updated Successfully");
+        $scope.units[$scope.selectedUnit.index].name = $scope.selectedUnit.name;
+        closeModal();
+        $scope.selectedUnit = "";
+      }
+    })
+    .error(function(error){
+      alert(error);
+    })
+  };
+
+
   $scope.deleteLedger = function(ledger, index){
     var retVal = confirm("Do you want to delete ?");
     if (retVal == true) {
@@ -275,6 +366,30 @@ angular.module('myApp.controllers', [])
       });
     }
   }
-  
+
+   $scope.deleteStockGroup = function(group, index){
+    var retVal = confirm("Do you want to delete ?");
+    if (retVal == true) {
+      $http.post("../stock_group/delete", {id : group.id})
+      .success(function(data){
+        $scope.stock_groups.splice(index, 1);
+      }).
+      error(function(err){
+
+      });
+    }
+  }
+  $scope.deleteUnit = function(group, index){
+    var retVal = confirm("Do you want to delete ?");
+    if (retVal == true) {
+      $http.post("../unit/delete", {id : group.id})
+      .success(function(data){
+        $scope.units.splice(index, 1);
+      }).
+      error(function(err){
+
+      });
+    }
+  }
 });
 

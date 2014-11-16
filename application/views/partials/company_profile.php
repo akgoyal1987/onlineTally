@@ -1,5 +1,5 @@
     <!--body wrapper start-->
-        <div class="wrapper" ng-init="getCompanyInfo();">
+        <div class="wrapper" data-ng-init="getCompanyInfo();">
             <div class="row">
                
             </div>
@@ -11,7 +11,7 @@
                         </header>
                         <div class="panel-body">
                             <div class=" form">
-                                <form class="cmxform form-horizontal adminex-form" id="commentForm" method="get"  ng-submit="updateCompany();" action="">
+                                <form class="cmxform form-horizontal adminex-form" id="commentForm" method="get"  ng-submit="updateCompany();">
                                     <div class="form-group ">
                                         <label for="cname" class="control-label col-lg-2">Name (required)</label>
                                         <div class="col-lg-4">
@@ -38,20 +38,21 @@
                                     <div class="form-group ">
                                         <label for="cname" class="control-label col-lg-2">District (required)</label>
                                         <div class="col-lg-4">
-                                            <select class=" form-control" ng-options="district.name for district in getDistricts(company.state) | orderBy:'name'" ng-model="company.district" type="text" required >
+                                            <select class=" form-control" ng-options="district.name for district in getDistrictsByState(company.state) | orderBy:'name'" ng-model="company.district" type="text" required >
                                               <option value="">--SELECT--</option>
                                              
                                             </select>      
                                         </div>
                                        <label for="cname" class="control-label col-lg-2">City (required)</label>
-                                        <div class="col-lg-4">
-                                            <select class=" form-control" ng-model="company.city" type="text" required >
-                                             <option value="">--SELECT--</option>
-                                             <option>Indore</option>
-                                             <option>Gwalior</option>   
-                                             <option>Bhind</option>   
-                                             <option>Morena</option>      
+                                        <div class="col-lg-3">
+                                            <select ng-show="!addcity" ng-options="city.name for city in getCitiesByDistrict(company.district) | orderBy:'name'" class=" form-control" required type="text" ng-model="company.city">
+                                            <option value="" selected>--SELECT--</option>
                                             </select>
+                                            <input class="form-control" type="text" ng-show="addcity" ng-model="newcity.name"/>                                            
+                                        </div>
+                                        <div class="col-lg-1">
+                                            <button type="button" ng-click="addcity = true" class="btn btn-main" ng-show="!addcity" title="click to add new city">+</button>                                            
+                                            <button type="button" ng-click="addcity = false" class="btn btn-main" ng-show="addcity" title="click to select city">-</button>
                                         </div>
                                         
                                     </div>

@@ -45,7 +45,7 @@
                                         </div>
                                         <label for="cname" class="control-label col-lg-2">City (required)</label>
                                         <div class="col-lg-3">
-                                            <select ng-show="!addcity" ng-options="city.name for city in getCitiesByDistrict(selectedLedger.district) | orderBy:'name'" class=" form-control" type="text" ng-model="selectedLedger.city">
+                                            <select ng-show="!addcity" ng-options="city.name for city in getCitiesByDistrict(selectedLedger.district) | orderBy:'name'" class=" form-control" required type="text" ng-model="selectedLedger.city">
                                             <option value="" selected>--SELECT--</option>
                                             </select>
                                             <input class="form-control" type="text" ng-show="addcity" ng-model="newcity.name"/>                                            
