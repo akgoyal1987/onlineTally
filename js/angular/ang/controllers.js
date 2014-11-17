@@ -174,8 +174,7 @@ angular.module('myApp.controllers', [])
     .success(function(response){
       if(response){
         //$window.alert("Group Created Successfully");
-        $scope.selectedStockGroup.name = "";
-        $scope.selectedStockGroup.group_id = "";
+        $scope.selectedStockGroup= {};
         closeModal();
         $scope.getAllStockGroups();
       }
@@ -189,7 +188,7 @@ angular.module('myApp.controllers', [])
     .success(function(response){
       if(response){
         //$window.alert("Group Created Successfully");
-        $scope.selectedUnit.name = "";
+        $scope.selectedUnit= {};
         closeModal();
         $scope.getAllUnits();
       }
@@ -317,7 +316,7 @@ angular.module('myApp.controllers', [])
         $scope.stock_groups[$scope.selectedStockGroup.index].name = $scope.selectedStockGroup.name;
         $scope.stock_groups[$scope.selectedStockGroup.index].group_id = $scope.selectedStockGroup.group_id.name;
         closeModal();
-        $scope.selectedStockGroup = "";
+        $scope.selectedStockGroup = {};
       }
     })
     .error(function(error){
@@ -331,7 +330,7 @@ angular.module('myApp.controllers', [])
         //$window.alert("Group Updated Successfully");
         $scope.units[$scope.selectedUnit.index].name = $scope.selectedUnit.name;
         closeModal();
-        $scope.selectedUnit = "";
+        $scope.selectedUnit = {};
       }
     })
     .error(function(error){

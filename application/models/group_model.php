@@ -4,7 +4,7 @@ class Group_Model extends CI_Model {
 
   
   public function getAll(){
-
+    $this->db->where('user_id',$this->session->userdata('user_id'));
     $result= $this->db->get('group')->result_array();
     // The results of the query are stored in $login.
     // If a value exists, then the user account exists and is validated
@@ -24,7 +24,7 @@ class Group_Model extends CI_Model {
   }
 
   public function create($group){
-    $data = array('name'=>$group['name'],"group"=>$group['group']);    
+    $data = array('name'=>$group['name'],"group"=>$group['group'],"user_id"=>$this->session->userdata('user_id'));    
     $this->db->insert('group',$data);
     return ($this->db->affected_rows()>0)? TRUE:FALSE;
   }

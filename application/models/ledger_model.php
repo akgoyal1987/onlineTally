@@ -4,7 +4,7 @@ class Ledger_Model extends CI_Model {
 
   
   public function getAll(){
-
+    $this->db->where('company_id',$this->session->userdata('user_id'));
     $result= $this->db->get('ledger')->result_array();
     // The results of the query are stored in $login.
     // If a value exists, then the user account exists and is validated
