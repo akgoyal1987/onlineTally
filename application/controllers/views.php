@@ -65,7 +65,14 @@ class Views extends MY_Base_Controller{
 	}
 	public function unit_of_measure(){
 		if($this->checkSession()){
-			$this->load->view('partials/unit_of_measure');
+			$this->load->view('partialssales_voucher/unit_of_measure');
+		}else{
+			echo "You Are Not Logged In, Please Login!";
+		}
+	}
+	public function sales_voucher(){
+		if($this->checkSession()){
+			$this->load->view('partials/sales_voucher');
 		}else{
 			echo "You Are Not Logged In, Please Login!";
 		}

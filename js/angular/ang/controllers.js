@@ -18,7 +18,15 @@ angular.module('myApp.controllers', [])
   $scope.districts = [];
   $scope.cities = [];
   $scope.newcity = { name : ""};
-  
+  $scope.newVoucher = {};
+  $scope.stock_items = [];
+  $scope.voucherEntries = [{
+    item_id : "",
+    quantity : "",
+    rate : "",
+    value : ""
+  }];
+
   $scope.getCompanyInfo = function(){
     $http.get("../userinfo/getCompany")
     .success(function(response){
@@ -99,6 +107,15 @@ angular.module('myApp.controllers', [])
     $(".close").click();
   }
 
+  $scope.getGroupNameById = function(groupid){
+    var mygroup = $scope.stock_groups.filter(function(group){
+      return (group.id == groupid);
+    });
+    if(mygroup.length>0)
+      return mygroup[0];
+    else
+      return "";
+  }
   function hasCity(cityname, districtid){
     var cities = $scope.cities.filter(
       function(city){
@@ -250,7 +267,9 @@ angular.module('myApp.controllers', [])
 
    $scope.setSelectedStockGroup = function(group, index){
     $scope.selectedStockGroup = angular.copy(group); 
-    $scope.selectedStockGroup.index = index;   
+    $scope.selectedStockGroup.index = index;
+
+    $scope.selectedStockGroup.group_id = $scope.getGroupNameById(group.group_id);
   };
    $scope.setSelectedUnit = function(group, index){
     $scope.selectedUnit = angular.copy(group); 
@@ -308,15 +327,16 @@ angular.module('myApp.controllers', [])
     })
   };
 
-   $scope.updateStockGroup = function(){
+  $scope.updateStockGroup = function(){
     $http.post("../stock_group/update", $scope.selectedStockGroup)
     .success(function(response){
       if(response){
         //$window.alert("Group Updated Successfully");
         $scope.stock_groups[$scope.selectedStockGroup.index].name = $scope.selectedStockGroup.name;
-        $scope.stock_groups[$scope.selectedStockGroup.index].group_id = $scope.selectedStockGroup.group_id.name;
+        $scope.stock_groups[$scope.selectedStockGroup.index].group_id = $scope.selectedStockGroup.group_id.id;
         closeModal();
         $scope.selectedStockGroup = {};
+
       }
     })
     .error(function(error){
@@ -385,9 +405,73 @@ angular.module('myApp.controllers', [])
         $scope.units.splice(index, 1);
       }).
       error(function(err){
-
       });
     }
+  }
+  $scope.getStockItems = function(){
+    $http.get("../stock_items/get")
+    .success(function(response){
+      $scope.stock_items = response;
+    })
+    .error(function(error){
+      alert(error);
+    })
+  };  
+  $scope.setValue = function(v){
+    if(v.rate && v.rate!="" && v.quantity && v.quantity!=""){
+      v.value = v.rate*v.quantity;
+    }
+  }
+  $scope.createVoucher = function(){
+    $scope.newVoucher.voucherEntries = $scope.voucherEntries;
+    $http.post("../voucher/create", $scope.newVoucher)
+    .success(function(response){
+      $scope.newVoucher.id = response.voucherid;
+      var pt = '<link href="http://localhost/onlineTally/css/bootstrap.min.css" rel="stylesheet">';
+      pt = pt+'<h1>'+$scope.newVoucher.type+' Voucher : # '+$scope.newVoucher.id+' <span style="text-transformation:capitalize" class="pull-right">'+$scope.company.company_name+'</span></h1><div class="panel-body"><form class="cmxform form-horizontal adminex-form ng-dirty ng-valid ng-valid-required"><div class="form-group "><label class="control-label col-lg-2">Credit Account</label>';
+      pt = pt+'<label class="control-label col-lg-4">'+$scope.newVoucher.cr_acc.name+'</label>';
+      pt = pt+'<label class="control-label col-lg-2">Debit Account</label><label class="control-label col-lg-4">'+$scope.newVoucher.dr_acc.name+'</label></div>';
+      pt = pt+'<div class="form-group "><label class="control-label col-lg-2">Date</label><label class="control-label col-lg-10">'+$scope.newVoucher.date+'</label></div>';
+      pt = pt+'<table  class="display table table-bordered table-striped" id="dynamic-table"><thead><tr><th>Item</th><th>Quantity</th><th class="hidden-phone">Rate</th><th class="hidden-phone">Value</th></tr></thead><tbody>';
+      var value = 0;
+        angular.forEach($scope.newVoucher.voucherEntries, function(item, index){
+          pt = pt+'<tr class="gradeX">';
+          pt = pt+'<td><label class="control-label form-control">'+item.item_id.name+'</td>';
+          pt = pt+'<td><label class="control-label form-control">'+item.quantity+'</td>';
+          pt = pt+'<td><label class="control-label form-control">'+item.rate+'</td>';
+          pt = pt+'<td><label class="control-label form-control">'+item.value+'</td>';
+          pt = pt+'</tr>';
+          value = value+item.value;
+        });
+      pt = pt+'<tr><td colspan="3">Total : </td><td>'+value+'</td></tr>';
+      pt = pt+'</tbody></table></form></div>';
+      var popupWin = $window.open('', '_blank', 'location=no,left=200px');
+
+      popupWin.document.open();
+
+      popupWin.document.write('<html><title>::Preview::</title><link rel="stylesheet" type="text/css" href="print.css" /></head><body onload="window.print()">')
+
+      popupWin.document.write(pt);
+
+      popupWin.document.write('</html>');
+
+      popupWin.document.close();
+
+    })
+    .error(function(){
+
+    });
+  }
+  $scope.addMoreItem = function(){
+    $scope.voucherEntries.push({
+    item_id : "",
+    quantity : "",
+    rate : "",
+    value : ""
+  });
+  }
+  $scope.removeUnusedItems = function(){
+
   }
 });
 

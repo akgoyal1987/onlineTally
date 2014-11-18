@@ -12,6 +12,10 @@ angular.module('myApp', [
 config(function($stateProvider, $urlRouterProvider) {
   //$urlRouterProvider.otherwise('newsfeed');
   $stateProvider
+  .state('unload', {
+      url: "/unload",
+      template: ""
+  })
   .state('index', {
       url: "",
       templateUrl: "../views/home"
@@ -48,12 +52,17 @@ config(function($stateProvider, $urlRouterProvider) {
       url: "/unit_of_measure",
       templateUrl: "../views/unit_of_measure"
   })
-   .state('view_ledger', {
+  .state('view_ledger', {
       url: "/view_ledger",
       templateUrl: "../views/view_ledger"
   })
-  .state('unload', {
-      url: "/unload",
-      template: ""
-  });
+  .state('sale', {
+      url: "/sale",
+      templateUrl: "../views/sales_voucher"
+  })
+  .state('printvoucher', {
+      url: "/printvoucher",
+      templateUrl: "../views/printvoucher.html"
+  })
+  
 });
