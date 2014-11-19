@@ -63,6 +63,20 @@ class Views extends MY_Base_Controller{
 			echo "You Are Not Logged In, Please Login!";
 		}
 	}
+	public function create_sitem(){
+		if($this->checkSession()){
+			$this->load->view('partials/create_sitem');
+		}else{
+			echo "You Are Not Logged In, Please Login!";
+		}
+	}
+	public function view_sitem(){
+		if($this->checkSession()){
+			$this->load->view('partials/view_sitem');
+		}else{
+			echo "You Are Not Logged In, Please Login!";
+		}
+	}
 	public function unit_of_measure(){
 		if($this->checkSession()){
 			$this->load->view('partials/unit_of_measure');

@@ -99,7 +99,7 @@
                                     <div class="form-group">
                                         <div class="col-lg-offset-2 col-lg-10">
                                             <button class="btn btn-primary" type="submit">Update</button>
-                                            <button class="btn btn-default" type="button">Cancel</button>
+                                             <a href="#/ledger" class="btn btn-default" >Cancel</a>
                                         </div>
                                     </div>
                                 </form>

@@ -36,6 +36,10 @@ config(function($stateProvider, $urlRouterProvider) {
       url: "/create_ledger",
       templateUrl: "../views/create_ledger"
   })
+   .state('view_ledger', {
+      url: "/view_ledger",
+      templateUrl: "../views/view_ledger"
+  })
    .state('stock_group', {
       url: "/stock_group",
       templateUrl: "../views/stock_group"
@@ -44,14 +48,19 @@ config(function($stateProvider, $urlRouterProvider) {
       url: "/stock_item",
       templateUrl: "../views/stock_item"
   })
+    .state('create_sitem', {
+      url: "/create_sitem",
+      templateUrl: "../views/create_sitem"
+  })
+    .state('view_sitem', {
+      url: "/view_sitem",
+      templateUrl: "../views/view_sitem"
+  })
     .state('unit_of_measure', {
       url: "/unit_of_measure",
       templateUrl: "../views/unit_of_measure"
   })
-   .state('view_ledger', {
-      url: "/view_ledger",
-      templateUrl: "../views/view_ledger"
-  })
+   
   .state('unload', {
       url: "/unload",
       template: ""
