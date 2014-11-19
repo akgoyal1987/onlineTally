@@ -38,7 +38,7 @@
                             <tbody>
                                 <tr class="gradeX" ng-repeat="group in stock_groups">
                                     <td>{{group.name}}</td>
-                                    <td>{{group.group_id}}</td>
+                                    <td>{{getGroupNameById(group.group_id).name}}</td>
                                     <td class="center hidden-phone"><a href="#update_stock_group" data-toggle="modal" ng-click="setSelectedStockGroup(group, $index);">Edit <span class="fa fa-book"></span></a></td>
                                     <td class="center hidden-phone"><a href="javascript:void(0);" ng-click="deleteStockGroup(group, $index);">Delete <span class="fa fa-trash-o"></span></a></td>
                                 </tr>

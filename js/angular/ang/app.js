@@ -12,6 +12,10 @@ angular.module('myApp', [
 config(function($stateProvider, $urlRouterProvider) {
   //$urlRouterProvider.otherwise('newsfeed');
   $stateProvider
+  .state('unload', {
+      url: "/unload",
+      template: ""
+  })
   .state('index', {
       url: "",
       templateUrl: "../views/home"
@@ -60,9 +64,25 @@ config(function($stateProvider, $urlRouterProvider) {
       url: "/unit_of_measure",
       templateUrl: "../views/unit_of_measure"
   })
+<<<<<<< HEAD
    
   .state('unload', {
       url: "/unload",
       template: ""
   });
+=======
+  .state('view_ledger', {
+      url: "/view_ledger",
+      templateUrl: "../views/view_ledger"
+  })
+  .state('sale', {
+      url: "/sale",
+      templateUrl: "../views/sales_voucher"
+  })
+  .state('printvoucher', {
+      url: "/printvoucher",
+      templateUrl: "../views/printvoucher.html"
+  })
+  
+>>>>>>> 4a5edf19da7d16e5630581df5dc2d2772c030594
 });
