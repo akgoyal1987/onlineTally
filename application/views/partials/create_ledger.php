@@ -25,10 +25,9 @@
                                      <div class="form-group ">
                                         <label for="cname" class="control-label col-lg-2">Group (required)</label>
                                         <div class="col-lg-4">
-                                            <select class=" form-control" ng-model="selectedLedger.group_id" type="text" required>
-                                             <option value="">--SELECT--</option>
-                                             <option value="DR">DR</option>
-                                             <option value="CR">CR</option>   
+                                            <select class=" form-control" ng-options="group.name for group in groups" ng-model="selectedLedger.group_id" required>
+                                             <option value="" selected>--SELECT--</option>
+                
                                             </select>   
                                         </div>
                                         <label for="cname" class="control-label col-lg-2">State (required)</label>
@@ -41,19 +40,22 @@
                                     </div>
                                     <div class="form-group ">
                                         <label for="cname" class="control-label col-lg-2">District (required)</label>
-                                        <div class="col-lg-4">
-                                            <select ng-options="district.name for district in getDistricts(selectedLedger.state) | orderBy:'name'" class=" form-control" type="text" required ng-model="selectedLedger.district">
-                                             <option value="" selected>--SELECT--</option>
-                                            </select>      
-                                        </div>
+                                           <div class="col-lg-4">
+                                                <select ng-options="district.name for district in getDistrictsByState(selectedLedger.state) | orderBy:'name'" class=" form-control" type="text" required ng-model="selectedLedger.district">
+                                                 <option value="" selected>--SELECT--</option>
+                                                </select>      
+                                            </div>
                                         <label for="cname" class="control-label col-lg-2">City (required)</label>
-                                        <div class="col-lg-4">
-                                            <select class="form-control" type="text" required ng-model="selectedLedger.city">
-                                                 <option value="">--SELECT--</option>
-                                                 <option value="indore">indore</option>
-                                            </select>                                       
-                                         </div>
-                                        
+                                        <div class="col-lg-3">
+                                            <select ng-show="!addcity" ng-options="city.name for city in getCitiesByDistrict(selectedLedger.district) | orderBy:'name'" class=" form-control" required type="text" ng-model="selectedLedger.city">
+                                            <option value="" selected>--SELECT--</option>
+                                            </select>
+                                            <input class="form-control" type="text" ng-show="addcity" ng-model="newcity.name"/>                                            
+                                        </div>
+                                        <div class="col-lg-1">
+                                            <button type="button" ng-click="addcity = true" class="btn btn-main" ng-show="!addcity" title="click to add new city">+</button>                                            
+                                            <button type="button" ng-click="addcity = false" class="btn btn-main" ng-show="addcity" title="click to select city">-</button>
+                                        </div>
                                         
                                     </div>
                                     <div class="form-group ">

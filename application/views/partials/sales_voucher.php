@@ -48,7 +48,7 @@
                                             <tr class="gradeX" ng-repeat="v in voucherEntries">
                                                 <td>
                                                     <select ng-options="item.name for item in stock_items" class="form-control" ng-model="v.item_id" required >
-                                                        <option value="" selected>Select Group</option>
+                                                        <option value="" selected>Select Item</option>
                                                     </select>
                                                 </td>
                                                 <td><input type="number" ng-model="v.quantity"  ng-change="setValue(v);" class="form-control" placeholder="Quantity" required/></td>
@@ -59,8 +59,8 @@
                                     </table>
                                     <div class="form-group">
                                         <div class="col-lg-offset-2 col-lg-10">
-                                            <button class="btn btn-primary" type="submit">Create</button>
-                                            <!-- <button class="btn btn-default" type="button">Cancel</button> -->
+                                            <button class="btn btn-primary" type="submit" ng-click="newVoucher.type='sale'">Create</button>
+                                            <button class="btn btn-default" type="button">Cancel</button>
                                         </div>
                                     </div>
                                 </form>

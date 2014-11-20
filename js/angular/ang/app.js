@@ -64,17 +64,7 @@ config(function($stateProvider, $urlRouterProvider) {
       url: "/unit_of_measure",
       templateUrl: "../views/unit_of_measure"
   })
-<<<<<<< HEAD
    
-  .state('unload', {
-      url: "/unload",
-      template: ""
-  });
-=======
-  .state('view_ledger', {
-      url: "/view_ledger",
-      templateUrl: "../views/view_ledger"
-  })
   .state('sale', {
       url: "/sale",
       templateUrl: "../views/sales_voucher"
@@ -83,6 +73,4 @@ config(function($stateProvider, $urlRouterProvider) {
       url: "/printvoucher",
       templateUrl: "../views/printvoucher.html"
   })
-  
->>>>>>> 4a5edf19da7d16e5630581df5dc2d2772c030594
 });

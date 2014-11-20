@@ -478,16 +478,21 @@ angular.module('myApp.controllers', [])
       v.value = v.rate*v.quantity;
     }
   }
+
   $scope.createVoucher = function(){
     $scope.newVoucher.voucherEntries = $scope.voucherEntries;
     $http.post("../voucher/create", $scope.newVoucher)
     .success(function(response){
       $scope.newVoucher.id = response.voucherid;
       var pt = '<link href="http://localhost/onlineTally/css/bootstrap.min.css" rel="stylesheet">';
-      pt = pt+'<h1>'+$scope.newVoucher.type+' Voucher : # '+$scope.newVoucher.id+' <span style="text-transformation:capitalize" class="pull-right">'+$scope.company.company_name+'</span></h1><div class="panel-body"><form class="cmxform form-horizontal adminex-form ng-dirty ng-valid ng-valid-required"><div class="form-group "><label class="control-label col-lg-2">Credit Account</label>';
-      pt = pt+'<label class="control-label col-lg-4">'+$scope.newVoucher.cr_acc.name+'</label>';
-      pt = pt+'<label class="control-label col-lg-2">Debit Account</label><label class="control-label col-lg-4">'+$scope.newVoucher.dr_acc.name+'</label></div>';
-      pt = pt+'<div class="form-group "><label class="control-label col-lg-2">Date</label><label class="control-label col-lg-10">'+$scope.newVoucher.date+'</label></div>';
+      pt = pt+'<div class="container">';
+      pt = pt+'<p style="text-align: right;">TIN NO :'+$scope.company.tin_no+'</p>';
+      pt = pt+'<h3 style="text-align: center;">'+$scope.company.company_name+'</h2>';
+      pt = pt+'<h5 style="text-align: center;">Phone: '+$scope.company.phone_no+', email: '+$scope.company.email_id+'</h5>';
+      pt = pt+'<h5 style="text-align: center;">Regd Office: '+$scope.company.address+'</h5>';
+      pt = pt+'<hr><h3 style="text-align: center;">INVOICE</h3><hr>';
+      pt=  pt+'<div class="row"> <div class="col-sm-6" style= "border: 1px solid;"><p>To,</p><p>'+$scope.newVoucher.cr_acc.name+'</p><p>'+$scope.newVoucher.cr_acc.address+'</p><p>'+$scope.newVoucher.cr_acc.city+'</p><p> district :'+$scope.newVoucher.cr_acc.district+'</p><p>State :'+$scope.newVoucher.cr_acc.state+'</p><p>Contact No. :'+$scope.newVoucher.cr_acc.mobile_no+'</p></div>';
+      pt=  pt+'<div class="col-sm-6" style= "border: 1px solid; height:212px;"><p>Invoice No. '+$scope.newVoucher.id+'<span class="pull-right">Date: '+$scope.newVoucher.date+'</span></p></div></div>';
       pt = pt+'<table  class="display table table-bordered table-striped" id="dynamic-table"><thead><tr><th>Item</th><th>Quantity</th><th class="hidden-phone">Rate</th><th class="hidden-phone">Value</th></tr></thead><tbody>';
       var value = 0;
         angular.forEach($scope.newVoucher.voucherEntries, function(item, index){
@@ -499,8 +504,13 @@ angular.module('myApp.controllers', [])
           pt = pt+'</tr>';
           value = value+item.value;
         });
-      pt = pt+'<tr><td colspan="3">Total : </td><td>'+value+'</td></tr>';
-      pt = pt+'</tbody></table></form></div>';
+      pt = pt+'</tbody></table></form>';
+      pt = pt+'<p>1. Interest will be charged for delayed payments.<p>';
+      pt = pt+'<p>2. Seeds for Sowing & Gardening purpose are exempted under item no.<p>';
+      pt = pt+'<p>44 of schedule-1, List of goods exempt from Tax under Section-7 of AP VAT ACT No. 5 of 2005.<p>';
+      pt = pt+'<p>3. SUBJECT TO KURNOOL JURISDICTION ONLY.<p>';
+       pt = pt+'<h3 class="pull-right">Total :'+value+'</h3>';
+      pt = pt+'</div>';
       var popupWin = $window.open('', '_blank', 'location=no,left=200px');
 
       popupWin.document.open();
@@ -509,7 +519,7 @@ angular.module('myApp.controllers', [])
 
       popupWin.document.write(pt);
 
-      popupWin.document.write('</html>');
+      popupWin.document.write('</html>')
 
       popupWin.document.close();
 
