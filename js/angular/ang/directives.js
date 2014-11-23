@@ -388,7 +388,7 @@ angular.module('myApp.directives', []).
           selectTemplate = '<select class="hide" ng-options="' + attrs.ngOptions + '" ng-model="' + attrs.ngModel + '" ' + (attrs.ngChange ? 'ng-change="' + attrs.ngChange + '"' : '') + '></select>',
           dropdownTemplate =
           '<a class="dropdown-toggle" data-toggle="dropdown" href ng-class="{ disabled: disabled }">' +
-            '<span>{{displayText}}</span>' +
+            '<span>{{(displayText && displayText.trim()!="")?displayText:"Select"}}</span>' +
             '<b></b>' +
           '</a>' +
           '<div class="dropdown-menu">' +
