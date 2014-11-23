@@ -15,15 +15,11 @@
                                     <div class="form-group ">
                                         <label class="control-label col-lg-2">Credit Account</label>
                                         <div class="col-lg-4">
-                                            <select ng-options="ledger.name for ledger in ledgers" class="form-control" ng-model="newVoucher.cr_acc" required>
-                                                <option value="" selected>--SELECT--</option>
-                                            </select>
+                                            <div class="form-control" custom-select ng-model="newVoucher.cr_acc" ng-options="ledger.name for ledger in ledgers"></div>                                            
                                         </div>
                                          <label for="cname" class="control-label col-lg-2">Debit Account</label>
                                         <div class="col-lg-4">
-                                            <select class="form-control" ng-options="ledger.name for ledger in ledgers" required  ng-model="newVoucher.dr_acc">
-                                                <option value="" selected>--SELECT--</option>
-                                            </select>      
+                                            <div class="form-control" custom-select ng-model="newVoucher.dr_acc" ng-options="ledger.name for ledger in ledgers"></div>
                                         </div>
                                     </div>
                                     <div class="form-group ">
@@ -46,14 +42,13 @@
                                         </thead>
                                         <tbody>
                                             <tr class="gradeX" ng-repeat="v in voucherEntries">
-                                                <td>
-                                                    <select ng-options="item.name for item in stock_items" class="form-control" ng-model="v.item_id" required >
-                                                        <option value="" selected>Select Item</option>
-                                                    </select>
+                                                <td width="150px">
+                                                    <div class="form-control" custom-select ng-model="v.item_id" ng-options="item.name for item in stock_items"></div>
                                                 </td>
                                                 <td><input type="number" ng-model="v.quantity"  ng-change="setValue(v);" class="form-control" placeholder="Quantity" required/></td>
                                                 <td><input type="number" ng-model="v.rate" ng-change="setValue(v);" class="form-control" placeholder="Rate" required/></td>
                                                 <td><input type="number" ng-model="v.value" class="form-control" placeholder="Value" required/></td>
+                                                <td><button ng-if="$index!=0" class="btn btn-main" type="button" ng-click="voucherEntries.splice($index,1);">-</button></td>
                                             </tr>
                                         </tbody>
                                     </table>

@@ -117,7 +117,6 @@
                     </ul>
                 </li> 
                 <li><a href="#"><i class="fa fa-sign-in"></i> <span>Login Page</span></a></li>
-
             </ul>
             <!--sidebar nav end-->
 
@@ -209,6 +208,7 @@
 <script src="<?php echo base_url();?>js/jquery-ui-1.9.2.custom.min.js"></script>
 <script src="<?php echo base_url();?>js/jquery-migrate-1.2.1.min.js"></script>
 <script src="<?php echo base_url();?>js/bootstrap.min.js"></script>
+<script src="<?php echo base_url();?>js/bootstrap-typeahead.js"></script>
 <script src="<?php echo base_url();?>js/modernizr.min.js"></script>
 <script src="<?php echo base_url();?>js/jquery.nicescroll.js"></script>
 <!--easy pie chart-->
