@@ -43,17 +43,17 @@
                                     <div class="form-group ">
                                         <label for="cname" class="control-label col-lg-2">Quantity</label>
                                         <div class="col-lg-2">
-                                          <input class="form-control " pattern="[0-9]+([\.][0-9]+)?" ng-model="selectedSitem.quantity" type="text"  />     
+                                          <input class="form-control " pattern="[0-9]+([\.][0-9]+)?" ng-model="selectedSitem.quantity" type="text" ng-change="setValue(selectedSitem);"  />     
                                         </div> 
                                         <label for="cname" class="control-label col-lg-1" ng-bind="selectedSitem.unit_id.name"></label>   
                                         <label for="cname" class="control-label col-lg-1">Rate </label>
                                         <div class="col-lg-2">
-                                          <input class="form-control " pattern="[0-9]+([\.][0-9]+)?" ng-model="selectedSitem.rate" type="text" value="{{selectedSitem.value/selectedSitem.quantity}}"   />     
+                                          <input class="form-control " pattern="[0-9]+([\.][0-9]+)?" ng-model="selectedSitem.rate" type="text" ng-change="setValue(selectedSitem);"  />     
                                         </div> 
                                          <label for="cname" class="control-label col-lg-1">Per <span ng-bind="selectedSitem.unit_id.name"></span></label>
                                           <label for="cname" class="control-label col-lg-1">Value </label>
                                         <div class="col-lg-2">
-                                          <input class="form-control " pattern="[0-9]+([\.][0-9]+)?" ng-model="selectedSitem.value"  value="{{selectedSitem.quantity*selectedSitem.rate}}" type="text" />     
+                                          <input class="form-control " pattern="[0-9]+([\.][0-9]+)?" ng-model="selectedSitem.value"  ng-change="setValue(selectedSitem);" type="text" />     
                                         </div> 
                                     </div>
                                     <div class="form-group">

@@ -41,7 +41,7 @@
         <tbody>
         <tr class="gradeX" ng-repeat="ledger in stock_items">
             <td>{{ledger.name}}</td>
-            <td>{{ledger.group_id}}</td>
+            <td>{{getStockGroupNameById(ledger.group_id).name}}</td>
             <td>{{ledger.quantity}}</td>
             <td>{{ledger.rate}}</td>
             <td>{{ledger.value}}</td>
