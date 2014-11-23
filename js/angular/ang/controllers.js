@@ -244,6 +244,7 @@ angular.module('myApp.controllers', [])
       alert(error);
     })
   };  
+  
   $scope.getStockItems = function(){
     $http.get("../stock_items/get")
     .success(function(response){
