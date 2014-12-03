@@ -11,21 +11,24 @@
                         </header>
                         <div class="panel-body">
                             <div class=" form">
-                                <form class="cmxform form-horizontal adminex-form" id="ledgerform" ng-submit="createVoucher();" method="get" action="">
+                                <form class="cmxform form-horizontal adminex-form" name="ledgerform" id="ledgerform" ng-submit="createVoucher();" method="post" action="" novalidate>
                                     <div class="form-group ">
                                         <label class="control-label col-lg-2">Credit Account</label>
                                         <div class="col-lg-4">
-                                            <div class="form-control" custom-select ng-model="newVoucher.cr_acc" ng-options="ledger.name for ledger in ledgers"></div>                                            
+                                            <div class="form-control" custom-select ng-model="newVoucher.cr_acc" ng-options="ledger.name for ledger in ledgers"></div>
+                                            <span><p style="color:red" ng-if="!newVoucher.cr_acc.s_no">Please Select Credit Account</p></span>
                                         </div>
                                          <label for="cname" class="control-label col-lg-2">Debit Account</label>
                                         <div class="col-lg-4">
                                             <div class="form-control" custom-select ng-model="newVoucher.dr_acc" ng-options="ledger.name for ledger in ledgers"></div>
+                                            <span><p style="color:red" ng-if="!newVoucher.dr_acc.s_no">Please Select Dabit Account</p></span>
                                         </div>
                                     </div>
                                     <div class="form-group ">
                                         <label for="cname" class="control-label col-lg-2">Date</label>
                                         <div class="col-lg-4">
-                                            <input class=" form-control" type="text" required ng-model="newVoucher.date" datepicker/>                                                
+                                            <input class="form-control" type="text" name="voucherdate" readonly required ng-model="newVoucher.date" datepicker/>
+                                            <span><p style="color:red" ng-if="ledgerform.voucherdate.$error.required">Please Select Date</p></span>
                                         </div>
                                         <div class="col-lg-6">
                                             <button type="button" class="btn btn-default pull-right" ng-click="addMoreItem();" >Add More Item</button>
@@ -36,8 +39,9 @@
                                             <tr>
                                                 <th>Item</th>
                                                 <th>Quantity</th>
-                                                <th class="hidden-phone">Rate</th>
-                                                <th class="hidden-phone">Value</th>
+                                                <th>Rate</th>
+                                                <th>Value</th>
+                                                <th></th>
                                             </tr>
                                         </thead>
                                         <tbody>
