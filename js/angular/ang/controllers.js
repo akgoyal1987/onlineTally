@@ -111,11 +111,39 @@ angular.module('myApp.controllers', [])
   }
 
   $scope.getGroupNameById = function(groupid){
+    var mygroup = $scope.groups.filter(function(group){
+      return (group.id == groupid);
+    });
+    if(mygroup.length>0)
+      return mygroup[0];
+    else
+      return "";
+  }
+  $scope.getStockGroupNameById = function(groupid){
     var mygroup = $scope.stock_groups.filter(function(group){
       return (group.id == groupid);
     });
     if(mygroup.length>0)
       return mygroup[0];
+    else
+      return "";
+  }
+  $scope.stockgroupsWithoutPrimary = function(){
+    var mygroup = $scope.stock_groups.filter(function(group){
+      return (group.group_id != 0);
+    });
+    if(mygroup.length>0)
+      return mygroup;
+    else
+      return "";
+  }
+
+  $scope.groupsWithoutPrimary = function(){
+    var mygroup = $scope.groups.filter(function(group){
+      return (group.user_id != null);
+    });
+    if(mygroup.length>0)
+      return mygroup;
     else
       return "";
   }
@@ -164,6 +192,10 @@ angular.module('myApp.controllers', [])
 
   $scope.resetSelectedGroup = function(){
     $scope.selectedGroup = {};
+  }
+
+    $scope.resetSelectedStockGroup = function(){
+    $scope.selectedStockGroup = {};
   }
 
   $scope.createLedger = function(){
@@ -293,17 +325,33 @@ angular.module('myApp.controllers', [])
   $scope.setSelectedGroup = function(group, index){
     $scope.selectedGroup = angular.copy(group); 
     $scope.selectedGroup.index = index;   
+    $scope.selectedGroup.group = $scope.getGroupNameById(group.group);
   };
 
    $scope.setSelectedStockGroup = function(group, index){
     $scope.selectedStockGroup = angular.copy(group); 
     $scope.selectedStockGroup.index = index;
 
-    $scope.selectedStockGroup.group_id = $scope.getGroupNameById(group.group_id);
+    $scope.selectedStockGroup.group_id = $scope.getStockGroupNameById(group.group_id);
   };
    $scope.setSelectedSitem = function(ledger){
     $scope.selectedSitem = angular.copy(ledger); 
+      var temp = $scope.stock_groups.filter(
+      function(state){
+        return ($scope.selectedSitem.group_id==state.id);
+      }      
+    );  
+    if(temp.length>0)
+      $scope.selectedSitem.group_id = temp[0];
+    var temp1 = $scope.units.filter(
+      function(state){
+        return ($scope.selectedSitem.unit_id==state.id);
+      }      
+    );  
+    if(temp1.length>0)
+      $scope.selectedSitem.unit_id = temp1[0];
   }
+
    $scope.setSelectedUnit = function(group, index){
     $scope.selectedUnit = angular.copy(group); 
     $scope.selectedUnit.index = index;   
@@ -361,8 +409,7 @@ angular.module('myApp.controllers', [])
     .success(function(response){
       if(response){
         //$window.alert("Group Updated Successfully");
-        $scope.groups[$scope.selectedGroup.index].name = $scope.selectedGroup.name;
-        $scope.groups[$scope.selectedGroup.index].group = $scope.selectedGroup.group;
+        $scope.getAllGroups();
         closeModal();
         $scope.selectedGroup = {};
       }
@@ -377,8 +424,7 @@ angular.module('myApp.controllers', [])
     .success(function(response){
       if(response){
         //$window.alert("Group Updated Successfully");
-        $scope.stock_groups[$scope.selectedStockGroup.index].name = $scope.selectedStockGroup.name;
-        $scope.stock_groups[$scope.selectedStockGroup.index].group_id = $scope.selectedStockGroup.group_id.id;
+        $scope.getAllStockGroups();
         closeModal();
         $scope.selectedStockGroup = {};
 
@@ -422,7 +468,7 @@ angular.module('myApp.controllers', [])
     if (retVal == true) {
       $http.post("../group/delete", {id : group.id})
       .success(function(data){
-        $scope.groups.splice(index, 1);
+        $scope.getAllGroups();
       }).
       error(function(err){
 
@@ -435,7 +481,7 @@ angular.module('myApp.controllers', [])
     if (retVal == true) {
       $http.post("../stock_group/delete", {id : group.id})
       .success(function(data){
-        $scope.stock_groups.splice(index, 1);
+       $scope.getAllStockGroups();
       }).
       error(function(err){
 

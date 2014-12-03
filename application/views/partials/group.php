@@ -36,9 +36,9 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="gradeX" ng-repeat="group in groups">
+                                <tr class="gradeX" ng-repeat="group in groupsWithoutPrimary()">
                                     <td>{{group.name}}</td>
-                                    <td>{{group.group}}</td>
+                                    <td>{{getGroupNameById(group.group).name}}</td>
                                     <td class="center hidden-phone"><a href="#update_group" data-toggle="modal" ng-click="setSelectedGroup(group, $index);">Edit <span class="fa fa-book"></span></a></td>
                                     <td class="center hidden-phone"><a href="javascript:void(0);" ng-click="deleteGroup(group, $index);">Delete <span class="fa fa-trash-o"></span></a></td>
                                 </tr>
@@ -68,24 +68,8 @@
                             </div>
                             <label for="cname" class="control-label col-lg-2">Group (required)</label>
                             <div class="col-lg-4">
-                                <select class=" form-control" id="cname" name="name" minlength="2" type="text" required ng-model="selectedGroup.group">
-                                    <option value="">--SELECT--</option>
-                                    <option value="Bank Accounts">Bank Accounts</option>
-                                    <option value="Capital Accounts">Capital Accounts</option>   
-                                    <option value="Cash-in-hand">Cash-in-hand</option>   
-                                    <option value="Current Assets">Current Assets</option>
-                                    <option value="Current Liabilities">Current Liabilities</option>
-                                    <option value="Deposits(Asset)">Deposits(Asset)</option>
-                                    <option value="Fixed Assets">Fixed Assets</option>
-                                    <option value="Direct Expenses">Direct Expenses</option>
-                                    <option value="Direct Incomes">Direct Incomes</option>
-                                    <option value="Indirect Expenses">Indirect Expenses</option>
-                                    <option value="Indirect Incomes">Indirect Incomes</option>  
-                                    <option value="Purchase Accounts">Purchase Accounts</option>
-                                    <option value="Sales Accounts">Sales Accounts</option>
-                                    <option value="Stock-in-hand">Stock-in-hand</option>
-                                    <option value="Sundry Creditors">Sundry Creditors</option>
-                                    <option value="Sundry Debtors">Sundry Debtors</option>
+                                <select class=" form-control" id="cname" name="name" ng-options="group.name for group in groups" minlength="2" type="text" required ng-model="selectedGroup.group">
+                                    <option value="" selected="">--SELECT--</option>
                                 </select>                                       
                             </div>
                         </div>
@@ -118,24 +102,9 @@
                             </div>
                             <label for="cname" class="control-label col-lg-2">Group (required)</label>
                             <div class="col-lg-4">
-                                <select class=" form-control" ng-model="selectedGroup.group" minlength="2" type="text" required >
-                                    <option value="">--SELECT--</option>
-                                    <option value="Bank Accounts">Bank Accounts</option>
-                                    <option value="Capital Accounts">Capital Accounts</option>   
-                                    <option value="Cash-in-hand">Cash-in-hand</option>   
-                                    <option value="Current Assets">Current Assets</option>
-                                    <option value="Current Liabilities">Current Liabilities</option>
-                                    <option value="Deposits(Asset)">Deposits(Asset)</option>
-                                    <option value="Fixed Assets">Fixed Assets</option>
-                                    <option value="Direct Expenses">Direct Expenses</option>
-                                    <option value="Direct Incomes">Direct Incomes</option>
-                                    <option value="Indirect Expenses">Indirect Expenses</option>
-                                    <option value="Indirect Incomes">Indirect Incomes</option>  
-                                    <option value="Purchase Accounts">Purchase Accounts</option>
-                                    <option value="Sales Accounts">Sales Accounts</option>
-                                    <option value="Stock-in-hand">Stock-in-hand</option>
-                                    <option value="Sundry Creditors">Sundry Creditors</option>
-                                    <option value="Sundry Debtors">Sundry Debtors</option>
+                                <select class=" form-control" ng-options="group.name for group in groups" ng-model="selectedGroup.group" minlength="2" type="text" required >
+                                    <option value="" selected="">--SELECT--</option>
+                                   
                                 </select>                                       
                             </div>
                             <br><br>

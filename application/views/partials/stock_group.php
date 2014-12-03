@@ -36,9 +36,9 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="gradeX" ng-repeat="group in stock_groups">
+                                <tr class="gradeX" ng-repeat="group in stockgroupsWithoutPrimary()">
                                     <td>{{group.name}}</td>
-                                    <td>{{getGroupNameById(group.group_id).name}}</td>
+                                    <td>{{getStockGroupNameById(group.group_id).name}}</td>
                                     <td class="center hidden-phone"><a href="#update_stock_group" data-toggle="modal" ng-click="setSelectedStockGroup(group, $index);">Edit <span class="fa fa-book"></span></a></td>
                                     <td class="center hidden-phone"><a href="javascript:void(0);" ng-click="deleteStockGroup(group, $index);">Delete <span class="fa fa-trash-o"></span></a></td>
                                 </tr>
@@ -110,7 +110,7 @@
                         </div>
                         <div class="modal-footer">
                             <button class="btn btn-primary" type="submit">Update</button>
-                            <button data-dismiss="modal" class="btn btn-default" type="button">Cancel</button>
+                            <button data-dismiss="modal" class="btn btn-default" type="button" ng-click="resetSelectedStockGroup();">Cancel</button>
                         </div>
                     </form>
                 </div>
