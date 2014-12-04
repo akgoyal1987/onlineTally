@@ -233,9 +233,10 @@ angular.module('myApp.directives', []).
         link: function(scope, element, attrs) {
           element.bind('blur', function(){
             if(!element.val() || element.val().trim()==''){
+              element.focus();
               setTimeout(function() {
-                  element.focus();
-              }, 100);
+                  
+              }, 10);
             }
           });
         }

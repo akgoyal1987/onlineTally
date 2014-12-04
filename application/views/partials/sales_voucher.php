@@ -11,7 +11,7 @@
                         </header>
                         <div class="panel-body">
                             <div class=" form">
-                                <form class="cmxform form-horizontal adminex-form" name="ledgerform" id="ledgerform" ng-submit="createVoucher();" method="post" action="" novalidate>
+                                <form class="cmxform form-horizontal adminex-form" name="ledgerform" id="ledgerform" ng-submit="createVoucher();" method="post" action="">
                                     <div class="form-group ">
                                         <label class="control-label col-lg-2">Credit Account</label>
                                         <div class="col-lg-4">
@@ -47,18 +47,21 @@
                                         <tbody>
                                             <tr class="gradeX" ng-repeat="v in voucherEntries">
                                                 <td width="150px">
-                                                    <div class="form-control" custom-select ng-model="v.item_id" ng-options="item.name for item in stock_items"></div>
+                                                    <!-- <div class="form-control" custom-select ng-model="v.item_id" ng-options="item.name for item in stock_items"></div> -->
+                                                    <select class="form-control" required ng-model="v.item_id" ng-options="item.name for item in stock_items">
+                                                        <option value="">-- Select Product --</option>
+                                                    </select>
                                                 </td>
                                                 <td><input type="number" ng-model="v.quantity"  ng-change="setValue(v);" class="form-control" placeholder="Quantity" required/></td>
-                                                <td><input type="number" ng-model="v.rate" ng-change="setValue(v);" class="form-control" placeholder="Rate" required/></td>
-                                                <td><input type="number" ng-model="v.value" class="form-control" placeholder="Value" required/></td>
+                                                <td><input firstfill type="number" ng-model="v.rate" ng-change="setValue(v);" class="form-control" placeholder="Rate" required/></td>
+                                                <td><input firstfill type="number" ng-model="v.value" class="form-control" placeholder="Value" required/></td>
                                                 <td><button ng-if="$index!=0" class="btn btn-main" type="button" ng-click="voucherEntries.splice($index,1);">-</button></td>
                                             </tr>
                                         </tbody>
                                     </table>
                                     <div class="form-group">
                                         <div class="col-lg-offset-2 col-lg-10">
-                                            <button class="btn btn-primary" type="submit" ng-click="newVoucher.type='sale'">Create</button>
+                                            <button ng-disabled="!newVoucher.cr_acc.s_no || !newVoucher.dr_acc.s_no" class="btn btn-primary" type="submit" ng-click="newVoucher.type='sale'">Create</button>
                                             <button class="btn btn-default" type="button">Cancel</button>
                                         </div>
                                     </div>
