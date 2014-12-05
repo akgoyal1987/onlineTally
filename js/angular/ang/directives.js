@@ -228,6 +228,20 @@ angular.module('myApp.directives', []).
 	      }
 	    };
 	})
+  .directive('firstfill', function() {
+      return {
+        link: function(scope, element, attrs) {
+          element.bind('blur', function(){
+            if(!element.val() || element.val().trim()==''){
+              element.focus();
+              setTimeout(function() {
+                  
+              }, 10);
+            }
+          });
+        }
+      };
+  })
   .directive('dynamic', function ($compile) {
     return {
       restrict: 'A',
