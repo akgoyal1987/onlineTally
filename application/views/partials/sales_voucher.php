@@ -38,6 +38,7 @@
                                                 <th>Quantity</th>
                                                 <th class="hidden-phone">Rate</th>
                                                 <th class="hidden-phone">Value</th>
+	                               <th class="hidden-phone"></th>
                                             </tr>
                                         </thead>
                                         <tbody>
