@@ -39,15 +39,9 @@
                                             <tr>
                                                 <th>Item</th>
                                                 <th>Quantity</th>
-<<<<<<< HEAD
                                                 <th class="hidden-phone">Rate</th>
                                                 <th class="hidden-phone">Value</th>
 	                               <th class="hidden-phone"></th>
-=======
-                                                <th>Rate</th>
-                                                <th>Value</th>
-                                                <th></th>
->>>>>>> d1a59edb1ff9fc4c5bf730d2ca65584b3a000b95
                                             </tr>
                                         </thead>
                                         <tbody>
