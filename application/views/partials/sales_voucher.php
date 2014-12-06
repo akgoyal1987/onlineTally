@@ -1,5 +1,5 @@
     <!--body wrapper start-->
-        <div class="wrapper" ng-init="getLedgers();getStockItems();">
+        <div class="wrapper" data-ng-init="getLedgers();getStockItems();">
             <div class="row">
                
             </div>
@@ -15,12 +15,12 @@
                                     <div class="form-group ">
                                         <label class="control-label col-lg-2">Credit Account</label>
                                         <div class="col-lg-4">
-                                            <div class="form-control" custom-select ng-model="newVoucher.cr_acc" ng-options="ledger.name for ledger in ledgers"></div>
+                                            <div class="form-control" custom-select ng-model="newVoucher.cr_acc" ng-options="ledger.name for ledger in debitorLedgers"></div>
                                             <span><p style="color:red" ng-if="!newVoucher.cr_acc.s_no">Please Select Credit Account</p></span>
                                         </div>
                                          <label for="cname" class="control-label col-lg-2">Debit Account</label>
                                         <div class="col-lg-4">
-                                            <div class="form-control" custom-select ng-model="newVoucher.dr_acc" ng-options="ledger.name for ledger in ledgers"></div>
+                                            <div class="form-control" custom-select ng-model="newVoucher.dr_acc" ng-options="ledger.name for ledger in creditorLedgers"></div>
                                             <span><p style="color:red" ng-if="!newVoucher.dr_acc.s_no">Please Select Dabit Account</p></span>
                                         </div>
                                     </div>
