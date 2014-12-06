@@ -176,7 +176,7 @@ angular.module('myApp.controllers', [])
 
   $scope.getDebitors = function(){
     var debitorGroup = $scope.groups.filter(function(group){
-      return (group.name.toLowerCase() == 'debtor');
+      return (group.name.toLowerCase() == 'debitor');
     });
     if(debitorGroup.length>0){
       $scope.debitorLedgers = $scope.ledgers.filter(function(ledger){
