@@ -22,6 +22,8 @@ angular.module('myApp.controllers', [])
   $scope.newcity = { name : ""};
   $scope.newVoucher = {};
   $scope.stock_items = [];
+  $scope.creditorLedgers = [];
+  $scope.debtorLedgers = [];
   $scope.voucherEntries = [{
     item_id : "",
     quantity : "",
@@ -80,6 +82,7 @@ angular.module('myApp.controllers', [])
     $http.get("../group/get")
     .success(function(response){
       $scope.groups = response;
+      
     })
     .error(function(error){
       alert(error);
@@ -157,6 +160,29 @@ angular.module('myApp.controllers', [])
       return true;
     else
       return false;
+  }
+
+  $scope.getCreditors = function(){
+
+    var creditorGroup = $scope.groups.filter(function(group){
+      return (group.name.toLowerCase() == 'creditor');
+    });        
+    if(creditorGroup.length>0){
+      $scope.creditorLedgers = $scope.ledgers.filter(function(ledger){
+        return ledger.group_id+'' == creditorGroup[0].id+''; 
+      }); 
+    }
+  }
+
+  $scope.getDebitors = function(){
+    var debitorGroup = $scope.groups.filter(function(group){
+      return (group.name.toLowerCase() == 'debtor');
+    });
+    if(debitorGroup.length>0){
+      $scope.debitorLedgers = $scope.ledgers.filter(function(ledger){
+        return ledger.group_id == debitorGroup[0].id; 
+      });
+    }
   }
 
   $scope.resetSelectedLedger = function(){
@@ -271,6 +297,8 @@ angular.module('myApp.controllers', [])
     $http.get("../ledger/get")
     .success(function(response){
       $scope.ledgers = response;
+      $scope.getCreditors();
+      $scope.getDebitors();
     })
     .error(function(error){
       alert(error);
