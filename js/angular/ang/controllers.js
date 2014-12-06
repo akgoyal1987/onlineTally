@@ -82,8 +82,7 @@ angular.module('myApp.controllers', [])
     $http.get("../group/get")
     .success(function(response){
       $scope.groups = response;
-      $scope.getCreditors();
-      $scope.getDebitors();
+      
     })
     .error(function(error){
       alert(error);
@@ -167,23 +166,22 @@ angular.module('myApp.controllers', [])
 
     var creditorGroup = $scope.groups.filter(function(group){
       return (group.name.toLowerCase() == 'creditor');
-    });
+    });        
     if(creditorGroup.length>0){
       $scope.creditorLedgers = $scope.ledgers.filter(function(ledger){
-        return ledger.group_id == creditorGroup[0].id; 
+        return ledger.group_id+'' == creditorGroup[0].id+''; 
       }); 
     }
-    
   }
 
   $scope.getDebitors = function(){
     var debitorGroup = $scope.groups.filter(function(group){
-      return (group.name.toLowerCase() == 'debitor');
+      return (group.name.toLowerCase() == 'debtor');
     });
     if(debitorGroup.length>0){
-      $scope.creditorLedgers = $scope.ledgers.filter(function(ledger){
+      $scope.debitorLedgers = $scope.ledgers.filter(function(ledger){
         return ledger.group_id == debitorGroup[0].id; 
-      }); 
+      });
     }
   }
 
@@ -299,6 +297,8 @@ angular.module('myApp.controllers', [])
     $http.get("../ledger/get")
     .success(function(response){
       $scope.ledgers = response;
+      $scope.getCreditors();
+      $scope.getDebitors();
     })
     .error(function(error){
       alert(error);

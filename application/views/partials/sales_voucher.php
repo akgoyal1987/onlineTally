@@ -1,5 +1,5 @@
     <!--body wrapper start-->
-        <div class="wrapper" data-ng-init="getLedgers();getStockItems();">
+        <div class="wrapper" ng-init="getLedgers();getStockItems();">
             <div class="row">
                
             </div>
