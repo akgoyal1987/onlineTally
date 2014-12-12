@@ -91,6 +91,13 @@ class Views extends MY_Base_Controller{
 			echo "You Are Not Logged In, Please Login!";
 		}
 	}
+	public function trialBalance(){
+		if($this->checkSession()){
+			$this->load->view('partials/trial_balance');
+		}else{
+			echo "You Are Not Logged In, Please Login!";
+		}
+	}
 
 }
 

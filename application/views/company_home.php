@@ -110,13 +110,13 @@
                 </li>
                 <li class="menu-list"><a href="#"><i class="fa fa-list-alt"></i> <span> Display</span></a>
                     <ul class="sub-menu-list">
-                        <li><a href="#"> Trial Balance</a></li>
-                        <li><a href="#"> Day Book</a></li>
-                        <li><a href="#"> Account Books</a></li>
-                        <li><a href="#"> Inventory Books</a></li>
+                        <li><a href="#/trialBalance"> Trial Balance</a></li>
+                        <li><a href="#/dayBook"> Day Book</a></li>
+                        <li><a href="#/accountBook"> Account Books</a></li>
+                        <li><a href="#/inventoryBook"> Inventory Books</a></li>
                     </ul>
                 </li> 
-                <li><a href="#"><i class="fa fa-sign-in"></i> <span>Login Page</span></a></li>
+               
             </ul>
             <!--sidebar nav end-->
 

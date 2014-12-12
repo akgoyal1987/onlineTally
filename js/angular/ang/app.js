@@ -73,4 +73,20 @@ config(function($stateProvider, $urlRouterProvider) {
       url: "/printvoucher",
       templateUrl: "../views/printvoucher.html"
   })
+ .state('trialBalance', {
+      url: "/trialBalance",
+      templateUrl: "../views/trialBalance"
+  })
+ .state('dayBook', {
+      url: "/dayBook",
+      templateUrl: "../views/dayBook"
+  })
+ .state('accountBook', {
+      url: "/accountBook",
+      templateUrl: "../views/accountBook"
+  })
+ .state('inventoryBook', {
+      url: "/inventoryBook",
+      templateUrl: "../views/inventoryBook"
+  })
 });
