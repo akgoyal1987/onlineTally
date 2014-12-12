@@ -165,9 +165,8 @@ angular.module('myApp.controllers', [])
   $scope.getCreditors = function(){
 
     var creditorGroup = $scope.groups.filter(function(group){
-      console.log(group.name.toLowerCase());
-      return (group.name.toLowerCase().trim() == 'sundry creditors');
-    });        
+      return (group.name.toLowerCase().trim() == 'Sales Accounts'.toLowerCase().trim());
+    }); 
     if(creditorGroup.length>0){
       $scope.creditorLedgers = $scope.ledgers.filter(function(ledger){
         return ledger.group_id+'' == creditorGroup[0].id+''; 
@@ -177,12 +176,18 @@ angular.module('myApp.controllers', [])
 
   $scope.getDebitors = function(){
     var debitorGroup = $scope.groups.filter(function(group){
-      console.log(group.name.toLowerCase());
-      return (group.name.toLowerCase().trim() == 'sundry debtors');
+      return (group.name.toLowerCase().trim() == 'sundry debitor' || group.name.toLowerCase().trim() == 'sundry creditor'.toLowerCase().trim() || group.name.toLowerCase().trim() == 'Cash-in-hand'.toLowerCase().trim());
     });
     if(debitorGroup.length>0){
+      var takeThis;
       $scope.debitorLedgers = $scope.ledgers.filter(function(ledger){
-        return ledger.group_id == debitorGroup[0].id; 
+        takeThis = false;
+        angular.forEach(debitorGroup, function(group){
+          if (!takeThis && ledger.group_id+''.trim() == group.id+''.trim()){
+            takeThis = true;
+          }
+        });
+        return takeThis;
       });
     }
   }
@@ -556,12 +561,9 @@ angular.module('myApp.controllers', [])
     }
   }
 
-  $scope.createVoucher = function(){
+  $scope.printPage = function(id){
     $scope.newVoucher.voucherEntries = $scope.voucherEntries;
-    $http.post("../voucher/create", $scope.newVoucher)
-    .success(function(response){
-      $scope.newVoucher.id = response.voucherid;
-      var pt = '<link href="http://localhost/onlineTally/css/bootstrap.min.css" rel="stylesheet">';
+    var pt = '<link href="http://localhost/onlineTally/css/bootstrap.min.css" rel="stylesheet">';
       pt = pt+'<div class="container">';
       pt = pt+'<p style="text-align: right;">TIN NO :'+$scope.company.tin_no+'</p>';
       pt = pt+'<h3 style="text-align: center;">'+$scope.company.company_name+'</h2>';
@@ -569,7 +571,7 @@ angular.module('myApp.controllers', [])
       pt = pt+'<h5 style="text-align: center;">Regd Office: '+$scope.company.address+'</h5>';
       pt = pt+'<hr><h3 style="text-align: center;">INVOICE</h3><hr>';
       pt=  pt+'<div class="row"> <div class="col-sm-6" style= "border: 1px solid;"><p>To,</p><p>'+$scope.newVoucher.cr_acc.name+'</p><p>'+$scope.newVoucher.cr_acc.address+'</p><p>'+$scope.newVoucher.cr_acc.city+'</p><p> district :'+$scope.newVoucher.cr_acc.district+'</p><p>State :'+$scope.newVoucher.cr_acc.state+'</p><p>Contact No. :'+$scope.newVoucher.cr_acc.mobile_no+'</p></div>';
-      pt=  pt+'<div class="col-sm-6" style= "border: 1px solid; height:212px;"><p>Invoice No. '+$scope.newVoucher.id+'<span class="pull-right">Date: '+$scope.newVoucher.date+'</span></p></div></div>';
+      pt=  pt+'<div class="col-sm-6" style= "border: 1px solid; height:212px;"><p>Invoice No. '+(id?id:$scope.newVoucher.id)+'<span class="pull-right">Date: '+$scope.newVoucher.date+'</span></p></div></div>';
       pt = pt+'<table  class="display table table-bordered table-striped" id="dynamic-table"><thead><tr><th>Item</th><th>Quantity</th><th class="hidden-phone">Rate</th><th class="hidden-phone">Value</th></tr></thead><tbody>';
       var value = 0;
         angular.forEach($scope.newVoucher.voucherEntries, function(item, index){
@@ -599,6 +601,19 @@ angular.module('myApp.controllers', [])
       popupWin.document.write('</html>')
 
       popupWin.document.close();
+  }
+
+  $scope.createVoucher = function(){
+    $scope.newVoucher.voucherEntries = $scope.voucherEntries;
+    $http.post("../voucher/create", $scope.newVoucher)
+    .success(function(response){
+      $scope.newVoucher.id = response.voucherid;
+      
+      $scope.printPage();
+
+      $scope.newVoucher = {};
+      $scope.voucherEntries = [];
+      $scope.addMoreItem();
 
     })
     .error(function(){

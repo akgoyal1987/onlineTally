@@ -115,9 +115,8 @@
                         <li><a href="#/accountBook"> Account Books</a></li>
                         <li><a href="#/inventoryBook"> Inventory Books</a></li>
                     </ul>
+
                 </li> 
-               
-            </ul>
             <!--sidebar nav end-->
 
         </div>
