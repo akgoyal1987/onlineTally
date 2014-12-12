@@ -115,8 +115,7 @@
                         <li><a href="#"> Account Books</a></li>
                         <li><a href="#"> Inventory Books</a></li>
                     </ul>
-                </li> 
-                <li><a href="#"><i class="fa fa-sign-in"></i> <span>Login Page</span></a></li>
+                </li>
             </ul>
             <!--sidebar nav end-->
 
