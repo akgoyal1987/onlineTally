@@ -176,7 +176,7 @@ angular.module('myApp.controllers', [])
 
   $scope.getDebitors = function(){
     var debitorGroup = $scope.groups.filter(function(group){
-      return (group.name.toLowerCase().trim() == 'sundry debitor' || group.name.toLowerCase().trim() == 'sundry creditor'.toLowerCase().trim() || group.name.toLowerCase().trim() == 'Cash-in-hand'.toLowerCase().trim());
+      return (group.name.toLowerCase().trim() == 'sundry debtors' || group.name.toLowerCase().trim() == 'sundry creditors'.toLowerCase().trim() || group.name.toLowerCase().trim() == 'Cash-in-hand'.toLowerCase().trim());
     });
     if(debitorGroup.length>0){
       var takeThis;

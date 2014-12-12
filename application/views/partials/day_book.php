@@ -3,7 +3,7 @@
         <div class="col-sm-12">
             <section class="panel">
                 <header class="panel-heading">
-                  Trial Balance
+                  Day Book
                     <span class="tools pull-right">
                         
                      </span>
@@ -25,16 +25,22 @@
                         <table  class="display table table-bordered table-striped" id="dynamic-table">
                             <thead>
                                 <tr>
+                                    <th>Date</th>
                                     <th>Particulars</th>
-                                    <th>Debit</th>
-                                    <th>Credit</th>
+                                     <th>Vch Type</th>
+                                     <th>Vch No.</th>
+                                    <th>Debit Amount</th>
+                                    <th>Credit Amount</th>
                                  </tr>
                             </thead>
                             <tbody>
                                 <tr class="gradeX">
-                                    <td><a href="#/trialBalanceGrp">CAPITAL ACCOUNT</a></td>
-                                    <td>2000.00</td>
-                                    <td>4000.00</td>
+                                    <td>12/12/2014</td>
+                                    <td><a>gaurav garg</a></td>
+                                    <td>Payment</td>
+                                     <td>12</td>
+                                     <td>1200.00</td>
+                                     <td></td>
                                 </tr>
                             </tbody>
                         </table>

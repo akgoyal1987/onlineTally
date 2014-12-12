@@ -3,7 +3,7 @@
         <div class="col-sm-12">
             <section class="panel">
                 <header class="panel-heading">
-                  Trial Balance
+                  Inventory Book
                     <span class="tools pull-right">
                         
                      </span>
@@ -32,9 +32,9 @@
                             </thead>
                             <tbody>
                                 <tr class="gradeX">
-                                    <td><a href="#/trialBalanceGrp">CAPITAL ACCOUNT</a></td>
-                                    <td>2000.00</td>
-                                    <td>4000.00</td>
+                                    <td><a>dsfsdf</a></td>
+                                    <td>dfgdg</td>
+                                    <td>dsfsfdf</td>
                                 </tr>
                             </tbody>
                         </table>

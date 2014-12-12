@@ -98,6 +98,34 @@ class Views extends MY_Base_Controller{
 			echo "You Are Not Logged In, Please Login!";
 		}
 	}
+	public function dayBook(){
+		if($this->checkSession()){
+			$this->load->view('partials/day_book');
+		}else{
+			echo "You Are Not Logged In, Please Login!";
+		}
+	}
+	public function accountBook(){
+		if($this->checkSession()){
+			$this->load->view('partials/accountBook');
+		}else{
+			echo "You Are Not Logged In, Please Login!";
+		}
+	}
+	public function inventoryBook(){
+		if($this->checkSession()){
+			$this->load->view('partials/inventoryBook');
+		}else{
+			echo "You Are Not Logged In, Please Login!";
+		}
+	}
+	public function trialBalanceGrp(){
+		if($this->checkSession()){
+			$this->load->view('partials/trialBalanceGrp');
+		}else{
+			echo "You Are Not Logged In, Please Login!";
+		}
+	}
 
 }
 

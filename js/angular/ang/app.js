@@ -89,4 +89,8 @@ config(function($stateProvider, $urlRouterProvider) {
       url: "/inventoryBook",
       templateUrl: "../views/inventoryBook"
   })
+ .state('trialBalanceGrp', {
+      url: "/trialBalanceGrp",
+      templateUrl: "../views/trialBalanceGrp"
+  })
 });
