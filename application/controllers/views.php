@@ -91,6 +91,34 @@ class Views extends MY_Base_Controller{
 			echo "You Are Not Logged In, Please Login!";
 		}
 	}
+	public function purchase(){
+		if($this->checkSession()){
+			$this->load->view('partials/purchase_voucher');
+		}else{
+			echo "You Are Not Logged In, Please Login!";
+		}
+	}
+	public function contra(){
+		if($this->checkSession()){
+			$this->load->view('partials/contra_voucher');
+		}else{
+			echo "You Are Not Logged In, Please Login!";
+		}
+	}
+	public function payment(){
+		if($this->checkSession()){
+			$this->load->view('partials/payment_voucher');
+		}else{
+			echo "You Are Not Logged In, Please Login!";
+		}
+	}
+	public function receipt(){
+		if($this->checkSession()){
+			$this->load->view('partials/receipt_voucher');
+		}else{
+			echo "You Are Not Logged In, Please Login!";
+		}
+	}
 	public function trialBalance(){
 		if($this->checkSession()){
 			$this->load->view('partials/trial_balance');

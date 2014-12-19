@@ -93,4 +93,20 @@ config(function($stateProvider, $urlRouterProvider) {
       url: "/trialBalanceGrp",
       templateUrl: "../views/trialBalanceGrp"
   })
+ .state('purchase', {
+      url: "/purchase",
+      templateUrl: "../views/purchase"
+  })
+ .state('contra', {
+      url: "/contra",
+      templateUrl: "../views/contra"
+  })
+ .state('payment', {
+      url: "/payment",
+      templateUrl: "../views/payment"
+  })
+ .state('receipt', {
+      url: "/receipt",
+      templateUrl: "../views/receipt"
+  })
 });
