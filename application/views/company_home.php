@@ -98,9 +98,9 @@
                     <ul class="sub-menu-list">
                     	<li><a href="#/sale"> Sale</a></li>
                     	<li><a href="#/purchase"> Purchase</a></li>
-                        <li><a href="#"> Contra</a></li>
-                        <li><a href="#"> Payment</a></li>
-                        <li><a href="#"> Receipt</a></li>
+                        <li><a href="#/contra"> Contra</a></li>
+                        <li><a href="#/payment"> Payment</a></li>
+                        <li><a href="#/receipt"> Receipt</a></li>
                     </ul>
                 </li>
                 <li class="menu-list"><a href=""><i class="fa fa-tag"></i> <span> Inventory Vouchers</span></a>

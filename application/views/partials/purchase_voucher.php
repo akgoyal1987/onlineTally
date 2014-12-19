@@ -7,22 +7,22 @@
                 <div class="col-lg-12">
                     <section class="panel">
                         <header class="panel-heading">
-                           Sale
+                           Purchase
                            <i class="fa fa-print pull-right" ng-click="printPage();" style="cursor: pointer;"> Print </i>
                         </header>
                         <div class="panel-body">
                             <div class=" form">
                                 <form class="cmxform form-horizontal adminex-form" name="ledgerform" id="ledgerform" ng-submit="createVoucher();" method="post" action="">
                                     <div class="form-group ">
-                                        <label class="control-label col-lg-2">Sales Ledger</label>
+                                        <label class="control-label col-lg-2">Purchase Ledger</label>
                                         <div class="col-lg-4">
                                             <div class="form-control" custom-select ng-model="newVoucher.cr_acc" ng-options="ledger.name for ledger in creditorLedgers"></div>
-                                            <span><p style="color:red" ng-if="!newVoucher.cr_acc.s_no">Please Select Sales Ledger</p></span>
+                                            <span><p style="color:red" ng-if="!newVoucher.cr_acc.s_no">Please Select Purchase Account</p></span>
                                         </div>
                                          <label for="cname" class="control-label col-lg-2">Party's Account Name</label>
                                         <div class="col-lg-4">
                                             <div class="form-control" custom-select ng-model="newVoucher.dr_acc" ng-options="ledger.name for ledger in debitorLedgers"></div>
-                                            <span><p style="color:red" ng-if="!newVoucher.dr_acc.s_no">Please Select Party's Account Name</p></span>
+                                            <span><p style="color:red" ng-if="!newVoucher.dr_acc.s_no">Please Select  Party's Account Name</p></span>
                                         </div>
                                     </div>
                                     <div class="form-group ">
