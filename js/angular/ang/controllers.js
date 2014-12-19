@@ -24,6 +24,7 @@ angular.module('myApp.controllers', [])
   $scope.stock_items = [];
   $scope.creditorLedgers = [];
   $scope.debtorLedgers = [];
+  $scope.trialBalance = [];
   $scope.voucherEntries = [{
     item_id : "",
     quantity : "",
@@ -628,8 +629,22 @@ angular.module('myApp.controllers', [])
     value : ""
   });
   }
-  $scope.removeUnusedItems = function(){
-
+  $scope.getTrialBalance = function(){
+    $http.get("../display/trialBalance")
+    .success(function(response){
+      angular.forEach(response, function(group){
+        if(group.group==null)
+          $scope.trialBalance.push({ group : group, debit : 0, credit : 0, ledgers : []});
+      });
+      // $scope.primaryGroups = response.filter(
+      //   function(group){
+      //     return (group.group==null);
+      //   }
+      // );
+    })
+    .error(function(error){
+      alert(error);
+    })
   }
 });
 

@@ -1,4 +1,4 @@
-<div class="wrapper">
+<div class="wrapper" ng-init="getTrialBalance();">
     <div class="row">
         <div class="col-sm-12">
             <section class="panel">
@@ -6,7 +6,7 @@
                   Trial Balance
                     <span class="tools pull-right">
                         
-                     </span>
+                    </span>
                 </header>
                 <div class="panel-body">
                     <div class="adv-table">
@@ -31,10 +31,11 @@
                                  </tr>
                             </thead>
                             <tbody>
-                                <tr class="gradeX">
-                                    <td><a href="#/trialBalanceGrp">CAPITAL ACCOUNT</a></td>
-                                    <td>2000.00</td>
-                                    <td>4000.00</td>
+                                <tr class="gradeX" ng-repeat="g in trialBalance">
+
+                                    <td><a href="#/trialBalanceGrp" ng-bind="g.group.name"></a></td>
+                                    <td ng-bind="g.debit"></td>
+                                    <td ng-bind="g.credit"></td>
                                 </tr>
                             </tbody>
                         </table>
