@@ -632,15 +632,32 @@ angular.module('myApp.controllers', [])
   $scope.getTrialBalance = function(){
     $http.get("../display/trialBalance")
     .success(function(response){
-      angular.forEach(response, function(group){
-        if(group.group==null)
-          $scope.trialBalance.push({ group : group, debit : 0, credit : 0, ledgers : []});
+      $scope.trialBalance = {};
+      var accids = [];
+      angular.forEach(response.debitacc, function(acc){
+        $scope.trialBalance[acc.dr_acc] = { debit : acc.amount};
+        if(accids.indexOf(acc.dr_acc)==-1){
+          accids.push(acc.dr_acc);          
+        }
       });
-      // $scope.primaryGroups = response.filter(
-      //   function(group){
-      //     return (group.group==null);
-      //   }
-      // );
+      angular.forEach(response.creditacc, function(acc){
+        if($scope.trialBalance[acc.cr_acc])
+          $scope.trialBalance[acc.cr_acc]['credit'] = acc.amount;
+        else
+          $scope.trialBalance[acc.cr_acc] = {credit : acc.amount};          
+        if(accids.indexOf(acc.cr_acc)==-1){
+          accids.push(acc.cr_acc);          
+        }
+      });
+      $http.post("../display/getLedgersByIdArray", accids)
+      .success(function(res){
+        angular.forEach(res.ledgers, function(ledger){
+          $scope.trialBalance[ledger.s_no]["ledger"] = ledger;
+        });
+      })
+      .error(function(err){
+
+      });
     })
     .error(function(error){
       alert(error);

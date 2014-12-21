@@ -33,7 +33,7 @@
                             <tbody>
                                 <tr class="gradeX" ng-repeat="g in trialBalance">
 
-                                    <td><a href="#/trialBalanceGrp" ng-bind="g.group.name"></a></td>
+                                    <td><a href="#/trialBalanceGrp" ng-bind="g.ledger.group_id"></a></td>
                                     <td ng-bind="g.debit"></td>
                                     <td ng-bind="g.credit"></td>
                                 </tr>

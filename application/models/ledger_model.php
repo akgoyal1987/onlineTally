@@ -16,6 +16,17 @@ class Ledger_Model extends CI_Model {
     }
   }
 
+  public function getGroupsByLedgers($params){
+    $result = $this->db->where_in('s_no',$params)->get('ledger')->result_array();
+    // The results of the query are stored in $login.
+    // If a value exists, then the user account exists and is validated
+    if ( is_array($result)) {
+        return $result;
+    }
+    else{
+      return array();
+    }
+  }
   public function update($ledger){
     if($ledger['city']['id'] == 0){
       $data = array("name"=>$ledger['city']['name'], "state_id"=>$ledger['city']['state_id'], "district_id"=>$ledger['city']['district_id']);

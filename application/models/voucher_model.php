@@ -16,6 +16,28 @@ class Voucher_Model extends CI_Model {
     }
   }
 
+  public function getBalanceSumCreditAcc(){
+    $query = $this->db->query("SELECT cr_acc, sum(amount) as amount FROM `vouchers` group by cr_acc");
+    return $query->result();
+    if ( is_array($result)) {
+        return $result;
+    }
+    else{
+      return array();
+    }
+  }
+
+  public function getBalanceSumDebitAcc(){
+    $query = $this->db->query("SELECT dr_acc, sum(amount) as amount FROM `vouchers` group by dr_acc");
+    return $query->result();
+    if ( is_array($result)) {
+        return $result;
+    }
+    else{
+      return array();
+    }
+  }
+
   public function update($group){
       $data = array('name'=>$group['name'],"group_id"=>$group['group_id']['id']);    
        $this->db->where('id',$group['id']);     
