@@ -633,26 +633,35 @@ angular.module('myApp.controllers', [])
     $http.get("../display/trialBalance")
     .success(function(response){
       $scope.trialBalance = {};
+      $scope.ledgerSummery = {};
       var accids = [];
       angular.forEach(response.debitacc, function(acc){
-        $scope.trialBalance[acc.dr_acc] = { debit : acc.amount};
+        $scope.ledgerSummery[acc.dr_acc] = { debit : acc.amount};
         if(accids.indexOf(acc.dr_acc)==-1){
           accids.push(acc.dr_acc);          
         }
       });
       angular.forEach(response.creditacc, function(acc){
-        if($scope.trialBalance[acc.cr_acc])
-          $scope.trialBalance[acc.cr_acc]['credit'] = acc.amount;
+        if($scope.ledgerSummery[acc.cr_acc])
+          $scope.ledgerSummery[acc.cr_acc]['credit'] = acc.amount;
         else
-          $scope.trialBalance[acc.cr_acc] = {credit : acc.amount};          
+          $scope.ledgerSummery[acc.cr_acc] = {credit : acc.amount};          
         if(accids.indexOf(acc.cr_acc)==-1){
           accids.push(acc.cr_acc);          
         }
       });
+
       $http.post("../display/getLedgersByIdArray", accids)
       .success(function(res){
         angular.forEach(res.ledgers, function(ledger){
-          $scope.trialBalance[ledger.s_no]["ledger"] = ledger;
+          $scope.ledgerSummery[ledger.s_no]["ledger"] = ledger;
+        });
+
+        angular.forEach($scope.ledgerSummery, function(summery, groupid){
+          if(!$scope.trialBalance[summery.ledger.group_id]){
+            $scope.trialBalance[summery.ledger.group_id] = [];
+          }
+          $scope.trialBalance[summery.ledger.group_id].push(summery);        
         });
       })
       .error(function(err){
@@ -662,6 +671,22 @@ angular.module('myApp.controllers', [])
     .error(function(error){
       alert(error);
     })
+  }
+
+  $scope.getDebitSum = function(value){
+    var sum = 0;
+    angular.forEach(value, function(val){
+      sum = sum+parseInt(val.debit);
+    });
+    return sum;
+  }
+
+  $scope.getCreditSum = function(value){
+    var sum = 0;
+    angular.forEach(value, function(val){
+      sum = sum+parseInt(val.credit);
+    });
+    return sum;
   }
 });
 

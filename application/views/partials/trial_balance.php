@@ -31,11 +31,11 @@
                                  </tr>
                             </thead>
                             <tbody>
-                                <tr class="gradeX" ng-repeat="g in trialBalance">
+                                <tr class="gradeX" ng-repeat="(key, value) in trialBalance">
 
-                                    <td><a href="#/trialBalanceGrp" ng-bind="g.ledger.group_id"></a></td>
-                                    <td ng-bind="g.debit"></td>
-                                    <td ng-bind="g.credit"></td>
+                                    <td><a href="#/trialBalanceGrp" ng-bind="getGroupNameById(key).name;"></a></td>
+                                    <td ng-bind="getDebitSum(value);"></td>
+                                    <td ng-bind="getCreditSum(value);"></td>
                                 </tr>
                             </tbody>
                         </table>
