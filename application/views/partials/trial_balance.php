@@ -31,12 +31,21 @@
                                  </tr>
                             </thead>
                             <tbody>
-                                <tr class="gradeX" ng-repeat="(key, value) in trialBalance">
-
-                                    <td><a href="#/trialBalanceGrp" ng-bind="getGroupNameById(key).name;"></a></td>
+                                <tr class="gradeX" ng-repeat="(key, value) in displayTrialBalance">
+                                    <td><a href="javascript:void(0);" ng-click="showGroupSummery(value);" ng-bind="value.group.name;"></a></td>
                                     <td ng-bind="getDebitSum(value);"></td>
                                     <td ng-bind="getCreditSum(value);"></td>
                                 </tr>
+                                <tr class="gradeX" ng-repeat="ledger in displayLedgers">
+                                    <td ng-bind="ledger.ledger.name;"></td>
+                                    <td ng-bind="ledger.debit?ledger.debit:0"></td>
+                                    <td ng-bind="ledger.credit?ledger.credit:0"></td>
+                                </tr> 
+                                <tr class="gradeX total" >
+                                    <td ng-bind="'Total'"></td>
+                                    <td ng-bind="trialbalancedebitsum"></td>
+                                    <td ng-bind="trialbalancecreditsum"></td>
+                                </tr>                                
                             </tbody>
                         </table>
                     </div>

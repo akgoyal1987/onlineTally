@@ -623,17 +623,33 @@ angular.module('myApp.controllers', [])
   }
   $scope.addMoreItem = function(){
     $scope.voucherEntries.push({
-    item_id : "",
-    quantity : "",
-    rate : "",
-    value : ""
-  });
+      item_id : "",
+      quantity : "",
+      rate : "",
+      value : ""
+    });
   }
+
+  $scope.getGroupNameById = function(groupid){
+    var mygroup = $scope.groups.filter(function(group){
+      return (group.id == groupid);
+    });
+    if(mygroup.length>0)
+      return mygroup[0];
+    else
+      return "";
+  }
+
   $scope.getTrialBalance = function(){
     $http.get("../display/trialBalance")
     .success(function(response){
       $scope.trialBalance = {};
+      $scope.displayTrialBalance = {};
+      $scope.displayLedgers = {};
       $scope.ledgerSummery = {};
+      $scope.trialbalancedebitsum = 0;
+      $scope.trialbalancecreditsum = 0;
+      $scope.backTrialBalance = null;
       var accids = [];
       angular.forEach(response.debitacc, function(acc){
         $scope.ledgerSummery[acc.dr_acc] = { debit : acc.amount};
@@ -659,13 +675,28 @@ angular.module('myApp.controllers', [])
 
         angular.forEach($scope.ledgerSummery, function(summery, groupid){
           if(!$scope.trialBalance[summery.ledger.group_id]){
-            $scope.trialBalance[summery.ledger.group_id] = [];
+            $scope.trialBalance[summery.ledger.group_id] = { group : {}, ledgers : []};
           }
-          $scope.trialBalance[summery.ledger.group_id].push(summery);        
+          $scope.trialBalance[summery.ledger.group_id].ledgers.push(summery);
+          $scope.trialBalance[summery.ledger.group_id].group = $scope.getGroupNameById(summery.ledger.group_id);
+        });                
+        
+        angular.forEach($scope.trialBalance, function(info){          
+          if(info.group.group){
+            $scope.trialBalance[info.group.group].children = {};
+            $scope.trialBalance[info.group.group].children[info.group.id] = info;
+            //delete $scope.trialBalance[info.group.id];
+          }
         });
+        angular.forEach($scope.trialBalance, function(info){          
+          if(info.group.group){
+            delete $scope.trialBalance[info.group.id];
+          }
+        });
+        $scope.displayTrialBalance = angular.copy($scope.trialBalance);
       })
       .error(function(err){
-
+        //{ groupid : { group : {}, ledgers : [], childresn : []}}
       });
     })
     .error(function(error){
@@ -673,20 +704,79 @@ angular.module('myApp.controllers', [])
     })
   }
 
+  $scope.showGroupSummery = function(value){
+    $scope.trialbalancedebitsum = 0;
+    $scope.trialbalancecreditsum = 0;
+    $scope.backTrialBalance = angular.copy($scope.displayTrialBalance);
+    $scope.displayTrialBalance = value.children;
+    $scope.displayLedgers = value.ledgers;     
+  }
+  $scope.goBackTrialBalance = function(){
+    $scope.displayTrialBalance = $scope.backTrialBalance;
+  }
   $scope.getDebitSum = function(value){
+    var val = angular.copy(value);
+    var sum = $scope.calculateDebitLedgerSum(val.ledgers);
+    if(val.children){      
+      sum = sum+$scope.calculateChildrenDebitSum(val.children);
+      //$scope.trialbalancedebitsum = $scope.trialbalancedebitsum + sum;
+      return sum;
+    }else{
+      //$scope.trialbalancedebitsum = $scope.trialbalancedebitsum + sum;
+      return sum;
+    }    
+  }
+
+  $scope.calculateChildrenDebitSum = function(children){
     var sum = 0;
-    angular.forEach(value, function(val){
-      sum = sum+parseInt(val.debit);
+    angular.forEach(children, function(child){
+      sum = sum+$scope.calculateDebitLedgerSum(child.ledgers);
+      if(child.children)
+        sum = sum+$scope.calculateChildrenDebitSum(child.children);
+    });
+    return sum;
+  }
+
+  $scope.calculateDebitLedgerSum = function(ledgers){
+    var sum = 0;
+    angular.forEach(ledgers, function(ledger){
+      if(ledger.debit)
+        sum = sum+parseInt(ledger.debit);
     });
     return sum;
   }
 
   $scope.getCreditSum = function(value){
+    var val = angular.copy(value);
+    var sum = $scope.calculateCreditLedgerSum(val.ledgers);
+    if(val.children){
+      sum = sum+$scope.calculateChildrenCreditSum(val.children);
+      //$scope.trialbalancecreditsum = $scope.trialbalancecreditsum + sum
+      return sum;
+    }else{
+      //$scope.trialbalancecreditsum = $scope.trialbalancecreditsum + sum
+      return sum;
+    }    
+  }
+
+  $scope.calculateChildrenCreditSum = function(children){
     var sum = 0;
-    angular.forEach(value, function(val){
-      sum = sum+parseInt(val.credit);
+    angular.forEach(children, function(child){
+      sum = sum+$scope.calculateCreditLedgerSum(child.ledgers);
+      if(child.children)
+        sum = sum+$scope.calculateChildrenCreditSum(child.children);
     });
     return sum;
   }
+
+  $scope.calculateCreditLedgerSum = function(ledgers){
+    var sum = 0;
+    angular.forEach(ledgers, function(ledger){
+      if(ledger.credit)
+        sum = sum+parseInt(ledger.credit);
+    });
+    return sum;
+  }
+
 });
 
