@@ -23,6 +23,19 @@ class Voucher extends MY_Base_Controller{
 			redirect('logins/login');
 		}
 	}
+
+	public function getbyledgerid(){
+		if($this->checkSession()){
+			$params = $this->getParameters();	
+			$this->load->model('Voucher_Model');
+			$data['response']['vouchers'] = $this->Voucher_Model->getVoucherByLedgerId($params['id']);
+			//$data['response']['creditVouchers'] =  $this->Voucher_Model->getCreditVoucherByLedgerId($params['id']);
+			//$data['response']['debitVouchers'] =  $this->Voucher_Model->getDebitVoucherByLedgerId($params['id']);
+		    echo json_encode($data['response']);
+		}else{
+			redirect('logins/login');
+		}
+	}
 }
 ?>
 

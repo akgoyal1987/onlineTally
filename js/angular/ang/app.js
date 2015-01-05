@@ -64,7 +64,6 @@ config(function($stateProvider, $urlRouterProvider) {
       url: "/unit_of_measure",
       templateUrl: "../views/unit_of_measure"
   })
-   
   .state('sale', {
       url: "/sale",
       templateUrl: "../views/sales_voucher"
@@ -109,4 +108,8 @@ config(function($stateProvider, $urlRouterProvider) {
       url: "/receipt",
       templateUrl: "../views/receipt"
   })
+ .state('showvouchers', {
+      url : "/showvouchers",
+      templateUrl : "../views/showvouchers"
+ })
 });

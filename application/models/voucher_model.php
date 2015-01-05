@@ -29,7 +29,40 @@ class Voucher_Model extends CI_Model {
 
   public function getBalanceSumDebitAcc(){
     $query = $this->db->query("SELECT dr_acc, sum(amount) as amount FROM `vouchers` group by dr_acc");
-    return $query->result();
+    $result = $query->result();
+    if ( is_array($result)) {
+        return $result;
+    }
+    else{
+      return array();
+    }
+  }
+
+  public function getDebitVoucherByLedgerId($dracc_id){
+    $query = $this->db->query("SELECT * FROM `vouchers` where dr_acc = $dracc_id");
+    $result = $query->result();
+    if ( is_array($result)) {
+        return $result;
+    }
+    else{
+      return array();
+    }
+  }
+
+  public function getCreditVoucherByLedgerId($dracc_id){
+    $query = $this->db->query("SELECT * FROM `vouchers` where cr_acc = $dracc_id");
+    $result = $query->result();
+    if ( is_array($result)) {
+        return $result;
+    }
+    else{
+      return array();
+    }
+  }
+
+  public function getVoucherByLedgerId($ledger_id){
+    $query = $this->db->query("SELECT * FROM `vouchers` where cr_acc = $ledger_id or dr_acc = $ledger_id");
+    $result = $query->result();
     if ( is_array($result)) {
         return $result;
     }

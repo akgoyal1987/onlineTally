@@ -3,7 +3,7 @@
         <div class="col-sm-12">
             <section class="panel">
                 <header class="panel-heading">
-                  Trial Balance
+                  {{selectedLedger.name}}
                     <span class="tools pull-right">
                         
                     </span>
@@ -28,23 +28,18 @@
                                     <th>Particulars</th>
                                     <th>Debit</th>
                                     <th>Credit</th>
-                                 </tr>
+                                </tr>
                             </thead>
                             <tbody>
-                                <tr class="gradeX" ng-repeat="(key, value) in displayTrialBalance">
-                                    <td><a href="javascript:void(0);" ng-click="showGroupSummery(value);" ng-bind="value.group.name;"></a></td>
-                                    <td ng-init="getDebitSum(value);">{{value.childrenDebitSum}}</td>
-                                    <td ng-init="getCreditSum(value);">{{value.childrenCreditSum}}</td>
+                                <tr class="gradeX" ng-repeat="voucher in selectedLedgerVouchers">
+                                    <td> <a href="#/voucherDetail" ng-click="showVoucherDetail(voucher);" ng-bind="selectedLedger.s_no==voucher.cr_acc?getLedgerNameById(voucher.dr_acc):getLedgerNameById(voucher.cr_acc)"></a></td>
+                                    <td ng-bind="selectedLedger.s_no==voucher.cr_acc?voucher.amount:0"></td>
+                                    <td ng-bind="selectedLedger.s_no==voucher.dr_acc?voucher.amount:0"></td>
                                 </tr>
-                                <tr class="gradeX" ng-repeat="ledger in displayLedgers">
-                                    <td> <a href="#/showvouchers" ng-click="showVouchers(ledger);" ng-bind="ledger.ledger.name;"></a></td>
-                                    <td ng-bind="ledger.debit?ledger.debit:0"></td>
-                                    <td ng-bind="ledger.credit?ledger.credit:0"></td>
-                                </tr> 
-                                <tr class="gradeX total" >
+                                <tr class="gradeX total">
                                     <td ng-bind="'Total'"></td>
-                                    <td ng-bind="calculateDebitTotal();"></td>
-                                    <td ng-bind="calculateCreditTotal();"></td>
+                                    <td ng-bind="ledgerDebitTotal"></td>
+                                    <td ng-bind="ledgerCreditTotal"></td>
                                 </tr>                                
                             </tbody>
                         </table>
