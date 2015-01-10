@@ -50,7 +50,6 @@
                                                 <td width="150px">
                                                     <!-- <div class="form-control" custom-select ng-model="v.item_id" ng-options="item.name for item in stock_items"></div> -->
                                                     <select class="form-control" required ng-model="v.item_id" ng-options="item.name for item in stock_items">
-                                                        <option value="">-- Select Product --</option>
                                                     </select>
                                                 </td>
                                                 <td><input type="number" ng-model="v.quantity"  ng-change="setValue(v);" class="form-control" placeholder="Quantity" required/></td>

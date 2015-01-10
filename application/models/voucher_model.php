@@ -95,10 +95,11 @@ class Voucher_Model extends CI_Model {
     $this->db->insert('vouchers',$data);
     if($this->db->affected_rows()>0){
         $voucherid = $this->db->insert_id();
-        foreach ($params['voucherEntries'] as $index => $voucher) {
-          $data = array('item_id'=>$voucher['item_id']['id'],"quantity"=>$voucher['quantity'],"rate"=>$voucher['rate'],"value"=>$voucher['value'],"voucher_id"=>$voucherid,"user_id"=>$this->session->userdata('user_id'));    
-          $this->db->insert('voucher_details',$data);
-        }
+        if(isset($params['voucherEntries']))
+          foreach ($params['voucherEntries'] as $index => $voucher) {
+            $data = array('item_id'=>$voucher['item_id']['id'],"quantity"=>$voucher['quantity'],"rate"=>$voucher['rate'],"value"=>$voucher['value'],"voucher_id"=>$voucherid,"user_id"=>$this->session->userdata('user_id'));    
+            $this->db->insert('voucher_details',$data);
+          }
     }
     return $voucherid;
   }

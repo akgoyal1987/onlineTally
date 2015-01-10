@@ -96,11 +96,11 @@
 
                 <li class="menu-list"><a href=""><i class="fa fa-edit"></i> <span> Accounting Vouchers</span></a>
                     <ul class="sub-menu-list">
-                    	<li><a href="#/sale"> Sale</a></li>
-                    	<li><a href="#/purchase"> Purchase</a></li>
-                        <li><a href="#/contra"> Contra</a></li>
-                        <li><a href="#/payment"> Payment</a></li>
-                        <li><a href="#/receipt"> Receipt</a></li>
+                    	<li><a ng-click="resetNewVoucher();" href="#/sale"> Sale</a></li>
+                    	<li><a ng-click="resetNewVoucher();" href="#/purchase"> Purchase</a></li>
+                        <li><a ng-click="resetNewVoucher();" href="#/contra"> Contra</a></li>
+                        <li><a ng-click="resetNewVoucher();" href="#/payment"> Payment</a></li>
+                        <li><a ng-click="resetNewVoucher();" href="#/receipt"> Receipt</a></li>
                     </ul>
                 </li>
                 <li class="menu-list"><a href=""><i class="fa fa-tag"></i> <span> Inventory Vouchers</span></a>
@@ -162,7 +162,7 @@
         <!-- header section end-->
 
 
-        <div class="wrapper" ui-view></div>
+        <div class="wrapper" ui-view autoscroll="true"></div>
         
 
         <!--footer section start-->

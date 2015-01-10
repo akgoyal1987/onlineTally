@@ -21,7 +21,6 @@ angular.module('myApp.controllers', [])
   $scope.cities = [];
   $scope.newcity = { name : ""};
   $scope.newVoucher = {};
-  $scope.stock_items = [];
   $scope.creditorLedgers = [];
   $scope.debtorLedgers = [];
   $scope.trialBalance = [];
@@ -90,6 +89,7 @@ angular.module('myApp.controllers', [])
     })
   };
   $scope.getAllGroups();
+
   $scope.getAllStockGroups = function(){
     $http.get("../stock_group/get")
     .success(function(response){
@@ -100,6 +100,7 @@ angular.module('myApp.controllers', [])
     })
   };
   $scope.getAllStockGroups();
+
   $scope.getAllUnits = function(){
     $http.get("../unit/get")
     .success(function(response){
@@ -110,6 +111,7 @@ angular.module('myApp.controllers', [])
     })
   };
   $scope.getAllUnits();
+
   function closeModal(){
     $(".close").click();
   }
@@ -123,6 +125,7 @@ angular.module('myApp.controllers', [])
     else
       return "";
   }
+
   $scope.getStockGroupNameById = function(groupid){
     var mygroup = $scope.stock_groups.filter(function(group){
       return (group.id == groupid);
@@ -132,6 +135,7 @@ angular.module('myApp.controllers', [])
     else
       return "";
   }
+
   $scope.stockgroupsWithoutPrimary = function(){
     var mygroup = $scope.stock_groups.filter(function(group){
       return (group.group_id != 0);
@@ -151,6 +155,7 @@ angular.module('myApp.controllers', [])
     else
       return "";
   }
+
   function hasCity(cityname, districtid){
     var cities = $scope.cities.filter(
       function(city){
@@ -196,6 +201,7 @@ angular.module('myApp.controllers', [])
   $scope.resetSelectedLedger = function(){
     $scope.selectedLedger = {};
   };
+
   $scope.resetSelectedSitem = function(){
     $scope.selectedSitem = {};
   };
@@ -258,6 +264,7 @@ angular.module('myApp.controllers', [])
       alert(error);
     })
   };
+
   $scope.createStockGroup = function(){
     $http.post("../stock_group/create", $scope.selectedStockGroup)
     .success(function(response){
@@ -273,7 +280,7 @@ angular.module('myApp.controllers', [])
     })
   };
 
-   $scope.createSitem = function(){
+  $scope.createSitem = function(){
     $http.post("../stock_items/create", $scope.selectedSitem)
     .success(function(response){
       if(response){
@@ -323,6 +330,7 @@ angular.module('myApp.controllers', [])
       alert(error);
     })
   };  
+  $scope.getStockItems();
 
   $scope.setSelectedLedger = function(ledger){
     $scope.selectedLedger = angular.copy(ledger); 
@@ -537,6 +545,12 @@ angular.module('myApp.controllers', [])
       });
     }
   }
+
+  $scope.resetNewVoucher = function(){
+    $scope.voucherEntries.splice(0, $scope.voucherEntries.length);
+    $scope.newVoucher = {};
+    $scope.addMoreItem();
+  }
   $scope.deleteUnit = function(group, index){
     var retVal = confirm("Do you want to delete ?");
     if (retVal == true) {
@@ -548,15 +562,7 @@ angular.module('myApp.controllers', [])
       });
     }
   }
-  $scope.getStockItems = function(){
-    $http.get("../stock_items/get")
-    .success(function(response){
-      $scope.stock_items = response;
-    })
-    .error(function(error){
-      alert(error);
-    })
-  };  
+
   $scope.setValue = function(v){
     if(v.rate && v.rate!="" && v.quantity && v.quantity!=""){
       v.value = v.rate*v.quantity;
@@ -605,8 +611,11 @@ angular.module('myApp.controllers', [])
       popupWin.document.close();
   }
 
-  $scope.createVoucher = function(){
-    $scope.newVoucher.voucherEntries = $scope.voucherEntries;
+  $scope.createVoucher = function(type){
+    delete $scope.newVoucher.voucherEntries;
+    $scope.newVoucher.type = type;
+    if(type == 'sale')
+      $scope.newVoucher.voucherEntries = $scope.voucherEntries;
     $http.post("../voucher/create", $scope.newVoucher)
     .success(function(response){
       $scope.newVoucher.id = response.voucherid;
@@ -614,7 +623,7 @@ angular.module('myApp.controllers', [])
       $scope.printPage();
 
       $scope.newVoucher = {};
-      $scope.voucherEntries = [];
+      $scope.voucherEntries.splice(0, $scope.voucherEntries.length);
       $scope.addMoreItem();
 
     })
@@ -818,17 +827,21 @@ angular.module('myApp.controllers', [])
 
   $scope.showVoucherDetail = function(voucher){
     $scope.selectedVoucher = voucher;
+    $scope.newVoucher = {};
+    $scope.voucherEntries.splice(0, $scope.voucherEntries.length);
     $http.post("../voucher/getVoucherDetailByVoucherId", {id : voucher.id})
-    .success(function(response){
+    .success(function(response){      
       $scope.newVoucher.cr_acc = $scope.getLedgerById($scope.selectedVoucher.cr_acc);
       $scope.newVoucher.dr_acc = $scope.getLedgerById($scope.selectedVoucher.dr_acc);
-      $scope.newVoucher.date = $scope.selectedVoucher.date;
-      $scope.voucherEntries = response.voucherdetails;
-      angular.forEach($scope.voucherEntries , function(entry){
-        entry.item_id = $scope.getStockItemById(entry.item_id);
+      $scope.newVoucher.date = $scope.selectedVoucher.date; 
+      if(response && response.voucherdetails && response.voucherdetails.length>0)     
+      angular.forEach(response.voucherdetails , function(entry){
+        var tempId = entry.item_id;
+        entry.item_id = $scope.stock_items[$scope.getStockItemById(tempId)];
         entry.rate = parseInt(entry.rate);
         entry.quantity = parseInt(entry.quantity);
         entry.value = parseInt(entry.value);
+        $scope.voucherEntries.push(entry);
       });
     })
     .error(function(error){
@@ -837,14 +850,14 @@ angular.module('myApp.controllers', [])
   }
 
   $scope.getStockItemById = function(item_id){
-      var item = null;
-      angular.forEach($scope.stock_items, function(i){
-        if(i.id == item_id){
-          item = i;
-          return;
+      var index = -1;
+      for(var i = $scope.stock_items.length-1; i>=0;i--){
+        if($scope.stock_items[i].id == item_id){
+          index = i;
+          break;
         }
-      });
-      return item;
+      }
+      return index;      
   }
   $scope.getLedgerById = function(ledgerid){
     var new_ledger = null;

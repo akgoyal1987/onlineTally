@@ -1,5 +1,5 @@
     <!--body wrapper start-->
-        <div class="wrapper" ng-init="getLedgers();getStockItems();">
+        <div class="wrapper">
             <div class="row">
                
             </div>
@@ -12,7 +12,7 @@
                         </header>
                         <div class="panel-body">
                             <div class=" form">
-                                <form class="cmxform form-horizontal adminex-form" name="ledgerform" id="ledgerform" ng-submit="createVoucher();" method="post" action="">
+                                <form class="cmxform form-horizontal adminex-form" name="ledgerform" id="ledgerform" ng-submit="createVoucher('sale');" method="post" action="">
                                     <div class="form-group ">
                                         <label class="control-label col-lg-2">Sales Ledger</label>
                                         <div class="col-lg-4">
