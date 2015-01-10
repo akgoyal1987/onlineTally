@@ -112,4 +112,8 @@ config(function($stateProvider, $urlRouterProvider) {
       url : "/showvouchers",
       templateUrl : "../views/showvouchers"
  })
+ .state('voucherDetail', {
+      url : "/voucherDetail",
+      templateUrl : "../views/voucherDetail"
+ }) 
 });

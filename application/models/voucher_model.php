@@ -71,6 +71,17 @@ class Voucher_Model extends CI_Model {
     }
   }
 
+  public function getVoucherDetails($voucher_id){
+    $query = $this->db->query("SELECT * FROM `voucher_details` where voucher_id = $voucher_id");
+    $result = $query->result();
+    if ( is_array($result)) {
+        return $result;
+    }
+    else{
+      return array();
+    }
+  }
+  
   public function update($group){
       $data = array('name'=>$group['name'],"group_id"=>$group['group_id']['id']);    
        $this->db->where('id',$group['id']);     

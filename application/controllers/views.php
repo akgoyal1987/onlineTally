@@ -161,7 +161,13 @@ class Views extends MY_Base_Controller{
 			echo "You Are Not Logged In, Please Login!";
 		}
 	}
-
+	public function voucherDetail(){
+		if($this->checkSession()){
+			$this->load->view('partials/voucherDetail');
+		}else{
+			echo "You Are Not Logged In, Please Login!";
+		}	
+	}
 }
 
 

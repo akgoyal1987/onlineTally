@@ -36,6 +36,17 @@ class Voucher extends MY_Base_Controller{
 			redirect('logins/login');
 		}
 	}
+
+	public function getVoucherDetailByVoucherId(){
+		if($this->checkSession()){
+			$params = $this->getParameters();	
+			$this->load->model('Voucher_Model');
+			$data['response']['voucherdetails'] = $this->Voucher_Model->getVoucherDetails($params['id']);
+		    echo json_encode($data['response']);
+		}else{
+			redirect('logins/login');
+		}
+	}
 }
 ?>
 

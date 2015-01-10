@@ -820,11 +820,40 @@ angular.module('myApp.controllers', [])
     $scope.selectedVoucher = voucher;
     $http.post("../voucher/getVoucherDetailByVoucherId", {id : voucher.id})
     .success(function(response){
-      
+      $scope.newVoucher.cr_acc = $scope.getLedgerById($scope.selectedVoucher.cr_acc);
+      $scope.newVoucher.dr_acc = $scope.getLedgerById($scope.selectedVoucher.dr_acc);
+      $scope.newVoucher.date = $scope.selectedVoucher.date;
+      $scope.voucherEntries = response.voucherdetails;
+      angular.forEach($scope.voucherEntries , function(entry){
+        entry.item_id = $scope.getStockItemById(entry.item_id);
+        entry.rate = parseInt(entry.rate);
+        entry.quantity = parseInt(entry.quantity);
+        entry.value = parseInt(entry.value);
+      });
     })
     .error(function(error){
 
     });
   }
 
+  $scope.getStockItemById = function(item_id){
+      var item = null;
+      angular.forEach($scope.stock_items, function(i){
+        if(i.id == item_id){
+          item = i;
+          return;
+        }
+      });
+      return item;
+  }
+  $scope.getLedgerById = function(ledgerid){
+    var new_ledger = null;
+    angular.forEach($scope.ledgers, function(ledger){
+      if(ledger.s_no == ledgerid){
+        new_ledger = ledger;
+        return;
+      }        
+    });
+    return new_ledger;
+  }
 });
